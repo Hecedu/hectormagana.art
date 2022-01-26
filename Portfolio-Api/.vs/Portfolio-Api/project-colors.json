@@ -1,0 +1,16 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "db1f5e32-86c4-460e-8913-02963ddbb847": {
+      "ProjectGuid": "db1f5e32-86c4-460e-8913-02963ddbb847",
+      "DisplayName": "Portfolio-Api",
+      "ColorIndex": 0
+    },
+    "7eaaa917-fa12-47f1-8df2-e41013e22f88": {
+      "ProjectGuid": "7eaaa917-fa12-47f1-8df2-e41013e22f88",
+      "DisplayName": "Portfolio-Api",
+      "ColorIndex": 1
+    }
+  },
+  "NextColorIndex": 2
+}
