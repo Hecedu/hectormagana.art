@@ -26,7 +26,7 @@ services:
     image: hectoritobonito/portfolio-api:latest
     environment:
         DbConnectionString: "Server=postgresql_database; Port=5432; Database=portfoliodb; User Id=postgres; Password=admin"
-    expose:
+    ports:
       - "8080:80"
   swag:
     image: ghcr.io/linuxserver/swag
@@ -38,7 +38,7 @@ services:
       - PGID=1000
       - TZ=America/Denver
       - URL=hectormagana.art
-      - STAGING=true
+      - STAGING=false
     volumes:
       - /swag:/config
       - ./Nginx/default.conf:/config/nginx/site-confs/default
