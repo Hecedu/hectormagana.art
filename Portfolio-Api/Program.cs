@@ -15,7 +15,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<PortfolioDbContext>(options =>{
     options.UseNpgsql(DbConnectionString);
 });
-builder.Services.AddTransient<IRepository, BlogRepository>();
+builder.Services.AddTransient<IRepository, ApiRepository>();
 
 
 var app = builder.Build();
