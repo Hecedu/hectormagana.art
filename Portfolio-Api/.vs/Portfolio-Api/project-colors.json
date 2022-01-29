@@ -10,7 +10,12 @@
       "ProjectGuid": "7eaaa917-fa12-47f1-8df2-e41013e22f88",
       "DisplayName": "Portfolio-Api",
       "ColorIndex": 1
+    },
+    "51a756a9-6f6c-49ec-aed2-5684f4d194dd": {
+      "ProjectGuid": "51a756a9-6f6c-49ec-aed2-5684f4d194dd",
+      "DisplayName": "Portfolio-Api",
+      "ColorIndex": 2
     }
   },
-  "NextColorIndex": 2
+  "NextColorIndex": 3
 }

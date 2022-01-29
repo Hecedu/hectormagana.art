@@ -19,7 +19,7 @@ namespace Portfolio_Api.Services
 
         public async Task AddClientInformationAsync(ClientInformation clientInformation)
         {
-            _context.clientinformation.Remove(clientInformation);
+            _context.clientinformation.Add(clientInformation);
             await _context.SaveChangesAsync();
         }
 
