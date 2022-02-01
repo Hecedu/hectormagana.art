@@ -36,8 +36,8 @@ services:
       context: ./Wireguard-Admin
       dockerfile: dockerfile
     volumes:
-      - /app/node_modules
-      - ./wireguard-admin:/app
+      - './Wireguard-Admin:/app'
+      - '/app/node_modules'
   swag:
     image: ghcr.io/linuxserver/swag
     container_name: swag
