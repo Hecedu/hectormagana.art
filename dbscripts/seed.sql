@@ -1,5 +1,7 @@
 \connect portfoliodb
 
+CREATE USER wireguard_admin WITH ENCRYPTED PASSWORD 'wireguard_admin';
+
 CREATE TABLE blogposts
 (
  id serial PRIMARY KEY,
@@ -16,5 +18,6 @@ CREATE TABLE clientinformation
     client_public_key VARCHAR (150) NOT NULL,
     client_private_key VARCHAR (150) NOT NULL
 );
-ALTER TABLE blogposts OWNER TO postgres;
-ALTER TABLE clientinformation OWNER TO postgres;
+
+ALTER TABLE blogposts OWNER TO wireguard_admin;
+ALTER TABLE clientinformation OWNER TO wireguard_admin;

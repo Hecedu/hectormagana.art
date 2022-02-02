@@ -25,7 +25,7 @@ services:
   api:
     image: hectoritobonito/portfolio-api:latest
     environment:
-        DbConnectionString: "Server=postgresql_database; Port=5432; Database=portfoliodb; User Id=postgres; Password=admin"
+        DbConnectionString: "Server=postgresql_database; Port=5432; Database=portfoliodb; User Id=wireguard_admin; Password=wireguard_admin"
     ports:
       - "5003:80"
   wireguard-admin:
