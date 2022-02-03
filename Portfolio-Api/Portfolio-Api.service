@@ -3,11 +3,11 @@ Description=ASP.NET Core web template
 
 [Service]
 # will set the Current Working Directory (CWD)
-WorkingDirectory=/srv/AspNetSite
+WorkingDirectory=/srv/Portfolio-Api
 # systemd will run this executable to start the service
-ExecStart=/srv/AspNetSite/AspNetSite
+ExecStart=/srv/Portfolio-Api/Portfolio-Api
 # to query logs using journalctl, set a logical name here  
-SyslogIdentifier=AspNetSite
+SyslogIdentifier=Portfolio-Api
 
 # Use your username to keep things simple, for production scenario's I recommend a dedicated user/group.
 # If you pick a different user, make sure dotnet and all permissions are set correctly to run the app.
