@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Portfolio_Api.Models;
 using Portfolio_Api.Services;
+using Microsoft.Extensions.Hosting.Systemd;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,6 +17,7 @@ builder.Services.AddDbContext<PortfolioDbContext>(options =>{
     options.UseNpgsql(DbConnectionString);
 });
 builder.Services.AddTransient<IRepository, ApiRepository>();
+builder.Host.UseSystemd();
 
 
 var app = builder.Build();
@@ -29,7 +31,6 @@ if (app.Environment.IsDevelopment())
 //app.UseHttpsRedirection();
 
 app.UseAuthorization();
-
 app.MapControllers();
 
 app.Run();
