@@ -6,7 +6,7 @@ using Microsoft.Extensions.Hosting.Systemd;
 var builder = WebApplication.CreateBuilder(args);
 
 //config variables
-var DbConnectionString = Environment.GetEnvironmentVariable("DbConnectionString") ?? "Server=https://45.79.192.219; Port=5001; Database=portfoliodb; User Id=wireguard_admin; Password=wireguard_admin";
+var DbConnectionString = Environment.GetEnvironmentVariable("DbConnectionString") ??  "Server=45.79.192.219; Port=5001; Database=portfoliodb; User Id=wireguard_admin; Password=wireguard_admin";
 
 // Add services to the container.
 builder.Services.AddControllers();
