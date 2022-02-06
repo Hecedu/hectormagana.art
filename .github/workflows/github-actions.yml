@@ -9,8 +9,9 @@ jobs:
       - name: Redeploy Portfolio API
         working-directory: /root/source/Portfolio-vm/Portfolio-Api/
         run: |
-         export DbConnectionString='${{secrets.DB_CONNECTION_STRING}}'
          echo "🤓: Refreshing API service"
+         export DbConnectionString='${{secrets.DB_CONNECTION_STRING}}'
+         dotnet publish -c Release -o /srv/Portfolio-Api
          systemctl stop Portfolio-Api.service
          sudo cp Portfolio-Api.service /etc/systemd/system/Portfolio-Api.service
          systemctl daemon-reload
