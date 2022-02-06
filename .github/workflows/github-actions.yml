@@ -4,7 +4,8 @@ jobs:
  Initial:
     runs-on: self-hosted
     steps:
-      - uses: actions/checkout@v2
+      - name: Check out repository code
+        uses: actions/checkout@v2
       - name: Redeploy Portfolio API
         working-directory: /root/source/Portfolio-vm/Portfolio-Api/
         run: |
@@ -19,11 +20,7 @@ jobs:
          echo "🤓: Redeploying Docker-compose"
          docker-compose down
          docker-compose build
-         docker-compose up
-      - name: Check out repository code
-        uses: actions/checkout@v2
-      - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
-      - run: echo "🖥️ The workflow is now ready to test your code on the runner."
+         docker-compose up -d
       - name: List files in the repository
         run: |
           ls ${{ github.workspace }}
