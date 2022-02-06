@@ -11,7 +11,7 @@ jobs:
         run: |
          echo "🤓: Refreshing API service"
          systemctl stop Portfolio-Api.service
-         export DbConnectionString='${{secrets.DB_CONNECTION_STRING}}'
+         echo 'DbConnectionString=${{secrets.DB_CONNECTION_STRING}}' > env
          dotnet publish -c Release -o /srv/Portfolio-Api
          sudo cp Portfolio-Api.service /etc/systemd/system/Portfolio-Api.service
          systemctl daemon-reload

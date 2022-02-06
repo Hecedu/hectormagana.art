@@ -2,6 +2,8 @@
 Description=ASP.NET Core web template
 
 [Service]
+# environment variables
+EnvironmentFile=/root/source/Portfolio-vm/Portfolio-Api/env
 # will set the Current Working Directory (CWD)
 WorkingDirectory=/srv/Portfolio-Api
 # systemd will run this executable to start the service
