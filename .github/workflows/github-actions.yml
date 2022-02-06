@@ -4,9 +4,22 @@ jobs:
  Initial:
     runs-on: self-hosted
     steps:
-      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
-      - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
-      - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
+      - uses: actions/checkout@v2
+      - name: Redeploy Portfolio API
+        working-directory: /root/source/Portfolio-vm/Portfolio-Api/
+        run: |
+         echo "🤓: Refreshing API service"
+         systemctl stop Portfolio-Api.service
+         sudo cp Portfolio-Api.service /etc/systemd/system/Portfolio-Api.service
+         systemctl daemon-reload
+         systemctl start Portfolio-Api.service
+      - name: Redeploy Docker Compose
+        working-directory: /root/source/Portfolio-vm/
+        run: |
+         echo "🤓: Redeploying Docker-compose"
+         docker-compose down
+         docker-compose build
+         docker-compose up
       - name: Check out repository code
         uses: actions/checkout@v2
       - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
