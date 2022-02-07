@@ -1,4 +1,4 @@
-import React, { useEffect} from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 import axios from 'axios';
 
@@ -11,7 +11,7 @@ type ClientInformation = {
   client_private_key: string;
 }
 function App() {
-  //const [systemStatus, setSystemStatus] = useState<any>();
+  const [systemStatus, setSystemStatus] = useState<string>('Loading...');
   var clientName = '';
   var ipAddres = '';
   var allowedIpRange = '';
@@ -20,14 +20,15 @@ function App() {
 
   useEffect(() => {
     axios.get('/api/clientinformation/WireguardSystemStatus')
-    .then(function (response) {
-      console.log(response);
-    })
-    .catch(function (error) {
-      console.log(error)
-    })
+      .then(function (response) {
+        console.log(response);
+        setSystemStatus(response.data);
+      })
+      .catch(function (error) {
+        console.log(error)
+      })
   }, []);
-  
+
   function onClientNameChange(event: React.ChangeEvent<HTMLInputElement>) {
     clientName = event.target.value;
   }
@@ -62,15 +63,27 @@ function App() {
     axios.get('/api/clientinformation/RestartWireguardService')
       .then(function (response) {
         console.log(response)
+        axios.get('/api/clientinformation/WireguardSystemStatus')
+          .then(function (response) {
+            console.log(response);
+            setSystemStatus(response.data);
+          })
+          .catch(function (error) {
+            console.log(error)
+          })
       })
       .catch(function (error) {
         console.log(error)
       })
-    }
-  
+  }
+
 
   return (
     <div className="App">
+      <div className='container'>
+        <h1>Status:</h1>
+        <p>{systemStatus}</p>
+      </div>
       <div className='container'>
         <h1>Create new user</h1>
         <div className='my-2'>
