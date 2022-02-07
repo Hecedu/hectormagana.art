@@ -6422,24 +6422,31 @@
     ]
   },
   "packageFolders": {
-    "/root/.nuget/packages/": {}
+    "C:\\Users\\hecto\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/root/source/Portfolio-vm/Portfolio-Api/Portfolio-Api.csproj",
+      "projectUniqueName": "C:\\Users\\hecto\\source\\repos\\Portfolio-db\\Portfolio-Api\\Portfolio-Api.csproj",
       "projectName": "Portfolio-Api",
-      "projectPath": "/root/source/Portfolio-vm/Portfolio-Api/Portfolio-Api.csproj",
-      "packagesPath": "/root/.nuget/packages/",
-      "outputPath": "/root/source/Portfolio-vm/Portfolio-Api/obj/",
+      "projectPath": "C:\\Users\\hecto\\source\\repos\\Portfolio-db\\Portfolio-Api\\Portfolio-Api.csproj",
+      "packagesPath": "C:\\Users\\hecto\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\hecto\\source\\repos\\Portfolio-db\\Portfolio-Api\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "/root/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\hecto\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net6.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -6507,7 +6514,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/6.0.101/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
       }
     }
   }

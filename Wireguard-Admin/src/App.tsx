@@ -10,7 +10,7 @@ type ClientInformation = {
   allowed_ip_range: string;
   client_public_key: string;
   client_private_key: string;
-} 
+}
 function App() {
   var clientName = '';
   var ipAddres = '';
@@ -35,19 +35,28 @@ function App() {
   }
   function onSubmit() {
     if (clientName && ipAddres && allowedIpRange && clientPublicKey && clientPrivateKey) {
-      let clientInformation: ClientInformation = {client_name: clientName, ip_address: ipAddres, date_added: new Date(), allowed_ip_range: allowedIpRange, client_public_key: clientPublicKey, client_private_key: clientPrivateKey};
+      let clientInformation: ClientInformation = { client_name: clientName, ip_address: ipAddres, date_added: new Date(), allowed_ip_range: allowedIpRange, client_public_key: clientPublicKey, client_private_key: clientPrivateKey };
       axios.post('/api/clientinformation/addclientinformation', clientInformation)
-      .then(function (response) {
-        alert(response)
-      })
-      .catch(function (error) {
-        console.log(error)
-      });
+        .then(function (response) {
+          alert(response)
+        })
+        .catch(function (error) {
+          console.log(error)
+        });
     }
     else {
       alert('Please fill all fields.');
     }
   }
+  function onRestartWireguardService() {
+    axios.post('/api/clientinformation/RestartWireguardService')
+      .then(function (response) {
+        alert(response)
+      })
+      .catch(function (error) {
+        console.log(error)
+      })
+    }
 
   return (
     <div className="App">
@@ -59,22 +68,26 @@ function App() {
         </div>
         <div className='my-2'>
           <label className='my-1 mx-1'>IP Address:</label>
-            <input type="text" name="name" onChange={onIpAddressChange} />
+          <input type="text" name="name" onChange={onIpAddressChange} />
         </div>
         <div className='my-2'>
           <label className='my-1 mx-1'>Allowed IP Range:</label>
-            <input type="text" name="name" onChange={onAllowedIpRangeChange}/>
+          <input type="text" name="name" onChange={onAllowedIpRangeChange} />
         </div>
         <div className='my-2'>
           <label className='my-1 mx-1'>Client Public Key:</label>
-            <input type="text" name="name" onChange={onClientPublicKeyChange}/>
+          <input type="text" name="name" onChange={onClientPublicKeyChange} />
         </div>
         <div className='my-2'>
           <label className='my-1 mx-1'>Client Private Key:</label>
-            <input type="text" name="name" onChange={onClientPrivateKeyChange}/>
+          <input type="text" name="name" onChange={onClientPrivateKeyChange} />
         </div>
         <div className='my-2'>
-          <input className="btn btn-primary" type="submit" value="Submit" onClick={onSubmit}></input>
+          <button className="btn btn-primary" type="submit" value="Submit" onClick={onSubmit}>Submit</button>
+        </div>
+        <div className='my-2'>
+          <h1>Restart Wireguard Service</h1>
+          <button className="btn btn-danger" onClick={onRestartWireguardService}>Restart Wireguard Service</button>
         </div>
       </div>
     </div>
