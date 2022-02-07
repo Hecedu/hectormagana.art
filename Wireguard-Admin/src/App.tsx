@@ -49,7 +49,7 @@ function App() {
     }
   }
   function onRestartWireguardService() {
-    axios.post('/api/clientinformation/RestartWireguardService')
+    axios.get('/api/clientinformation/RestartWireguardService')
       .then(function (response) {
         console.log(response)
       })

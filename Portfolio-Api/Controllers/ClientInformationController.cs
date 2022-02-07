@@ -15,13 +15,7 @@ namespace Portfolio_Api.Controllers
             _repository = repository;
         }
 
-        [HttpPost]
-        [Route("RestartWireguardService")]
-        public IActionResult RestartWireguardService()
-        {
-            string result = RestartWireguard();
-            return Ok();
-        }
+
 
         [HttpPost]
         [Route("AddClientInformation")]
@@ -35,6 +29,14 @@ namespace Portfolio_Api.Controllers
         public IEnumerable<ClientInformation> GetClientInformation()
         {
             return _repository.GetClientInformation();
+        }
+
+        [HttpGet]
+        [Route("RestartWireguardService")]
+        public string RestartWireguardService()
+        {
+            string result = RestartWireguard();
+            return result;
         }
 
         [HttpGet]
