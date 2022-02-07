@@ -53,7 +53,7 @@ namespace Portfolio_Api.Controllers
                 StartInfo = new ProcessStartInfo
                 {
                     FileName = "bash",
-                    Arguments = "-c \"systemctl restart wireguard\"",
+                    Arguments = "-c \"systemctl restart wg-quick@wg0.service\"",
                     RedirectStandardInput = true,
                     RedirectStandardOutput = true,
                     RedirectStandardError = true,
