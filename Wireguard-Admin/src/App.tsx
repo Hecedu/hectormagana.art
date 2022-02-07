@@ -51,7 +51,7 @@ function App() {
   function onRestartWireguardService() {
     axios.post('/api/clientinformation/RestartWireguardService')
       .then(function (response) {
-        alert(response)
+        console.log(response)
       })
       .catch(function (error) {
         console.log(error)
