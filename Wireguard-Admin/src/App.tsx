@@ -1,5 +1,4 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useEffect} from 'react';
 import './App.css';
 import axios from 'axios';
 
@@ -12,12 +11,23 @@ type ClientInformation = {
   client_private_key: string;
 }
 function App() {
+  //const [systemStatus, setSystemStatus] = useState<any>();
   var clientName = '';
   var ipAddres = '';
   var allowedIpRange = '';
   var clientPublicKey = '';
   var clientPrivateKey = '';
 
+  useEffect(() => {
+    axios.get('/api/clientinformation/WireguardSystemStatus')
+    .then(function (response) {
+      console.log(response);
+    })
+    .catch(function (error) {
+      console.log(error)
+    })
+  }, []);
+  
   function onClientNameChange(event: React.ChangeEvent<HTMLInputElement>) {
     clientName = event.target.value;
   }
@@ -57,6 +67,7 @@ function App() {
         console.log(error)
       })
     }
+  
 
   return (
     <div className="App">

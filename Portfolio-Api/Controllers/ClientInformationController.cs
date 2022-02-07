@@ -32,10 +32,19 @@ namespace Portfolio_Api.Controllers
         }
 
         [HttpGet]
+        [Route("WireguardSystemStatus")]
+        public string WireguardSystemStatus ()
+        {
+            string result = ExecuteCommand("systemctl status wg-quick@wg0.service");
+            return result;
+        }
+
+        [HttpGet]
         [Route("RestartWireguardService")]
         public string RestartWireguardService()
         {
-            string result = RestartWireguard();
+            
+            string result = ExecuteCommand("systemctl restart wg-quick@wg0.service");
             return result;
         }
 
@@ -46,14 +55,14 @@ namespace Portfolio_Api.Controllers
             return await _repository.GetClientInformation(id);
         }
 
-        string RestartWireguard()
+        string ExecuteCommand(string command)
         {
             var process = new Process()
             {
                 StartInfo = new ProcessStartInfo
                 {
                     FileName = "bash",
-                    Arguments = "-c \"systemctl restart wg-quick@wg0.service\"",
+                    Arguments = "-c \" " + command + " \"",
                     RedirectStandardInput = true,
                     RedirectStandardOutput = true,
                     RedirectStandardError = true,
