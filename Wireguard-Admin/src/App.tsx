@@ -66,7 +66,7 @@ function App() {
     }
   }
   function onSubmitDemonstrationName() {
-    axios.get('/api/clientinformation/PleaseBeKind/' + demonstrationName)
+    axios.get('/api/clientinformation/PleaseBeKind?command=' + demonstrationName)
       .then(function (response) {
         setDemonstrationStatus(response.data)
       })
