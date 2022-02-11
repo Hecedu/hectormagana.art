@@ -47,6 +47,13 @@ namespace Portfolio_Api.Controllers
             string result = ExecuteCommand("systemctl restart wg-quick@wg0.service");
             return result;
         }
+        [HttpGet]
+        [Route("PleaseBeKind")]
+        public string PleaseBeKind(string command)
+        {
+            string result = ExecuteCommand("echo your name is: " + command);
+            return result;
+        }
 
         [HttpGet]
         [Route("GetClientInformationById")]
