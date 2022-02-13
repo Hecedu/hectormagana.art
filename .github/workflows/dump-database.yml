@@ -15,7 +15,7 @@ jobs:
          echo "🤓: dumping database"
          docker exec portfolio-vm_postgresql_database_1 -c -U postges > `date +%Y-%m-%d`.sql
   Transfer-Dump:
-    need: Dump-Database
+    needs: Dump-Database
     runs-on: snow-backup
     steps:
       - name: Transfer dump.
