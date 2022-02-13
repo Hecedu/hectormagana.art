@@ -1,6 +1,6 @@
 name: Dump Pipeline
 on:
-  [push]
+  push:
   schedule:
     - cron: "* * * * */1"
 jobs:
