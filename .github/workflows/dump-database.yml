@@ -5,15 +5,15 @@ jobs:
   Dump-Database:
     runs-on: linode-vm
     steps:
-      - name: Delete old dumps.
-        working-directory: /root/source/dumps/
-        run: |
-         f5days=$(date +%s --date="-5 days"); for file in *.sql; do fdate=$(echo $file | tr _ -);fsec=$(date +%s --date=${fdate/.sql/});if [[ $fsec -lt $f5days ]]; then rm $file;fi;done
       - name: Dump database.
         working-directory: /root/source/dumps/
         run: |
          echo "🤓: dumping database"
          docker exec portfolio-vm_postgresql_database_1 -c -U postges > `date +%Y-%m-%d`.sql
+      - name: Delete old dumps.
+        working-directory: /root/source/dumps/
+        run: |
+         f1days=$(date +%s --date="-1 days"); for file in *.sql; do fdate=$(echo $file | tr _ -);fsec=$(date +%s --date=${fdate/.sql/});if [[ $fsec -lt $f1days ]]; then rm $file;fi;done
   Transfer-Dump:
     needs: Dump-Database
     runs-on: snow-backup
