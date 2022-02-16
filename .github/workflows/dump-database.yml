@@ -22,7 +22,7 @@ jobs:
         working-directory: /home/hector/source/dumps/
         run: |
           echo "🤓: transfering dump over SCP"
-          rm *
+          rm -f *
           wg-quick up wg-hector
           sshpass -p '${{secrets.LINODE_PASSWORD}}' scp root@10.200.50.1:~/source/dumps/* .
           wg-quick down wg-hector
