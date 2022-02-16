@@ -12,13 +12,11 @@ type ClientInformation = {
 }
 function App() {
   const [systemStatus, setSystemStatus] = useState<string>('Loading...');
-  const [demonstrationStatus, setDemonstrationStatus] = useState<string>('waiting for your name :)');
   var clientName = '';
   var ipAddres = '';
   var allowedIpRange = '';
   var clientPublicKey = '';
   var clientPrivateKey = '';
-  var demonstrationName = '';
 
   useEffect(() => {
     axios.get('/api/clientinformation/WireguardSystemStatus')
@@ -46,9 +44,6 @@ function App() {
   function onClientPrivateKeyChange(event: React.ChangeEvent<HTMLInputElement>) {
     clientPrivateKey = event.target.value;
   }
-  function onDemonstrationNameChange(event: React.ChangeEvent<HTMLInputElement>) {
-    demonstrationName = event.target.value;
-  }
 
   function onSubmitForm() {
     if (clientName && ipAddres && allowedIpRange && clientPublicKey && clientPrivateKey) {
@@ -64,15 +59,6 @@ function App() {
     else {
       alert('Please fill all fields.');
     }
-  }
-  function onSubmitDemonstrationName() {
-    axios.get('/api/clientinformation/PleaseBeKind?command=' + demonstrationName)
-      .then(function (response) {
-        setDemonstrationStatus(response.data)
-      })
-      .catch(function (error) {
-        console.log(error)
-      })
   }
   function onRestartWireguardService() {
     axios.get('/api/clientinformation/RestartWireguardService')
@@ -128,15 +114,6 @@ function App() {
         <div className='my-2'>
           <button className="btn btn-primary" type="submit" value="Submit" onClick={onSubmitForm}>Submit</button>
         </div>
-      </div>
-      <div className='container border border-primary rounded p-2 my-2 shadow-sm'>
-        <h1>Enter your name!</h1>
-        <label className='my-1 mx-1'>Your name:</label>
-        <input type="text" name="name" onChange={onDemonstrationNameChange} />
-        <div className='my-2'>
-          <button className="btn btn-primary" type="submit" value="Submit" onClick={onSubmitDemonstrationName}>Submit your Name!</button>
-        </div>
-        <h4>{demonstrationStatus}</h4>
       </div>
     </div>
   );
