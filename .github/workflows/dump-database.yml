@@ -9,7 +9,7 @@ jobs:
         working-directory: /root/source/dumps/
         run: |
          echo "🤓: dumping database"
-         docker exec portfolio-vm_postgresql_database_1 -c -U postges > `date +%Y-%m-%d`.sql
+         docker exec -t portfolio-vm_postgresql_database_1  pg_dumpall -c -U postgres > `date +%Y-%m-%d`.sql
       - name: Delete old dumps.
         working-directory: /root/source/dumps/
         run: |
