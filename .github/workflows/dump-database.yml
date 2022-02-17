@@ -21,8 +21,11 @@ jobs:
       - name: Transfer dump.
         working-directory: /home/hector/source/dumps/
         run: |
-          echo "🤓: transfering dump over SCP"
+          echo "🤓: removing old dumps"
           rm -f *
+          echo "🤓: turning on VPN"
           wg-quick up wg-hector
+          echo "🤓: transfering dump over SCP"
           scp root@10.200.50.1:~/source/dumps/* .
+          echo "🤓: turning off VPN"
           wg-quick down wg-hector
