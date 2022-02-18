@@ -1,6 +1,10 @@
 name: Restore Pipeline
 on:
   workflow_dispatch:
+      dump_date:
+        description: 'Define dump_date in the following format: yyyy-mm-dd'     
+        required: true
+        default: '2022-01-01'
 jobs:
   Transfer-Most-Recent-Dump:
     runs-on: snow-backup
@@ -11,7 +15,7 @@ jobs:
           echo "🤓: turning on VPN"
           sudo wg-quick up wg-hector
           echo "🤓: transfering most recent dump over SCP"
-          scp "$(ls -t | head -n 1)" root@10.200.50.1:~/source/most_recent_dump/most_recent.sql
+          scp "$(ls -t | head -n 1)" root@10.200.50.1:~/source/dumps/${{ github.event.inputs.environment }}.sql
           echo "🤓: turning off VPN"
           sudo wg-quick down wg-hector
   Restore-Database:
