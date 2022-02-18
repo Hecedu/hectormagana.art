@@ -11,7 +11,7 @@ jobs:
           echo "🤓: turning on VPN"
           sudo wg-quick up wg-hector
           echo "🤓: transfering most recent dump over SCP"
-          scp "$(ls -t | head -n 1)" root@10.200.50.1:~/source/dumps/most_recent.sql
+          scp "$(ls -t | head -n 1)" root@10.200.50.1:~/source/dumps/most_recent/most_recent.sql
           echo "🤓: turning off VPN"
           sudo wg-quick down wg-hector
   Restore-Database:
@@ -19,7 +19,7 @@ jobs:
     runs-on: linode-vm
     steps:
       - name: Restore database.
-        working-directory: /root/source/dumps/
+        working-directory: /root/source/dumps/most_recent
         run: |
          echo "🤓: restoring database"
          cat most_recent.sql | docker exec -i portfolio-vm_postgresql_database_1 psql -U postgres
