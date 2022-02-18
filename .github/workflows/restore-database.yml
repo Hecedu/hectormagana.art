@@ -16,7 +16,7 @@ jobs:
           echo "🤓: turning on VPN"
           sudo wg-quick up wg-hector
           echo "🤓: transfering most recent dump over SCP"
-          scp "$(ls -t | head -n 1)" root@10.200.50.1:~/source/dumps/${{ github.event.inputs.environment }}.sql
+          scp ${{ github.event.inputs.environment }}.sql root@10.200.50.1:~/source/dumps/${{ github.event.inputs.environment }}.sql
           echo "🤓: turning off VPN"
           sudo wg-quick down wg-hector
   Restore-Database:
@@ -27,4 +27,4 @@ jobs:
         working-directory: /root/source/most_recent_dump
         run: |
          echo "🤓: restoring database"
-         cat most_recent.sql | docker exec -i portfolio-vm_postgresql_database_1 psql -U postgres
+         cat ${{ github.event.inputs.environment }}.sql | docker exec -i portfolio-vm_postgresql_database_1 psql -U postgres
