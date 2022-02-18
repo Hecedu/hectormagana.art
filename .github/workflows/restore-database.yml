@@ -1,6 +1,7 @@
 name: Restore Pipeline
 on:
   workflow_dispatch:
+    inputs:
       dump_date:
         description: 'Define dump_date in the following format: yyyy-mm-dd'     
         required: true
