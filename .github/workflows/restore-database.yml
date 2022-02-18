@@ -1,0 +1,25 @@
+name: Restore Pipeline
+on:
+  workflow_dispatch:
+jobs:
+  Transfer-Most-Recent-Dump:
+    runs-on: snow-backup
+    steps:
+      - name: Transfer most recent dump.
+        working-directory: /home/hector/source/dumps/
+        run: |
+          echo "🤓: turning on VPN"
+          sudo wg-quick up wg-hector
+          echo "🤓: transfering most recent dump over SCP"
+          scp "$(ls -t | head -n 1)" root@10.200.50.1:~/source/dumps/most_recent.sql
+          echo "🤓: turning off VPN"
+          sudo wg-quick down wg-hector
+  Restore-Database:
+    needs: Transfer-Most-Recent-Dump
+    runs-on: linode-vm
+    steps:
+      - name: Restore database.
+        working-directory: /root/source/dumps/
+        run: |
+         echo "🤓: restoring database"
+         cat most_recent.sql | docker exec -i portfolio-vm_postgresql_database_1 psql -U postgres
