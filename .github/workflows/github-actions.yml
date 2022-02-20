@@ -6,10 +6,15 @@ jobs:
     steps:
       - name: Check out repository code
         uses: actions/checkout@v2
+      - name: Pull new changes
+        working-directory: /root/source/Portfolio-vm/
+        run: |
+          echo "🤓: Pulling changes to server."
+          git pull
       - name: Redeploy Portfolio API
         working-directory: /root/source/Portfolio-vm/Portfolio-Api/
         run: |
-         echo "🤓: Refreshing API service"
+         echo "🤓: Refreshing API service."
          systemctl stop Portfolio-Api.service
          echo 'DbConnectionString=${{secrets.DB_CONNECTION_STRING}}' > env
          dotnet publish -c Release -o /srv/Portfolio-Api
@@ -19,7 +24,7 @@ jobs:
       - name: Redeploy Docker Compose
         working-directory: /root/source/Portfolio-vm/
         run: |
-         echo "🤓: Redeploying Docker-compose"
+         echo "🤓: Redeploying Docker-compose."
          docker-compose down
          docker-compose build
          docker-compose up -d

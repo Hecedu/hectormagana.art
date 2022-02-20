@@ -13,11 +13,11 @@ jobs:
       - name: Transfer most recent dump.
         working-directory: /home/hector/source/dumps/
         run: |
-          echo "🤓: turning on VPN"
+          echo "🤓: turning on VPN."
           sudo wg-quick up wg-hector
-          echo "🤓: transfering most recent dump over SCP"
+          echo "🤓: transfering most recent dump over SCP."
           scp ${{ github.event.inputs.dump_date }}.sql root@10.200.50.1:~/source/dumps/${{ github.event.inputs.dump_date }}.sql
-          echo "🤓: turning off VPN"
+          echo "🤓: turning off VPN."
           sudo wg-quick down wg-hector
   Restore-Database:
     needs: Transfer-Most-Recent-Dump
@@ -26,5 +26,5 @@ jobs:
       - name: Restore database.
         working-directory: /root/source/most_recent_dump
         run: |
-         echo "🤓: restoring database"
+         echo "🤓: restoring database."
          cat ${{ github.event.inputs.dump_date }}.sql | docker exec -i portfolio-vm_postgresql_database_1 psql -U postgres
