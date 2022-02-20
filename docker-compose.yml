@@ -22,15 +22,15 @@ services:
     restart: always
     volumes:
       - pgadmin:/root/.pgadmin
-  wireguard-admin:
+  portfolio-client:
     stdin_open: true
     environment:
       - CHOKIDAR_USEPOLLING=true
     build: 
-      context: ./Wireguard-Admin
+      context: ./Portfolio-Client
       dockerfile: dockerfile
     volumes:
-      - './Wireguard-Admin:/app'
+      - './Portfolio-Client:/app'
       - '/app/node_modules'
   swag:
     image: ghcr.io/linuxserver/swag
