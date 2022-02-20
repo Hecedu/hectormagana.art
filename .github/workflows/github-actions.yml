@@ -5,12 +5,7 @@ jobs:
     runs-on: self-hosted
     steps:
       - name: Check out repository code
-        uses: actions/checkout@v2
-      - name: Pull Changes
-        working-directory: /root/source/Portfolio-vm/
-        run: |
-         echo "🤓: Pulling changes to vm"
-         git pull
+        uses: actions/checkout@v2l
       - name: Redeploy Portfolio API
         working-directory: /root/source/Portfolio-vm/Portfolio-Api/
         run: |
@@ -28,4 +23,3 @@ jobs:
          docker-compose down
          docker-compose build
          docker-compose up -d
-      - run: echo "🍏 This job's status is ${{ job.status }}."

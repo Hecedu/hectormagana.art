@@ -1,0 +1,12 @@
+name: Stop Wireguard
+on:
+  workflow_dispatch:
+jobs:
+  Stop-Wireguard:
+    runs-on: snow-backup
+    steps:
+      - name: Stop Wireguard.
+        working-directory: /home/hector/source/
+        run: |
+          echo "🤓: Stopping Wireguard"
+          sudo wg-quick down wg-hector
