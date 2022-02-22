@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { UserData } from '../Types/UserData';
 
 export default function NewUser() {
-    const [userData, setUserData] = useState<string>('');
+    const [userData, setUserData] = useState<string>('Waiting for input...');
     var username = '';
     var password = '';
     var usernamesearch = '';
@@ -58,10 +58,10 @@ export default function NewUser() {
                     <input type="text" name="name" onChange={OnUserNameSearchChange} />
                 </div>
                 <div className='my-2'>
-                    <button className="btn btn-primary" type="submit" value="Submit" onClick={OnSubmitUserData}>Submit</button>
+                    <button className="btn btn-primary" type="submit" value="Submit" onClick={OnSubmitUserSearch}>Submit</button>
                 </div>
                 <h2>
-
+                {userData}
                 </h2>
             </div>
         </div>

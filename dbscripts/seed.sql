@@ -23,7 +23,7 @@ CREATE TABLE userdata
     id serial PRIMARY KEY,
     username VARCHAR (150) UNIQUE NOT NULL,
     password VARCHAR (150) NOT NULL,
-    salt BYTEA (150)
+    salt BYTEA
 );
 
 ALTER TABLE blogposts OWNER TO wireguard_admin;
