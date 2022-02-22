@@ -1,7 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Portfolio_Api.Models;
 using Portfolio_Api.Services;
-using Microsoft.Extensions.Hosting.Systemd;
 
 var builder = WebApplication.CreateBuilder(args);
 

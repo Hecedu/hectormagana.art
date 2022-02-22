@@ -10,5 +10,6 @@ namespace Portfolio_Api.Models
         }
         public DbSet<BlogPost> blogposts => Set<BlogPost>();
         public DbSet<ClientInformation> clientinformation => Set<ClientInformation>();
+        public DbSet<UserData> userdata => Set<UserData>();
     }
 }

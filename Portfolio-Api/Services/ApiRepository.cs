@@ -1,5 +1,7 @@
 ﻿using Portfolio_Api.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Cryptography;
+using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 
 namespace Portfolio_Api.Services
 {
@@ -23,6 +25,24 @@ namespace Portfolio_Api.Services
             await _context.SaveChangesAsync();
         }
 
+        public async Task AddUserData(UserData userData)
+        {
+            byte[] salt = new byte[128/8];
+            var rng = RandomNumberGenerator.Create();
+            rng.GetBytes(salt);
+
+            string hashedPassword = Convert.ToBase64String(KeyDerivation.Pbkdf2(
+                password: userData.password,
+                salt: salt,
+                prf: KeyDerivationPrf.HMACSHA256,
+                iterationCount: 100000,
+                numBytesRequested: 256 / 8));
+            userData.password = hashedPassword;
+            userData.salt = salt;
+            _context.userdata.Add(userData);
+            await _context.SaveChangesAsync();
+        }
+
         public async Task DeleteBlogPostAsync(BlogPost blogPost)
         {
             _context.blogposts.Remove(blogPost);
@@ -35,6 +55,12 @@ namespace Portfolio_Api.Services
             await _context.SaveChangesAsync();
         }
 
+        public async Task DeleteUserDataAsync(UserData userData)
+        {
+            _context.userdata.Remove(userData);
+            await _context.SaveChangesAsync();
+        }
+
         public async Task EditBlogPostAsync(BlogPost blogPost)
         {
             _context.blogposts.Update(blogPost);
@@ -44,6 +70,12 @@ namespace Portfolio_Api.Services
         public async Task EditClientInformationAsync(ClientInformation clientInformation)
         {
             _context.clientinformation.Update(clientInformation);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task EditUserDataAsync(UserData userData)
+        {
+            _context.userdata.Update(userData);
             await _context.SaveChangesAsync();
         }
 
@@ -65,6 +97,11 @@ namespace Portfolio_Api.Services
         public async Task<ClientInformation> GetClientInformation(int id)
         {
             return await _context.clientinformation.FirstAsync(clientInformation => clientInformation.id == id);
+        }
+
+        public async Task<UserData> GetUserData(string username)
+        {
+            return await _context.userdata.FirstAsync(userdata => userdata.username == username);
         }
     }
 }

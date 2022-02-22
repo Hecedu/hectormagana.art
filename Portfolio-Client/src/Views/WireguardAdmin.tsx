@@ -71,7 +71,7 @@ export default function WireguardAdmin() {
     }
 
     return (
-        <div className="App">
+        <div className="text-center">
             <div className='container border border-primary rounded p-2 my-2 shadow-sm'>
                 <h1>Restart Wireguard Service</h1>
                 <h5>Status:</h5>

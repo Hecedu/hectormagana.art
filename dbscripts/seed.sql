@@ -18,6 +18,14 @@ CREATE TABLE clientinformation
     client_public_key VARCHAR (150) NOT NULL,
     client_private_key VARCHAR (150) NOT NULL
 );
+CREATE TABLE userdata
+(
+    id serial PRIMARY KEY,
+    username VARCHAR (150) UNIQUE NOT NULL,
+    password VARCHAR (150) NOT NULL,
+    salt BYTEA (150)
+);
 
 ALTER TABLE blogposts OWNER TO wireguard_admin;
 ALTER TABLE clientinformation OWNER TO wireguard_admin;
+ALTER TABLE userdata OWNER TO wireguard_admin;

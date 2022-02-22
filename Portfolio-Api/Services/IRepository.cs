@@ -14,6 +14,10 @@ namespace Portfolio_Api.Services
         public Task AddClientInformationAsync(ClientInformation clientInformation);
         public Task EditClientInformationAsync(ClientInformation clientInformation);
         public Task DeleteClientInformationAsync(ClientInformation clientInformation);
+        public Task AddUserData(UserData userData);
+        public Task<UserData> GetUserData (string username);
+        public Task EditUserDataAsync(UserData userData);
+        public Task DeleteUserDataAsync (UserData userData);
 
     }
 }
