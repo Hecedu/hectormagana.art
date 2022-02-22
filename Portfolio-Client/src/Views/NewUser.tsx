@@ -32,6 +32,8 @@ export default function NewUser() {
         axios.get(`/api/UserData/GetUserDataByUsername?username=${usernamesearch}`)
         .then(function (response) {
             setUserName(response.data.username)
+            setUserHashedPassword(response.data.password)
+            setUserSalt(response.data.salt)
         })
         .catch(function (error) {
             console.log(error)
