@@ -3,7 +3,9 @@ import React, { useState } from 'react'
 import { UserData } from '../Types/UserData';
 
 export default function NewUser() {
-    const [userData, setUserData] = useState<string>('Waiting for input...');
+    const [userName, setUserName] = useState<string>('Waiting for input...');
+    const [userHashedPassword, setUserHashedPassword] = useState<string>('Waiting for input...');
+    const [userSalt, setUserSalt] = useState<string>('Waiting for input...');
     var username = '';
     var password = '';
     var usernamesearch = '';
@@ -17,7 +19,7 @@ export default function NewUser() {
         usernamesearch = event.target.value;
     }
     function OnSubmitUserData() {
-        let userData: UserData = {username: username, password, salt:undefined}
+        let userData: UserData = {username, password, salt:""}
         axios.post('/api/UserData/AddUserData', userData)
         .then(function (response) {
             alert(response)
@@ -29,7 +31,7 @@ export default function NewUser() {
     function OnSubmitUserSearch(){
         axios.get(`/api/UserData/GetUserDataByUsername?username=${usernamesearch}`)
         .then(function (response) {
-            setUserData(response.data)
+            setUserName(response.data.username)
         })
         .catch(function (error) {
             console.log(error)
@@ -60,9 +62,9 @@ export default function NewUser() {
                 <div className='my-2'>
                     <button className="btn btn-primary" type="submit" value="Submit" onClick={OnSubmitUserSearch}>Submit</button>
                 </div>
-                <h2>
-                {userData}
-                </h2>
+                <h2>user: {userName}</h2>
+                <h2>hash: {userHashedPassword}</h2>
+                <h2>salt: {userSalt}</h2>
             </div>
         </div>
     )
