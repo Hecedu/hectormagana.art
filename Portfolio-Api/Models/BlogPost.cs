@@ -1,8 +1,33 @@
-﻿namespace Portfolio_Api.Models
+﻿using System.Text.RegularExpressions;
+
+namespace Portfolio_Api.Models
 {
     public record BlogPost(int id)
     {
-        public string title { get; set; } = default!;
-        public string content { get; set; } = default!;
+        private readonly string? _title;
+        private readonly string? _content;
+        public string title { 
+            get =>  _title?? throw new ArgumentNullException("Argument is null");
+            init => _title = ValidateString(value, 150);
+        }
+        public string content
+        {
+            get => _content ?? throw new ArgumentNullException("Argument is null");
+            init => _content = ValidateString(value);
+        } 
+
+        public static string ValidateString(string inputString)
+        {
+            if (string.IsNullOrEmpty(inputString)) throw new ArgumentNullException(nameof(inputString));
+            Regex.Replace(inputString, "<.*?>", String.Empty);
+            return inputString;
+        }
+        public static string ValidateString(string inputString, int maxLength)
+        {
+            if (string.IsNullOrEmpty(inputString)) throw new ArgumentNullException(nameof(inputString));
+            Regex.Replace(inputString, "<.*?>", String.Empty);
+            return inputString.Length <= maxLength ? inputString : inputString.Substring(0, maxLength);
+        }
     }
 }
+
