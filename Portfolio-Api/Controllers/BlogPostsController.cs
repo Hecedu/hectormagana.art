@@ -19,7 +19,12 @@ namespace Portfolio_Api.Controllers
         [Route("AddBlogPost")]
         public async Task<IActionResult> AddBlogPost ([FromBody] BlogPost blogPost)
         {
-            await _repository.AddBlogPostAsync(blogPost);
+            var SanitizedBlogPost = new BlogPost (0)
+            {
+                title = blogPost.title,
+                content = blogPost.content,
+            };
+            await _repository.AddBlogPostAsync(SanitizedBlogPost);
             return Ok();
         }
 

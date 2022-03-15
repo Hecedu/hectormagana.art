@@ -19,14 +19,17 @@ namespace Portfolio_Api.Models
         public static string ValidateString(string inputString)
         {
             if (string.IsNullOrEmpty(inputString)) throw new ArgumentNullException(nameof(inputString));
-            Regex.Replace(inputString, "<.*?>", String.Empty);
-            return inputString;
+            return SanitizeString(inputString);
         }
         public static string ValidateString(string inputString, int maxLength)
         {
             if (string.IsNullOrEmpty(inputString)) throw new ArgumentNullException(nameof(inputString));
-            Regex.Replace(inputString, "<.*?>", String.Empty);
+            inputString = SanitizeString(inputString);
             return inputString.Length <= maxLength ? inputString : inputString.Substring(0, maxLength);
+        }
+        public static string SanitizeString(string inputString)
+        {
+            return Regex.Replace(inputString, "<.*?>", String.Empty);
         }
     }
 }
