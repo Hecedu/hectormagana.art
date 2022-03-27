@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using Google.Apis.Auth;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Portfolio_Api.Models;
 using Portfolio_Api.Services;
@@ -44,8 +45,18 @@ namespace Portfolio_Api.Controllers
         [Route("GetUserDataByEmail"), Authorize(Roles = "User")]
         public async Task<UserData> GetUserDataByEmail(string email)
         {
+            var result = await _repository.GetuserDataByEmail(email); 
+
             return await _repository.GetuserDataByEmail(email);
         }
+        [HttpGet]
+        [Route("GetOrAddUserDataByJwt"), Authorize(Roles = "User")]
+        public async Task<UserData> GetOrAddUserDataByJwt(string jwt)
+        {
+
+            return await _repository.GetOrAddUserDataByJwt(jwt);
+        }
+
         [HttpPost]
         [Route("EditUserData"), Authorize(Roles = "User")]
         public async Task EditUserData(UserData userData)
@@ -53,5 +64,6 @@ namespace Portfolio_Api.Controllers
             await _repository.EditUserDataAsync(userData);
 
         }
+
     }
 }

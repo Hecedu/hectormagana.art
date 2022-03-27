@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import './App.css';
 import { Route, Routes } from 'react-router-dom';
-import WireguardAdmin from './Views/WireguardAdmin';
 import NewUser from './Views/NewUser';
 import Login from './Views/Login';
 import Nav from './Components/UI/Nav';
+import Home from './Views/Home';
+import Secure from './Views/Secure';
 
 
 function App() {
@@ -12,9 +13,9 @@ function App() {
     <div>
       <Nav/>
       <Routes>
-        <Route path="/" element={<WireguardAdmin />} />
+        <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/secure" element={<NewUser />} />
+        <Route path="/secure" element={<Secure />} />
         <Route path="/newuser" element={<NewUser />} />
       </Routes>
     </div>

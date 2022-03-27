@@ -2,15 +2,18 @@
 using Microsoft.EntityFrameworkCore;
 using System.Security.Cryptography;
 using Microsoft.AspNetCore.Cryptography.KeyDerivation;
+using Google.Apis.Auth;
 
 namespace Portfolio_Api.Services
 {
     public class ApiRepository : IRepository
     {
+        private readonly IConfiguration configuration;
         private readonly PortfolioDbContext _context;
 
-        public ApiRepository(PortfolioDbContext context)
+        public ApiRepository(IConfiguration configuration, PortfolioDbContext context)
         {
+            this.configuration = configuration;
             _context = context;
         }
         public async Task AddBlogPostAsync(BlogPost blogPost)
@@ -102,6 +105,35 @@ namespace Portfolio_Api.Services
         public async Task<UserData> GetuserDataByEmail(string email)
         {
             return await _context.userdata.FirstAsync(UserData => UserData.email == email);
+        }
+
+        public async Task<UserData> GetOrAddUserDataByJwt(string jwt)
+        {
+            GoogleJsonWebSignature.ValidationSettings settings = new GoogleJsonWebSignature.ValidationSettings();
+            settings.Audience = new List<string>() { configuration.GetSection("AppSettings:GoogleId").Value };
+            GoogleJsonWebSignature.Payload payload = GoogleJsonWebSignature.ValidateAsync(jwt, settings).Result;
+            try
+            {
+                var result = await _context.userdata.FirstAsync(UserData => UserData.email == payload.Email);
+                return result;
+            }
+            catch (InvalidOperationException)
+            {
+                var entry = new UserData(payload.Name, payload.Email)
+                {
+                    favorite_videogame = "default",
+                    favorite_album = "default",
+                    favorite_book = "default",
+                    favorite_movie = "default",
+                };
+                _context.userdata.Add(entry);
+                await _context.SaveChangesAsync();
+                return await _context.userdata.FirstAsync(UserData => UserData.email == payload.Email);
+            }
+            catch (ArgumentNullException)
+            {
+                throw;
+            }
         }
     }
 }

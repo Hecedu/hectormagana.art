@@ -72,7 +72,7 @@ export default function WireguardAdmin() {
 
     return (
         <div className="text-center">
-            <div className='container border border-primary rounded p-2 my-2 shadow-sm'>
+            <div className='container border border-dark border-5 rounded p-2 my-2 shadow-sm'>
                 <h1>Restart Wireguard Service</h1>
                 <h5>Status:</h5>
                 <p>{systemStatus}</p>
@@ -80,7 +80,7 @@ export default function WireguardAdmin() {
                     <button className="btn btn-danger" onClick={onRestartWireguardService}>Restart Wireguard Service</button>
                 </div>
             </div>
-            <div className='container border border-primary rounded p-2 my-2 shadow-sm'>
+            <div className='container border border-dark border-5 rounded p-2 my-2 shadow-sm'>
                 <h1>Create new wireguard user</h1>
                 <div className='my-2'>
                     <label className='m-1'>Client Name:</label>

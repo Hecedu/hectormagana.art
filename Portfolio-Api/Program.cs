@@ -11,7 +11,6 @@ using System.Security.Cryptography;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
-var clientId = "216463964469-1uop6pd4rfv1e8e2i2ajk585hl51g8o2.apps.googleusercontent.com";
 //config variables
 var DbConnectionString = Environment.GetEnvironmentVariable("DbConnectionString") ?? "Server=45.79.192.219; Port = 5001; Database = portfoliodb; User Id = wireguard_admin;; Password=wireguard_admin";
 

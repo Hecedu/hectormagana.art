@@ -14,9 +14,8 @@ public class AuthService : IAuthService
 {
     private readonly IRepository repository;
     private readonly IConfiguration configuration;
-    private string clientId = "216463964469-1uop6pd4rfv1e8e2i2ajk585hl51g8o2.apps.googleusercontent.com";
 
-    public AuthService(IConfiguration configuration, IRepository repository, ILogger<AuthService> logger)
+    public AuthService(IConfiguration configuration, IRepository repository)
     {
         this.configuration = configuration;
         this.repository = repository;
@@ -25,20 +24,6 @@ public class AuthService : IAuthService
     {
         [Required]
         public string IdToken { get; set; }
-    }
-
-    private async Task<UserData> registerUserAsync(GoogleJsonWebSignature.Payload payload)
-    {
-        try
-        {
-            var user = new UserData(payload.Name,payload.Email);
-            await repository.AddUserData(user);
-            return user;
-        }
-        catch
-        {
-            throw;
-        }
     }
 
     string IAuthService.CreateToken(string email)

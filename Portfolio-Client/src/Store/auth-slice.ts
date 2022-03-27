@@ -26,12 +26,14 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     setToken(state, action: PayloadAction<string>) {
+      console.log("called")
       state.userToken = action.payload;
     },
     setBearerToken(state, action: PayloadAction<string>) {
       state.bearerToken = action.payload;
     },
     logout(state) {
+      console.log("logout");
       state.userToken = undefined;
       state.bearerToken =  undefined;
       state.userProfile = undefined;

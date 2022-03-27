@@ -3,7 +3,7 @@ import { FC } from "react";
 import GoogleLogin, { GoogleLoginResponse } from "react-google-login";
 import { useDispatch } from "react-redux"
 import { StoreDispatch } from "../../Store"
-import { authenticateUser, setBearerToken, setToken } from "../../Store/auth-slice";
+import { authenticateUser, setToken } from "../../Store/auth-slice";
 
 const LoginButton: FC = (): JSX.Element => {
     const dispatch = useDispatch<StoreDispatch>();
