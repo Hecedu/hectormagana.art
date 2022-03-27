@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
+import UserData from '../Components/Secure/UserData';
 import { useStoreSelector } from '../Store';
 
 export default function Secure() {
@@ -14,7 +15,10 @@ export default function Secure() {
                             <h1>You need to be logged in to view this page</h1>
                             <Link className='btn btn-dark' to="/login">Login</Link>
                         </> :
-                        <h1>You are logged in!</h1>
+                        <>
+                            <h1>You are logged in!</h1>
+                            <UserData/>
+                        </>
                 }
             </div>
         </div>
