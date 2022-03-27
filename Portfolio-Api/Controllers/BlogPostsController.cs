@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Http;
 using Portfolio_Api.Models;
 using Portfolio_Api.Services;
+using Portfolio_Api.Models.RequestModels;
 
 namespace Portfolio_Api.Controllers
 {
@@ -12,19 +12,18 @@ namespace Portfolio_Api.Controllers
         private IRepository _repository;
         public BlogPostsController(IRepository repository)
         {
-            _repository = repository; 
+            _repository = repository;
         }
 
         [HttpPost]
         [Route("AddBlogPost")]
-        public async Task<IActionResult> AddBlogPost ([FromBody] BlogPost blogPost)
+        public async Task<IActionResult> AddBlogPost([FromBody] BlogPostRequest unvalidatedBlogPost)
         {
-            var SanitizedBlogPost = new BlogPost (0)
-            {
-                title = blogPost.title,
-                content = blogPost.content,
-            };
-            await _repository.AddBlogPostAsync(SanitizedBlogPost);
+            var validatedBlogPost = new BlogPost()
+                .setTitle(unvalidatedBlogPost.title)
+                .setContent(unvalidatedBlogPost.content);
+
+            await _repository.AddBlogPostAsync(validatedBlogPost);
             return Ok();
         }
 

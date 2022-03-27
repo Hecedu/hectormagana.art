@@ -12,7 +12,7 @@ export default function NewUser() {
         password = event.target.value;
     }
     function OnSubmit() {
-        let userData: UserData = {username, password, salt:""}
+        let userData: UserData = {id:0,username, email: '', favorite_videogame: '', favorite_movie: '', favorite_book: '', favorite_album: ''};
         axios.post('/api/UserData/AddUserData', userData)
         .then(function (response) {
             alert(response)

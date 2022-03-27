@@ -2,19 +2,30 @@
 
 namespace Portfolio_Api.Models
 {
-    public record BlogPost(int id)
+    public record BlogPost
     {
-        private readonly string? _title;
-        private readonly string? _content;
-        public string title { 
-            get =>  _title?? throw new ArgumentNullException("Argument is null");
-            init => _title = ValidateString(value, 150);
-        }
-        public string content
+        public int id { get; private set; }
+        public string title { get; private set; }
+        public string content { get; private set; }
+
+        public BlogPost()
         {
-            get => _content ?? throw new ArgumentNullException("Argument is null");
-            init => _content = ValidateString(value);
-        } 
+            id = 0;
+            title = "";
+            content = "";
+        }
+
+        public BlogPost setTitle(string _title)
+        {
+            this.title = ValidateString(_title, 150);
+            return this;
+
+        }
+        public BlogPost setContent(string _content)
+        {
+            this.content = ValidateString(_content);
+            return this;
+        }
 
         public static string ValidateString(string inputString)
         {
@@ -30,6 +41,10 @@ namespace Portfolio_Api.Models
         public static string SanitizeString(string inputString)
         {
             return Regex.Replace(inputString, "<.*?>", String.Empty);
+        }
+        public int GetId()
+        {
+            return id;
         }
     }
 }

@@ -19,9 +19,17 @@ namespace Portfolio_Api.Controllers
 
         [HttpPost]
         [Route("AddClientInformation")]
-        public async Task<IActionResult> AddClientInformation([FromBody] ClientInformation clientInformation)
+        public async Task<IActionResult> AddClientInformation([FromBody] ClientInformationRequest unvalidatedClientInformation)
         {
-            await _repository.AddClientInformationAsync(clientInformation);
+            var validatedClientInformation = new ClientInformation()
+                .setClientName(unvalidatedClientInformation.client_name)
+                .setIpAddress(unvalidatedClientInformation.ip_address)
+                .setDateAdded(unvalidatedClientInformation.date_added)
+                .setAllowedIpRange(unvalidatedClientInformation.allowed_ip_range)
+                .setClientPublicKey(unvalidatedClientInformation.client_public_key)
+                .setClientPrivateKey(unvalidatedClientInformation.client_private_key);
+
+            await _repository.AddClientInformationAsync(validatedClientInformation);
             return Ok();
         }
         [HttpGet]

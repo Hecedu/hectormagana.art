@@ -2,45 +2,58 @@
 
 namespace Portfolio_Api.Models
 {
-    public record ClientInformation (int id)
+    public record ClientInformation
     {
-        private readonly string? _client_name;
-        private readonly string? _ip_address;
-        private readonly DateTime? _date_added;
-        private readonly string? _allowed_ip_range;
-        private readonly string? _client_public_key;
-        private readonly string? _client_private_key;
-        public string client_name
+        public int id { get; private set; }
+        public string client_name { get; private set; }
+        public string ip_address { get; private set; }
+        public DateTime date_added { get; private set; }
+        public string allowed_ip_range { get; private set; }
+        public string client_public_key { get; private set; }
+        public string client_private_key { get; private set; }
+        public ClientInformation()
         {
-            get => _client_name ?? throw new ArgumentNullException("Argument is null");
-            init => _client_name = ValidateString(value, 150);
+            id = 0;
+            client_name = "";
+            ip_address = "0.0.0.0";
+            date_added = new DateTime();
+            allowed_ip_range = "0.0.0.0/16";
+            client_public_key = "default";
+            client_private_key = "default";
         }
-        public string ip_address
+
+        public ClientInformation setClientName(string _client_name)
         {
-            get => _ip_address ?? throw new ArgumentNullException("Argument is null");
-            init => _ip_address = ValidateString(ValidateIpRange(value), 150);
+            this.client_name = ValidateString(_client_name,150);
+            return this;
         }
-        public DateTime date_added
+        public ClientInformation setIpAddress(string _ip_address)
         {
-            get => _date_added ?? throw new ArgumentNullException("Argument is null");
-            init => _date_added = value;
+            this.ip_address = ValidateString(ValidateIpAddress(_ip_address), 150);
+            return this;
         }
-        public string allowed_ip_range
+        public ClientInformation setDateAdded(DateTime _date_added)
         {
-            get => _allowed_ip_range ?? throw new ArgumentNullException("Argument is null");
-            init => _allowed_ip_range = ValidateString(ValidateIpRange(value), 150);
+            this.date_added = _date_added;
+            return this;
         }
-        public string client_public_key
+        public ClientInformation setAllowedIpRange(string _allowed_ip_range)
         {
-            get => _client_public_key ?? throw new ArgumentNullException("Argument is null");
-            init => _client_public_key = ValidateString(value, 150);
+            this.allowed_ip_range = ValidateString(ValidateIpRange(_allowed_ip_range), 150);
+            return this;
         }
-        public string client_private_key
+        public ClientInformation setClientPublicKey(string _client_public_key)
         {
-            get => _client_private_key ?? throw new ArgumentNullException("Argument is null");
-            init => _client_private_key = ValidateString(value, 150);
+            this.client_public_key = ValidateString(_client_public_key, 150);
+            return this;
         }
-        public static string ValidateIpAddress(string inputString)
+        public ClientInformation setClientPrivateKey(string _client_private_key)
+        {
+            this.client_private_key = ValidateString(_client_private_key, 150);
+            return this;
+        }
+
+        private static string ValidateIpAddress(string inputString)
         {
             var ipValidationRegex = @"^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$";
             if (Regex.IsMatch(inputString, ipValidationRegex))
@@ -49,29 +62,37 @@ namespace Portfolio_Api.Models
             }
             throw new Exception("input is invalid");
         }
-        public static string ValidateIpRange(string inputString)
+        private static string ValidateIpRange(string inputString)
         {
-            var cidrValidationRegex = @"^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(?:\/(?:16|24))?$";
+            var cidrValidationRegex =
+                @"^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(?:\/(?:16|24|32))?$";
             if (Regex.IsMatch(inputString, cidrValidationRegex))
             {
                 return inputString;
             }
             throw new Exception("input is invalid");
         }
-        public static string ValidateString(string inputString)
+
+        private static string ValidateString(string inputString)
         {
             if (string.IsNullOrEmpty(inputString)) throw new ArgumentNullException(nameof(inputString));
             return SanitizeString(inputString);
         }
-        public static string ValidateString(string inputString, int maxLength)
+
+        private static string ValidateString(string inputString, int maxLength)
         {
             if (string.IsNullOrEmpty(inputString)) throw new ArgumentNullException(nameof(inputString));
             inputString = SanitizeString(inputString);
             return inputString.Length <= maxLength ? inputString : inputString.Substring(0, maxLength);
         }
-        public static string SanitizeString(string inputString)
+
+        private static string SanitizeString(string inputString)
         {
             return Regex.Replace(inputString, "<.*?>", String.Empty);
+        }
+        public int GetId()
+        {
+            return id;
         }
     }
 }

@@ -9,7 +9,7 @@ namespace Portfolio_Api.Services
     {
         private readonly PortfolioDbContext _context;
 
-        public ApiRepository (PortfolioDbContext context)
+        public ApiRepository(PortfolioDbContext context)
         {
             _context = context;
         }
@@ -27,18 +27,6 @@ namespace Portfolio_Api.Services
 
         public async Task AddUserData(UserData userData)
         {
-            byte[] salt = new byte[128/8];
-            var rng = RandomNumberGenerator.Create();
-            rng.GetBytes(salt);
-
-            string hashedPassword = Convert.ToBase64String(KeyDerivation.Pbkdf2(
-                password: userData.password,
-                salt: salt,
-                prf: KeyDerivationPrf.HMACSHA256,
-                iterationCount: 100000,
-                numBytesRequested: 256 / 8));
-            userData.password = hashedPassword;
-            userData.salt = salt;
             _context.userdata.Add(userData);
             await _context.SaveChangesAsync();
         }
@@ -75,13 +63,20 @@ namespace Portfolio_Api.Services
 
         public async Task EditUserDataAsync(UserData userData)
         {
-            _context.userdata.Update(userData);
-            await _context.SaveChangesAsync();
+            var edit = await _context.userdata.FirstAsync(UserData => UserData.email == userData.email);
+            if (edit != null)
+            {
+                edit.favorite_videogame = userData.favorite_videogame;
+                edit.favorite_movie = userData.favorite_movie;
+                edit.favorite_album = userData.favorite_album;
+                edit.favorite_book = userData.favorite_book;
+                await _context.SaveChangesAsync();
+            }
         }
 
         public async Task<BlogPost> GetBlogPostAsync(int id)
         {
-            return await _context.blogposts.FirstAsync(blogPost => blogPost.id == id);
+            return await _context.blogposts.FirstAsync(blogPost => blogPost.GetId() == id);
         }
 
         public IEnumerable<BlogPost> GetBlogPosts()
@@ -96,12 +91,17 @@ namespace Portfolio_Api.Services
 
         public async Task<ClientInformation> GetClientInformation(int id)
         {
-            return await _context.clientinformation.FirstAsync(clientInformation => clientInformation.id == id);
+            return await _context.clientinformation.FirstAsync(clientInformation => clientInformation.GetId() == id);
         }
 
-        public async Task<UserData> GetUserData(string username)
+        public async Task<UserData> GetUserDataByUserName(string username)
         {
             return await _context.userdata.FirstAsync(userdata => userdata.username == username);
+        }
+
+        public async Task<UserData> GetuserDataByEmail(string email)
+        {
+            return await _context.userdata.FirstAsync(UserData => UserData.email == email);
         }
     }
 }

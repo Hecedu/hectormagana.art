@@ -22,8 +22,11 @@ CREATE TABLE userdata
 (
     id serial PRIMARY KEY,
     username VARCHAR (150) UNIQUE NOT NULL,
-    password VARCHAR (150) NOT NULL,
-    salt BYTEA
+    email VARCHAR (150) UNIQUE NOT NULL,
+    favorite_videogame VARCHAR (150) NOT NULL,
+    favorite_movie VARCHAR (150) NOT NULL,
+    favorite_book VARCHAR (150) NOT NULL,
+    favorite_album VARCHAR (150) NOT NULL
 );
 
 ALTER TABLE blogposts OWNER TO wireguard_admin;

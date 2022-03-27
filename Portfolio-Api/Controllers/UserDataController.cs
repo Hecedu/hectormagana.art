@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Portfolio_Api.Models;
 using Portfolio_Api.Services;
 using System.Net;
@@ -14,8 +15,9 @@ namespace Portfolio_Api.Controllers
         {
             _repository = repository;
         }
+
         [HttpPost]
-        [Route("AddUserData")]
+        [Route("AddUserData"), AllowAnonymous]
         public async Task<HttpResponseMessage> Post([FromBody] UserData userData)
         {
             await _repository.AddUserData(userData);
@@ -30,11 +32,26 @@ namespace Portfolio_Api.Controllers
             Response.Cookies.Append(userData.username, "Accept the cookies bruh.", cookieOptions);
             return response;
         }
+
         [HttpGet]
-        [Route("GetUserDataByUsername")]
-        public async Task<UserData> GetClientInformation(string username)
+        [Route("GetUserDataByUsername"), AllowAnonymous]
+        public async Task<UserData> GetUserDataByUsername(string username)
         {
-            return await _repository.GetUserData(username);
+            return await _repository.GetUserDataByUserName(username);
+        }
+
+        [HttpGet]
+        [Route("GetUserDataByEmail"), Authorize(Roles = "User")]
+        public async Task<UserData> GetUserDataByEmail(string email)
+        {
+            return await _repository.GetuserDataByEmail(email);
+        }
+        [HttpPost]
+        [Route("EditUserData"), Authorize(Roles = "User")]
+        public async Task EditUserData(UserData userData)
+        {
+            await _repository.EditUserDataAsync(userData);
+
         }
     }
 }
