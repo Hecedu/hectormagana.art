@@ -25,6 +25,7 @@ jobs:
         working-directory: /root/source/Portfolio-vm/
         run: |
          echo "🤓: Redeploying Docker-compose."
+         docker system prune -a --volumes -f
          docker-compose down
          docker-compose build
          docker-compose up -d
