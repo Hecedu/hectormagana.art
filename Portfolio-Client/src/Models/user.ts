@@ -1,21 +1,27 @@
 export default class User {
     id: number;
-    givenName: string;
-    familyName: string;
-    picture: string;
+    username: string;
     email: string;
+    favorite_videogame: string;
+    favorite_movie: string;
+    favorite_book: string;
+    favorite_album: string;
   
     constructor(
       id: number,
-      givenName: string,
-      familyName: string,
-      picture: string,
-      email: string
+      username: string,
+      email: string,
+      favorite_videogame: string,
+      favorite_movie: string,
+      favorite_book: string,
+      favorite_album: string
     ) {
       this.id = id;
-      this.givenName = givenName;
-      this.familyName = familyName;
-      this.picture = picture;
+      this.username = username;
       this.email = email;
+      this.favorite_videogame = favorite_videogame;
+      this.favorite_movie = favorite_movie;
+      this.favorite_book = favorite_book;
+      this.favorite_album = favorite_album;
     }
 }  
