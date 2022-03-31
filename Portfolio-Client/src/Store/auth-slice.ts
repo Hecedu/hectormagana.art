@@ -12,10 +12,9 @@ export const logoutUser = createAsyncThunk
   (
     "logoutUser",
     async (_, { getState }) => {
-      const state = getState() as AuthState;
-      console.log(state.bearerToken)
-      if (state.bearerToken){
-        await authService.logoutUser(state.bearerToken);
+      const {auth} = getState() as {auth:AuthState};
+      if (auth.bearerToken){
+        await authService.logoutUser(auth.bearerToken);
       }
     }
   );
