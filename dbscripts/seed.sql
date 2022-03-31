@@ -28,7 +28,13 @@ CREATE TABLE userdata
     favorite_book VARCHAR (150) NOT NULL,
     favorite_album VARCHAR (150) NOT NULL
 );
+CREATE TABLE validtokens 
+(
+     id serial PRIMARY KEY,
+     token TEXT NOT NULL
+);
 
 ALTER TABLE blogposts OWNER TO wireguard_admin;
 ALTER TABLE clientinformation OWNER TO wireguard_admin;
 ALTER TABLE userdata OWNER TO wireguard_admin;
+ALTER TABLE validtokens OWNER TO wireguard_admin;

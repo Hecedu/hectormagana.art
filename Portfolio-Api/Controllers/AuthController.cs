@@ -1,11 +1,9 @@
 ﻿using Google.Apis.Auth;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Portfolio_Api.Models;
 using Portfolio_Api.Services;
-using static checkers_api.Services.AuthService;
+using static Portfolio_Api.Services.AuthService;
 
-namespace checkers_api.Controllers
+namespace Portfolio_Api.Controllers
 {
     [ApiController]
     [Route("[controller]")]
@@ -21,15 +19,21 @@ namespace checkers_api.Controllers
             this.authService = authService;
             this.configuration = configuration;
         }
-        [HttpPost("authenticate")]
-        public IActionResult Authenticate([FromBody] AuthenticateRequest data)
+        [HttpPost("Authenticate")]
+        public async Task<IActionResult> Authenticate([FromBody] AuthenticateRequest data)
         {
             GoogleJsonWebSignature.ValidationSettings settings = new GoogleJsonWebSignature.ValidationSettings();
             settings.Audience = new List<string>() { configuration.GetSection("AppSettings:GoogleId").Value };
 
             GoogleJsonWebSignature.Payload payload = GoogleJsonWebSignature.ValidateAsync(data.IdToken, settings).Result;
-            var authtoken = authService.CreateToken(payload.Email);
-            return Ok(new { AuthToken = authService.CreateToken(payload.Email) });
+            return Ok(new { AuthToken = await authService.CreateValidTokenAsync(payload.Email)});
+        }
+
+        [HttpDelete("InvalidateBearerToken")]
+        public async Task<IActionResult> InvalidateBearerToken (string bearer)
+        {
+            await authService.RemoveValidTokenAsync(bearer);
+            return Ok();
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Google.Apis.Auth;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Portfolio_Api.Models;
@@ -43,26 +44,49 @@ namespace Portfolio_Api.Controllers
 
         [HttpGet]
         [Route("GetUserDataByEmail"), Authorize(Roles = "User")]
-        public async Task<UserData> GetUserDataByEmail(string email)
+        public async Task<IActionResult> GetUserDataByEmail(string email)
         {
-            var result = await _repository.GetuserDataByEmail(email); 
+            string? token = await HttpContext.GetTokenAsync("access_token");
+            if (token != null && await _repository.IsTokenValid(token))
+            {
 
-            return await _repository.GetuserDataByEmail(email);
+                var result = await _repository.GetUserDataByEmail(email);
+                return Ok(result);
+            }
+            else
+            {
+                return Unauthorized();
+            }
         }
         [HttpGet]
         [Route("GetOrAddUserDataByJwt"), Authorize(Roles = "User")]
-        public async Task<UserData> GetOrAddUserDataByJwt(string jwt)
+        public async Task<IActionResult> GetOrAddUserDataByJwt(string jwt)
         {
-
-            return await _repository.GetOrAddUserDataByJwt(jwt);
+            string? token = await HttpContext.GetTokenAsync("access_token");
+            if (token != null && await _repository.IsTokenValid(token))
+            {
+                return Ok(await _repository.GetOrAddUserDataByJwt(jwt));
+            }
+            else
+            {
+                return Unauthorized();
+            }
         }
 
         [HttpPost]
         [Route("EditUserData"), Authorize(Roles = "User")]
-        public async Task EditUserData(UserData userData)
+        public async Task<IActionResult> EditUserData(UserData userData)
         {
-            await _repository.EditUserDataAsync(userData);
-
+            string? token = await HttpContext.GetTokenAsync("access_token");
+            if (token != null && await _repository.IsTokenValid(token))
+            {
+                await _repository.EditUserDataAsync(userData);
+                return Ok();
+            }
+            else
+            {
+                return Unauthorized();
+            }
         }
 
     }

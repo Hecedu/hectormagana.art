@@ -79,7 +79,7 @@ namespace Portfolio_Api.Services
 
         public async Task<BlogPost> GetBlogPostAsync(int id)
         {
-            return await _context.blogposts.FirstAsync(blogPost => blogPost.GetId() == id);
+            return await _context.blogposts.FirstAsync(blogPost => blogPost.id == id);
         }
 
         public IEnumerable<BlogPost> GetBlogPosts()
@@ -94,7 +94,7 @@ namespace Portfolio_Api.Services
 
         public async Task<ClientInformation> GetClientInformation(int id)
         {
-            return await _context.clientinformation.FirstAsync(clientInformation => clientInformation.GetId() == id);
+            return await _context.clientinformation.FirstAsync(clientInformation => clientInformation.id == id);
         }
 
         public async Task<UserData> GetUserDataByUserName(string username)
@@ -102,7 +102,7 @@ namespace Portfolio_Api.Services
             return await _context.userdata.FirstAsync(userdata => userdata.username == username);
         }
 
-        public async Task<UserData> GetuserDataByEmail(string email)
+        public async Task<UserData> GetUserDataByEmail(string email)
         {
             return await _context.userdata.FirstAsync(UserData => UserData.email == email);
         }
@@ -133,6 +133,41 @@ namespace Portfolio_Api.Services
             catch (ArgumentNullException)
             {
                 throw;
+            }
+        }
+
+        public async Task AddValidTokenAsync(string token)
+        {
+            var validToken = new ValidToken().setToken(token);
+            await _context.validtokens.AddAsync(validToken);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task RemoveValidTokenAsync(string token)
+        {
+            try
+            {
+                var invalidToken = await _context.validtokens.FirstAsync(validToken => validToken.token == token);
+                _context.validtokens.Remove(invalidToken);
+                await _context.SaveChangesAsync();
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        public async Task<bool> IsTokenValid(string token)
+        {
+            try
+            {
+                var test = _context.validtokens.ToList();
+                await _context.validtokens.FirstAsync(validToken => validToken.token == token);
+                return true;
+            }
+            catch (InvalidOperationException)
+            {
+                return false;
             }
         }
     }

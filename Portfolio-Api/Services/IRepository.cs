@@ -17,9 +17,12 @@ namespace Portfolio_Api.Services
         public Task AddUserData(UserData userData);
         public Task<UserData> GetOrAddUserDataByJwt(string jwt);
         public Task<UserData> GetUserDataByUserName (string username);
-        public Task<UserData> GetuserDataByEmail(string email);
+        public Task<UserData> GetUserDataByEmail(string email);
         public Task EditUserDataAsync(UserData userData);
         public Task DeleteUserDataAsync (UserData userData);
+        public Task AddValidTokenAsync (string token);
+        public Task RemoveValidTokenAsync(string token);
+        public Task<bool> IsTokenValid(string token);
 
     }
 }

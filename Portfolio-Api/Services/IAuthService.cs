@@ -4,6 +4,7 @@ namespace Portfolio_Api.Services
 {
     public interface IAuthService
     {
-        string CreateToken(string email);
+        Task<string> CreateValidTokenAsync (string email);
+        Task RemoveValidTokenAsync(string token);
     }
 }
