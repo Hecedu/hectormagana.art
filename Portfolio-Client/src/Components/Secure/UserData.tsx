@@ -83,7 +83,7 @@ export default function UserData() {
                         })
                 })
                 .catch(function (error) {
-                    console.log(error)
+                    alert(error)
                 });
         }
         else {

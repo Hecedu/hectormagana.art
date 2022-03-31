@@ -19,7 +19,7 @@ namespace Portfolio_Api.Controllers
         }
 
         [HttpPost]
-        [Route("AddUserData"), AllowAnonymous]
+        [Route("AddUserData"), Authorize(Roles = "Admin")]
         public async Task<HttpResponseMessage> Post([FromBody] UserData userData)
         {
             await _repository.AddUserData(userData);
@@ -36,14 +36,14 @@ namespace Portfolio_Api.Controllers
         }
 
         [HttpGet]
-        [Route("GetUserDataByUsername"), AllowAnonymous]
+        [Route("GetUserDataByUsername"), Authorize(Roles = "Admin")]
         public async Task<UserData> GetUserDataByUsername(string username)
         {
             return await _repository.GetUserDataByUserName(username);
         }
 
         [HttpGet]
-        [Route("GetUserDataByEmail"), Authorize(Roles = "User")]
+        [Route("GetUserDataByEmail"), Authorize(Roles = "Admin")]
         public async Task<IActionResult> GetUserDataByEmail(string email)
         {
             string? token = await HttpContext.GetTokenAsync("access_token");

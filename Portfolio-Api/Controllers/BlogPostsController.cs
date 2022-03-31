@@ -2,6 +2,7 @@
 using Portfolio_Api.Models;
 using Portfolio_Api.Services;
 using Portfolio_Api.Models.RequestModels;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Portfolio_Api.Controllers
 {
@@ -16,7 +17,7 @@ namespace Portfolio_Api.Controllers
         }
 
         [HttpPost]
-        [Route("AddBlogPost")]
+        [Route("AddBlogPost"), Authorize(Roles = "Admin")]
         public async Task<IActionResult> AddBlogPost([FromBody] BlogPostRequest unvalidatedBlogPost)
         {
             var validatedBlogPost = new BlogPost()
@@ -28,7 +29,7 @@ namespace Portfolio_Api.Controllers
         }
 
         [HttpGet]
-        [Route("GetBlogPosts")]
+        [Route("GetBlogPosts"), Authorize(Roles = "Admin")]
         public IEnumerable<BlogPost> GetBlogPosts()
         {
             return _repository.GetBlogPosts();

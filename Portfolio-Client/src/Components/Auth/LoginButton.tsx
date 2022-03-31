@@ -15,7 +15,7 @@ const LoginButton: FC = (): JSX.Element => {
     }
 
     const onFailure = (res: GoogleLoginResponse) => {
-        console.log('Login unsucsessfull', res);
+        alert('Login unsucsessfull');
     }
 
     return (

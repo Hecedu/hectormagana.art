@@ -13,11 +13,10 @@ export default function WireguardAdmin() {
     useEffect(() => {
         axios.get('/api/clientinformation/WireguardSystemStatus')
             .then(function (response) {
-                console.log(response);
                 setSystemStatus(response.data);
             })
             .catch(function (error) {
-                console.log(error)
+                alert(error)
             })
     }, []);
 
@@ -39,7 +38,6 @@ export default function WireguardAdmin() {
     function onRestartWireguardService() {
         axios.get('/api/clientinformation/RestartWireguardService')
             .then(function (response) {
-                console.log(response)
                 axios.get('/api/clientinformation/WireguardSystemStatus')
                     .then(function (response) {
                         console.log(response);

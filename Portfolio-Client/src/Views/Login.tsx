@@ -1,4 +1,3 @@
-import GoogleLogin from "react-google-login";
 import LoginButton from "../Components/Auth/LoginButton";
 import LogoutButton from "../Components/Auth/LogoutButton";
 import { useStoreSelector } from "../Store";
@@ -13,17 +12,17 @@ export default function Login() {
                 userToken == undefined ?
                     <LoginButton /> :
                     <>
-                        <h3>User JWT:</h3>
+                        <h3>Google Authentication State:</h3>
                         <div className="overflow-auto p-2">
-                            <p>{userToken}</p>
+                            <p>Logged in!</p>
                         </div>
+                        <h3>Hector's Authentication State::</h3>
                         {
                             userBearerToken == undefined ?
-                                <p>Authentication Failed</p> :
+                                <p>Waiting for Hector's response.</p> :
                                 <>
-                                    <h3>Bearer Token:</h3>
                                     <div className="overflow-auto p-2">
-                                        <p>{userBearerToken}</p>
+                                        <p>You have access to Hector's Server!</p>
                                     </div>
                                 </>
                         }

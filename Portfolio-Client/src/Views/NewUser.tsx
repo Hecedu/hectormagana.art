@@ -18,7 +18,7 @@ export default function NewUser() {
             alert(response)
         })
         .catch(function (error) {
-            console.log(error)
+            alert(error)
         });
     }
     return (

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Portfolio_Api.Models;
 using Portfolio_Api.Services;
 using System.Diagnostics;
@@ -18,7 +19,7 @@ namespace Portfolio_Api.Controllers
 
 
         [HttpPost]
-        [Route("AddClientInformation")]
+        [Route("AddClientInformation"), Authorize(Roles = "Admin")]
         public async Task<IActionResult> AddClientInformation([FromBody] ClientInformationRequest unvalidatedClientInformation)
         {
             var validatedClientInformation = new ClientInformation()
@@ -33,14 +34,14 @@ namespace Portfolio_Api.Controllers
             return Ok();
         }
         [HttpGet]
-        [Route("GetClientInformation")]
+        [Route("GetClientInformation"), Authorize(Roles = "Admin")]
         public IEnumerable<ClientInformation> GetClientInformation()
         {
             return _repository.GetClientInformation();
         }
 
         [HttpGet]
-        [Route("WireguardSystemStatus")]
+        [Route("WireguardSystemStatus"), Authorize(Roles = "Admin")]
         public string WireguardSystemStatus ()
         {
             string result = ExecuteCommand("systemctl status wg-quick@wg0.service");
@@ -48,7 +49,7 @@ namespace Portfolio_Api.Controllers
         }
 
         [HttpGet]
-        [Route("RestartWireguardService")]
+        [Route("RestartWireguardService"), Authorize(Roles = "Admin")]
         public string RestartWireguardService()
         {
             string result = ExecuteCommand("systemctl restart wg-quick@wg0.service");
@@ -56,7 +57,7 @@ namespace Portfolio_Api.Controllers
         }
 
         [HttpGet]
-        [Route("GetClientInformationById")]
+        [Route("GetClientInformationById"), Authorize(Roles = "Admin")]
         public async Task<ClientInformation> GetClientInformation(int id)
         {
             return await _repository.GetClientInformation(id);
