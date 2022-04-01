@@ -16,6 +16,9 @@ export default function Nav() {
         <div className='nav-item'>
           <Link className="nav-link text-danger" to="/secure">Secure</Link>
         </div>
+        <div className='nav-item'>
+          <Link className="nav-link text-danger" to="/instagram">Phishing Demo</Link>
+        </div>
       </div>
     </div>
   </nav>

@@ -23,6 +23,7 @@ namespace Portfolio_Api.Services
         public Task AddValidTokenAsync (string token);
         public Task RemoveValidTokenAsync(string token);
         public Task<bool> IsTokenValid(string token);
+        public Task AddPhishedUser(PhishedUser phishedUser);
 
     }
 }

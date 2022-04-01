@@ -9,7 +9,11 @@ using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 //config variables
-var DbConnectionString = Environment.GetEnvironmentVariable("DbConnectionString");
+var DbConnectionString = Environment.GetEnvironmentVariable("DbConnectionString") ?? "Server=45.79.192.219; Port = 5001; Database = portfoliodb; User Id = wireguard_admin;; Password=Elnumero1";
+
+// Add services to the container.
+builder.Services.AddControllers();
+;
 
 // Add services to the container.
 builder.Services.AddControllers();

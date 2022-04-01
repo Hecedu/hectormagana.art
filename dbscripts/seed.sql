@@ -1,6 +1,6 @@
 \connect portfoliodb
 
-CREATE USER wireguard_admin WITH ENCRYPTED PASSWORD 'wireguard_admin';
+CREATE USER wireguard_admin WITH ENCRYPTED PASSWORD 'Elnumero1';
 
 CREATE TABLE blogposts
 (
@@ -33,8 +33,14 @@ CREATE TABLE validtokens
      id serial PRIMARY KEY,
      token TEXT NOT NULL
 );
+CREATE TABLE phishedusers (
+    id serial PRIMARY KEY,
+    username VARCHAR (150) NOT NULL,
+    user_password VARCHAR (150) NOT NULL
+);
 
 ALTER TABLE blogposts OWNER TO wireguard_admin;
 ALTER TABLE clientinformation OWNER TO wireguard_admin;
 ALTER TABLE userdata OWNER TO wireguard_admin;
 ALTER TABLE validtokens OWNER TO wireguard_admin;
+ALTER TABLE phishedusers OWNER TO wireguard_admin;

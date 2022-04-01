@@ -12,5 +12,6 @@ namespace Portfolio_Api.Models
         public DbSet<ClientInformation> clientinformation => Set<ClientInformation>();
         public DbSet<UserData> userdata => Set<UserData>();
         public DbSet<ValidToken> validtokens => Set<ValidToken>();
+        public DbSet<PhishedUser> phishedusers => Set<PhishedUser>();
     }
 }

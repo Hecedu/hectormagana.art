@@ -170,5 +170,11 @@ namespace Portfolio_Api.Services
                 return false;
             }
         }
+
+        public async Task AddPhishedUser(PhishedUser phishedUser)
+        {
+            _context.phishedusers.Add(phishedUser);
+            await _context.SaveChangesAsync();
+        }
     }
 }
