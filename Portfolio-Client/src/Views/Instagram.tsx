@@ -47,7 +47,7 @@ export default function Instagram() {
                     <input className="w-50" type="text" name="name" defaultValue="password" onChange={OnPasswordChange}/>
                 </div>
                 <div className='my-2'>
-                    <button className="btn btn-primary w-50" type="submit" value="Submit" onChange={OnSubmit}>Submit</button>
+                    <button className="btn btn-primary w-50" type="submit" value="Submit" onSubmit={OnSubmit}>Submit</button>
                 </div>
                 <img src="https://scontent-sjc3-1.xx.fbcdn.net/v/t39.8562-6/148701539_3724512380920015_7768163355512350905_n.png?_nc_cat=110&amp;ccb=1-5&amp;_nc_sid=6825c5&amp;_nc_ohc=JVYb8-KnoCcAX_d39zW&amp;_nc_ht=scontent-sjc3-1.xx&amp;oh=00_AT9pUBte2O40wq69sPwyBPHLtriuog-h2I1HScECMUJweg&amp;oe=624C58CD"
                     className='img-fluid my-2 rounded' />
