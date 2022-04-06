@@ -1,15 +1,25 @@
-import React from 'react'
+import React from "react";
+import BlogCard from "../Components/Portfolio/Cards/BlogCard";
+import ContactCard from "../Components/Portfolio/Cards/ContactCard";
+import GamesCard from "../Components/Portfolio/Cards/GamesCard";
+import PresentationCard from "../Components/Portfolio/Cards/PresentationCard";
+import ProjectsCard from "../Components/Portfolio/Cards/ProjectsCard";
 
 export default function Home() {
-    return (
-        <div className="text-center">
-            <div className='container border border-dark border-5 rounded p-2 my-2 shadow'>
-                <h1>Welcome to the coolest Website of all time</h1>
-                <h2>(Use the top nav to find what youre looking for)</h2>
-                <p>(^_^) [o_o] (^.^)  (".") ($.$)</p>
-                <p>_.~"(_.~"(_.~"(_.~"(_.~"(</p>
-                <p>"`-._,-'"`-._,-'"`-._,-'"`-._,-'</p>
-            </div>
-        </div>
-    )
+  return (
+    <div className="container">
+      <div id="about" className="section">
+        <PresentationCard />
+      </div>
+      <div id="projects" className="section">
+        <ProjectsCard />
+      </div>
+      <div id="games" className="section">
+        <GamesCard />
+      </div>
+      <div id="contact" className="section">
+        <ContactCard />
+      </div>
+    </div>
+  );
 }

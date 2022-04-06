@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice, Dispatch, PayloadAction } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import User from "../Models/user";
 import authService from "../Services/auth-service";
 
@@ -8,16 +8,15 @@ export const authenticateUser = createAsyncThunk(
     return await authService.authenticateUser(JwtToken);
   }
 );
-export const logoutUser = createAsyncThunk
-  (
-    "logoutUser",
-    async (_, { getState }) => {
-      const {auth} = getState() as {auth:AuthState};
-      if (auth.bearerToken){
-        await authService.logoutUser(auth.bearerToken);
-      }
+export const logoutUser = createAsyncThunk(
+  "logoutUser",
+  async (_, { getState }) => {
+    const { auth } = getState() as { auth: AuthState };
+    if (auth.bearerToken) {
+      await authService.logoutUser(auth.bearerToken);
     }
-  );
+  }
+);
 interface AuthState {
   userToken?: string;
   bearerToken?: string;
@@ -48,14 +47,11 @@ const authSlice = createSlice({
         state.bearerToken = action.payload;
       }
     );
-    builder.addCase(
-      logoutUser.fulfilled,
-      (state) => {
-        state.bearerToken = undefined;
-        state.userToken = undefined;
-        state.userProfile = undefined;
-      }
-    );
+    builder.addCase(logoutUser.fulfilled, (state) => {
+      state.bearerToken = undefined;
+      state.userToken = undefined;
+      state.userProfile = undefined;
+    });
   },
 });
 
