@@ -19,7 +19,6 @@ export default function Login() {
             <p>Logged in!</p>
           </div>
           <h3>Hector's Authentication State:</h3>
-          <Link to="/secure">View your data!</Link>
           {userBearerToken === undefined ? (
             <p>Waiting for Hector's response.</p>
           ) : (
@@ -27,6 +26,7 @@ export default function Login() {
               <div className="overflow-auto p-2">
                 <p>You have access to Hector's Server!</p>
               </div>
+              <Link to="/profile" className="btn btn-success btn-lg">View your data!</Link>
             </>
           )}
           <LogoutButton />
