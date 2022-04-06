@@ -43,7 +43,7 @@ export default function UserData() {
         setEditBook(res.data.favorite_book);
         setEditAlbum(res.data.favorite_album);
       });
-  }),[];
+  },[]);
 
   function onUsernameChange(event: React.ChangeEvent<HTMLInputElement>) {
     setEditUserName(event.target.value);
