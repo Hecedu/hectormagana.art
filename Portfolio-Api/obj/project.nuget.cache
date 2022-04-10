@@ -1,9 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "IvkGFkcYNYeCm9BGXlWJdTq1dWhI3RRYLlBKIvx/7uHqBim20cyoUSOKAF6H0jdUJO3VA09wos9IVw5MDWgCXA==",
+  "dgSpecHash": "A17yCXEYcmH9mMgRCnFAtSIakNQA/4VocSCxaKCtHxgybf5AeBoG6wumtjWcjpSAjLC6n1LJl/HUKIUAk/wwhA==",
   "success": true,
   "projectFilePath": "C:\\Users\\hecto\\source\\repos\\Projects\\Portfolio-db\\Portfolio-Api\\Portfolio-Api.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\hecto\\.nuget\\packages\\awssdk.core\\3.7.10.5\\awssdk.core.3.7.10.5.nupkg.sha512",
+    "C:\\Users\\hecto\\.nuget\\packages\\awssdk.s3\\3.7.8.17\\awssdk.s3.3.7.8.17.nupkg.sha512",
     "C:\\Users\\hecto\\.nuget\\packages\\google.apis\\1.56.0\\google.apis.1.56.0.nupkg.sha512",
     "C:\\Users\\hecto\\.nuget\\packages\\google.apis.auth\\1.56.0\\google.apis.auth.1.56.0.nupkg.sha512",
     "C:\\Users\\hecto\\.nuget\\packages\\google.apis.core\\1.56.0\\google.apis.core.1.56.0.nupkg.sha512",

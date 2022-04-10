@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Security.Cryptography;
 using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 using Google.Apis.Auth;
+using Portfolio_Api.Models.RequestModels;
 
 namespace Portfolio_Api.Services
 {
@@ -64,15 +65,16 @@ namespace Portfolio_Api.Services
             await _context.SaveChangesAsync();
         }
 
-        public async Task EditUserDataAsync(UserData userData)
+        public async Task EditUserDataAsync(UserDataRequest editRequest)
         {
-            var edit = await _context.userdata.FirstAsync(UserData => UserData.email == userData.email);
-            if (edit != null)
+            var oldUserData = await _context.userdata.FirstAsync(UserData => UserData.email == editRequest.email);
+            if (oldUserData != null)
             {
-                edit.favorite_videogame = userData.favorite_videogame;
-                edit.favorite_movie = userData.favorite_movie;
-                edit.favorite_album = userData.favorite_album;
-                edit.favorite_book = userData.favorite_book;
+                oldUserData = new UserData(oldUserData.username, oldUserData.email)
+                    .setFavoriteVideogame(editRequest.favorite_videogame)
+                    .setFavoriteMovie(editRequest.favorite_movie)
+                    .setFavoriteBook(editRequest.favorite_book)
+                    .setFavoriteAlbum(editRequest.favorite_album);
                 await _context.SaveChangesAsync();
             }
         }
@@ -119,16 +121,26 @@ namespace Portfolio_Api.Services
             }
             catch (InvalidOperationException)
             {
-                var entry = new UserData(payload.Name, payload.Email)
-                {
-                    favorite_videogame = "default",
-                    favorite_album = "default",
-                    favorite_book = "default",
-                    favorite_movie = "default",
-                };
+                var entry = new UserData(payload.Name, payload.Email);
                 _context.userdata.Add(entry);
                 await _context.SaveChangesAsync();
                 return await _context.userdata.FirstAsync(UserData => UserData.email == payload.Email);
+            }
+            catch (ArgumentNullException)
+            {
+                throw;
+            }
+        }
+        public async Task EditUserDataProfilePictureByJwt(string profilePictureKey, string jwt)
+        {
+            GoogleJsonWebSignature.ValidationSettings settings = new GoogleJsonWebSignature.ValidationSettings();
+            settings.Audience = new List<string>() { configuration.GetSection("AppSettings:GoogleId").Value };
+            GoogleJsonWebSignature.Payload payload = GoogleJsonWebSignature.ValidateAsync(jwt, settings).Result;
+            try
+            {
+                var toEdit = await _context.userdata.FirstAsync(UserData => UserData.email == payload.Email);
+                toEdit = toEdit.setProfilePictureKey(profilePictureKey);
+                await _context.SaveChangesAsync();
             }
             catch (ArgumentNullException)
             {
@@ -169,12 +181,6 @@ namespace Portfolio_Api.Services
             {
                 return false;
             }
-        }
-
-        public async Task AddPhishedUser(PhishedUser phishedUser)
-        {
-            _context.phishedusers.Add(phishedUser);
-            await _context.SaveChangesAsync();
         }
     }
 }

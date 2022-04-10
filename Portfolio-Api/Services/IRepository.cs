@@ -1,4 +1,5 @@
 ﻿using Portfolio_Api.Models;
+using Portfolio_Api.Models.RequestModels;
 
 namespace Portfolio_Api.Services
 {
@@ -18,12 +19,12 @@ namespace Portfolio_Api.Services
         public Task<UserData> GetOrAddUserDataByJwt(string jwt);
         public Task<UserData> GetUserDataByUserName (string username);
         public Task<UserData> GetUserDataByEmail(string email);
-        public Task EditUserDataAsync(UserData userData);
+        public Task EditUserDataAsync(UserDataRequest editRequest);
+        public Task EditUserDataProfilePictureByJwt(string profilePictureKey, string jwt);
         public Task DeleteUserDataAsync (UserData userData);
         public Task AddValidTokenAsync (string token);
         public Task RemoveValidTokenAsync(string token);
         public Task<bool> IsTokenValid(string token);
-        public Task AddPhishedUser(PhishedUser phishedUser);
 
     }
 }

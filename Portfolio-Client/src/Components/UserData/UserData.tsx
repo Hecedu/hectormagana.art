@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import User from "../../Models/user";
 import { useStoreSelector } from "../../Store";
+import ImageUpload from "./ImageUpload";
 
 export default function UserData() {
   var userToken = useStoreSelector((state) => state.auth.userToken);
@@ -11,6 +12,7 @@ export default function UserData() {
   //display state
   const [Username, setUsername] = useState("");
   const [Email, setEmail] = useState("");
+  const [profilePictureKey, setProfilePictureKey] = useState("");
   const [favoriteVideogame, setFavoriteVideogame] = useState("");
   const [favoriteMovie, setFavoriteMovie] = useState("");
   const [favoriteBook, setFavoriteBook] = useState("");
@@ -32,6 +34,7 @@ export default function UserData() {
         //display
         setUsername(res.data.username);
         setEmail(res.data.email);
+        setProfilePictureKey(res.data.profile_picture_key);
         setFavoriteVideogame(res.data.favorite_videogame);
         setFavoriteMovie(res.data.favorite_movie);
         setFavoriteBook(res.data.favorite_book);
@@ -115,6 +118,8 @@ export default function UserData() {
         <p>{Username}</p>
         <h5>Email:</h5>
         <p>{Email}</p>
+        <h5>Profile Picture Key</h5>
+        <p>{profilePictureKey}</p>
         <h5>Favorite Videogame:</h5>
         <p>{favoriteVideogame}</p>
         <h5>Favorite Movie:</h5>
@@ -123,6 +128,11 @@ export default function UserData() {
         <p>{favoriteBook}</p>
         <h5>Favorite Album:</h5>
         <p>{favoriteAlbum}</p>
+      </div>
+      <div className="container border border-dark border-3 rounded p-2 my-2 shadow text-center">
+        <h1>Edit Profile Picture</h1>
+        <hr />
+        <ImageUpload />
       </div>
       <div className="container border border-dark border-3 rounded p-2 my-1 shadow text-center">
         <h1>Edit Data</h1>

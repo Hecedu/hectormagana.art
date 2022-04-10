@@ -8,6 +8,7 @@
     ".NETCoreApp,Version=v6.0": {
       "Portfolio-Api/1.0.0": {
         "dependencies": {
+          "AWSSDK.S3": "3.7.8.17",
           "Google.Apis.Auth": "1.56.0",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "6.0.3",
           "Microsoft.AspNetCore.Cryptography.KeyDerivation": "6.0.3",
@@ -23,6 +24,25 @@
         },
         "runtime": {
           "Portfolio-Api.dll": {}
+        }
+      },
+      "AWSSDK.Core/3.7.10.5": {
+        "runtime": {
+          "lib/netcoreapp3.1/AWSSDK.Core.dll": {
+            "assemblyVersion": "3.3.0.0",
+            "fileVersion": "3.7.10.5"
+          }
+        }
+      },
+      "AWSSDK.S3/3.7.8.17": {
+        "dependencies": {
+          "AWSSDK.Core": "3.7.10.5"
+        },
+        "runtime": {
+          "lib/netcoreapp3.1/AWSSDK.S3.dll": {
+            "assemblyVersion": "3.3.0.0",
+            "fileVersion": "3.7.8.17"
+          }
         }
       },
       "Google.Apis/1.56.0": {
@@ -1289,6 +1309,20 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "AWSSDK.Core/3.7.10.5": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-D04DK/+58D2xyD1/WoBjp7Aq5T5M0ebonwp3cjRpx5lR4AeXPFc77JlMlWHX2/ST6dEfbp+zQjyE2AyNOfRcVw==",
+      "path": "awssdk.core/3.7.10.5",
+      "hashPath": "awssdk.core.3.7.10.5.nupkg.sha512"
+    },
+    "AWSSDK.S3/3.7.8.17": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-NDKrzCY/cDsvuG4vY/kTD0asQY9/4isVUVZ0ScH6IvLrIuwkiYqGf6bk9snghhVMmDF7bj/9lVOAFdetCCURNA==",
+      "path": "awssdk.s3/3.7.8.17",
+      "hashPath": "awssdk.s3.3.7.8.17.nupkg.sha512"
     },
     "Google.Apis/1.56.0": {
       "type": "package",

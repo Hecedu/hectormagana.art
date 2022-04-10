@@ -29,7 +29,7 @@ namespace Portfolio_Api.Controllers
         }
 
         [HttpGet]
-        [Route("GetBlogPosts"), Authorize(Roles = "Admin")]
+        [Route("GetBlogPosts"), AllowAnonymous]
         public IEnumerable<BlogPost> GetBlogPosts()
         {
             return _repository.GetBlogPosts();
