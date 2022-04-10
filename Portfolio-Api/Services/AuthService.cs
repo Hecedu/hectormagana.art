@@ -30,7 +30,7 @@ namespace Portfolio_Api.Services
                 new Claim(ClaimTypes.Role, "User")
             };
 
-            var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(configuration.GetSection("AppSettings:Token").Value));
+            var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(Environment.GetEnvironmentVariable("JwtKey")));
 
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
 
