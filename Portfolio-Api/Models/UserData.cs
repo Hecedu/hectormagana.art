@@ -7,7 +7,7 @@ namespace Portfolio_Api.Models
         public int id { get; private set; }
         public string username { get; private set; }
         public string email { get; private set; }
-        public string profile_picture_key { get; private set; }
+        public string? profile_picture_key { get; private set; }
         public string favorite_videogame { get; private set; }
         public string favorite_movie { get; private set; }
         public string favorite_book { get; private set; }
@@ -19,6 +19,7 @@ namespace Portfolio_Api.Models
             id = 0;
             username = "Default";
             email = "Default";
+            profile_picture_key = null;
             favorite_videogame = "Default";
             favorite_movie = "Default";
             favorite_book = "Default";
@@ -36,7 +37,7 @@ namespace Portfolio_Api.Models
         }
         public UserData setUsername(string _username)
         {
-            username = validationService.ValidateString(username, 150);
+            username = validationService.ValidateString(_username, 150);
             return this;
         }
         public UserData setProfilePictureKey(string _profile_picture_key)
