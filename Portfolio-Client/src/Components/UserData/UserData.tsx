@@ -12,7 +12,7 @@ export default function UserData() {
   //display state
   const [Username, setUsername] = useState("");
   const [Email, setEmail] = useState("");
-  const [profilePictureKey, setProfilePictureKey] = useState("");
+  const [profilePictureKey, setProfilePictureKey] = useState();
   const [favoriteVideogame, setFavoriteVideogame] = useState("");
   const [favoriteMovie, setFavoriteMovie] = useState("");
   const [favoriteBook, setFavoriteBook] = useState("");
@@ -46,7 +46,7 @@ export default function UserData() {
         setEditBook(res.data.favorite_book);
         setEditAlbum(res.data.favorite_album);
       });
-  },[]);
+  }, []);
 
   function onUsernameChange(event: React.ChangeEvent<HTMLInputElement>) {
     setEditUserName(event.target.value);
@@ -114,12 +114,23 @@ export default function UserData() {
       <div className="container border border-dark border-3 rounded p-2 my-2 shadow text-center">
         <h1>Current Data</h1>
         <hr />
+        {profilePictureKey === undefined ? (
+          <>
+            <h5>Profile Picture Key</h5>
+            <p>not set</p>
+          </>
+        ) : (
+          <>
+            <h5>Profile Picture Key</h5>
+            <p>{profilePictureKey}</p>
+            <h5>Profile Picture</h5>
+            <img src={`https://portfolioprofilepictures.s3.us-west-1.amazonaws.com/${profilePictureKey}`} className="img-fluid w-25 rounded"></img>
+          </>
+        )}
         <h5>Username:</h5>
         <p>{Username}</p>
         <h5>Email:</h5>
         <p>{Email}</p>
-        <h5>Profile Picture Key</h5>
-        <p>{profilePictureKey}</p>
         <h5>Favorite Videogame:</h5>
         <p>{favoriteVideogame}</p>
         <h5>Favorite Movie:</h5>
