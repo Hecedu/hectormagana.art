@@ -67,10 +67,10 @@ namespace Portfolio_Api.Services
 
         public async Task EditUserDataAsync(UserDataRequest editRequest)
         {
-            var oldUserData = await _context.userdata.FirstAsync(UserData => UserData.email == editRequest.email);
-            if (oldUserData != null)
+            var userDataToEdit = await _context.userdata.FirstAsync(UserData => UserData.email == editRequest.email);
+            if (userDataToEdit != null)
             {
-                oldUserData = new UserData(oldUserData.username, oldUserData.email)
+                userDataToEdit = new UserData(userDataToEdit.username, userDataToEdit.email)
                     .setFavoriteVideogame(editRequest.favorite_videogame)
                     .setFavoriteMovie(editRequest.favorite_movie)
                     .setFavoriteBook(editRequest.favorite_book)
