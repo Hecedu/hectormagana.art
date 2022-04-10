@@ -70,11 +70,10 @@ namespace Portfolio_Api.Services
             var userDataToEdit = await _context.userdata.FirstAsync(UserData => UserData.email == editRequest.email);
             if (userDataToEdit != null)
             {
-                userDataToEdit = new UserData(userDataToEdit.username, userDataToEdit.email)
-                    .setFavoriteVideogame(editRequest.favorite_videogame)
-                    .setFavoriteMovie(editRequest.favorite_movie)
-                    .setFavoriteBook(editRequest.favorite_book)
-                    .setFavoriteAlbum(editRequest.favorite_album);
+                userDataToEdit.setFavoriteVideogame(editRequest.favorite_videogame)
+                            .setFavoriteMovie(editRequest.favorite_movie)
+                            .setFavoriteBook(editRequest.favorite_book)
+                            .setFavoriteAlbum(editRequest.favorite_album);
                 await _context.SaveChangesAsync();
             }
         }
@@ -138,8 +137,8 @@ namespace Portfolio_Api.Services
             GoogleJsonWebSignature.Payload payload = GoogleJsonWebSignature.ValidateAsync(jwt, settings).Result;
             try
             {
-                var toEdit = await _context.userdata.FirstAsync(UserData => UserData.email == payload.Email);
-                toEdit = toEdit.setProfilePictureKey(profilePictureKey);
+                var userDataToEdit = await _context.userdata.FirstAsync(UserData => UserData.email == payload.Email);
+                userDataToEdit.setProfilePictureKey(profilePictureKey);
                 await _context.SaveChangesAsync();
             }
             catch (ArgumentNullException)

@@ -81,14 +81,12 @@ namespace Portfolio_Api.Controllers
             return Ok();
         }
         [HttpPost]
-        [Route("EditUserData"), Authorize(Roles = "User")]
+        [Route("EditUserData"), AllowAnonymous]
         public async Task<IActionResult> EditUserData([FromBody] UserDataRequest userData)
         {
-            if (await IsTokenDateValid(HttpContext))
-            {
                 await _repository.EditUserDataAsync(userData);
                 return Ok();
-            }
+
             return Unauthorized();
         }
 
