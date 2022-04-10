@@ -14,17 +14,27 @@ export default function ImageUpload() {
 
   const uploadFile = async () => {
     if (file) {
+      const formData = new FormData();
+      formData.append("file", file);
       axios
-        .post(`/api/UserData/EditUserProfilePicture?jwt=${userToken}`, {
-          headers: { Authorization: `Bearer ${userBearerToken}` },
-          file,
-        })
+        .post(
+          `/api/UserData/EditUserProfilePicture?jwt=${userToken}`,
+          formData,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+              Authorization: `Bearer ${userBearerToken}`,
+            },
+          }
+        )
         .then((res) => {
           alert("file uploaded");
         })
         .catch((err) => {
           alert("file upload failed");
         });
+    } else {
+      alert("no file selected");
     }
   };
 

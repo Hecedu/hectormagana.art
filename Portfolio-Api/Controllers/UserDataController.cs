@@ -52,7 +52,7 @@ namespace Portfolio_Api.Controllers
         }
         [HttpPost]
         [Route("EditUserProfilePicture"), Authorize(Roles = "User")]
-        public async Task<IActionResult> EditUserPfp(IFormFile imageFile, string jwt)
+        public async Task<IActionResult> EditUserPfp([FromForm] IFormFile imageFile, string jwt)
         {
             if (imageFile.ContentType == "image/png" || imageFile.ContentType == "image/jpg")
             {
