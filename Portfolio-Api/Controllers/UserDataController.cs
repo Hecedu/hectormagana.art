@@ -81,7 +81,7 @@ namespace Portfolio_Api.Controllers
             return Ok();
         }
         [HttpPost]
-        [Route("EditUserData"), AllowAnonymous]
+        [Route("EditUserData"), Authorize(Roles = "User")]
         public async Task<IActionResult> EditUserData([FromBody] UserDataRequest userData)
         {
                 await _repository.EditUserDataAsync(userData);
