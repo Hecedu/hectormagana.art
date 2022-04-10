@@ -15,7 +15,7 @@ export default function ImageUpload() {
   const uploadFile = async () => {
     if (file) {
       const formData = new FormData();
-      formData.append("file", file);
+      formData.append("imageFile", file);
       axios
         .post(
           `/api/UserData/EditUserProfilePicture?jwt=${userToken}`,
