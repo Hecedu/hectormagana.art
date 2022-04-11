@@ -92,7 +92,6 @@ C:\Users\hecto\source\repos\Projects\Portfolio-db\Portfolio-Api\bin\Debug\net6.0
 C:\Users\hecto\source\repos\Projects\Portfolio-db\Portfolio-Api\bin\Debug\net6.0\Scrutor.dll
 C:\Users\hecto\source\repos\Projects\Portfolio-db\Portfolio-Api\bin\Debug\net6.0\Swashbuckle.AspNetCore.Filters.dll
 C:\Users\hecto\source\repos\Projects\Portfolio-db\Portfolio-Api\bin\Debug\net6.0\Swashbuckle.AspNetCore.Filters.Abstractions.dll
-C:\Users\hecto\source\repos\Projects\Portfolio-db\Portfolio-Api\obj\Debug\net6.0\Portfolio-Api.csproj.AssemblyReference.cache
 C:\Users\hecto\source\repos\Projects\Portfolio-db\Portfolio-Api\bin\Debug\net6.0\AWSSDK.Core.dll
 C:\Users\hecto\source\repos\Projects\Portfolio-db\Portfolio-Api\bin\Debug\net6.0\AWSSDK.S3.dll
 C:\Users\hecto\source\repos\Projects\Portfolio-db\Portfolio-Api\bin\Debug\net6.0\Microsoft.Win32.SystemEvents.dll

@@ -53,10 +53,10 @@ namespace Portfolio_Api.Controllers
             return Unauthorized();
         }
         [HttpPost]
-        [Route("EditUserProfilePicture"), Authorize(Roles = "User")]
+        [Route("EditUserProfilePicture"), AllowAnonymous]
         public async Task<IActionResult> EditUserPfp([FromForm] IFormFile imageFile, string jwt)
         {
-            if (ImageValidationService.IsImage(imageFile))
+            if (await ImageValidationService.IsImage(imageFile))
             {
                 var imageKey = Guid.NewGuid().ToString("N");
                 using (var client = new AmazonS3Client("AKIAZTJSTNYA7ZBQEZWE", Environment.GetEnvironmentVariable("BucketSecret"), RegionEndpoint.USWest1))
