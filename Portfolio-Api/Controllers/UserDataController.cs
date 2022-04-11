@@ -9,6 +9,8 @@ using Portfolio_Api.Models;
 using Portfolio_Api.Models.RequestModels;
 using Portfolio_Api.Services;
 using System.Net;
+using System.Text.RegularExpressions;
+using System.Drawing;
 
 namespace Portfolio_Api.Controllers
 {
@@ -54,7 +56,7 @@ namespace Portfolio_Api.Controllers
         [Route("EditUserProfilePicture"), Authorize(Roles = "User")]
         public async Task<IActionResult> EditUserPfp([FromForm] IFormFile imageFile, string jwt)
         {
-            if (imageFile.ContentType == "image/png" || imageFile.ContentType == "image/jpg")
+            if (ImageValidationService.IsImage(imageFile))
             {
                 var imageKey = Guid.NewGuid().ToString("N");
                 using (var client = new AmazonS3Client("AKIAZTJSTNYA7ZBQEZWE", Environment.GetEnvironmentVariable("BucketSecret"), RegionEndpoint.USWest1))
@@ -75,17 +77,16 @@ namespace Portfolio_Api.Controllers
                     }
                 }
                 await _repository.EditUserDataProfilePictureByJwt(imageKey, jwt);
-
+                return Ok();
             }
-
-            return Ok();
+            return BadRequest();
         }
         [HttpPost]
         [Route("EditUserData"), Authorize(Roles = "User")]
         public async Task<IActionResult> EditUserData([FromBody] UserDataRequest userData)
         {
-                await _repository.EditUserDataAsync(userData);
-                return Ok();
+            await _repository.EditUserDataAsync(userData);
+            return Ok();
 
             return Unauthorized();
         }

@@ -43,7 +43,7 @@ export default function ImageUpload() {
       <input
         className="form-control my-2"
         type="file"
-        accept=".png,.jpg"
+        accept="image/*"
         onChange={saveFile}
       />
       <div className="my-2">

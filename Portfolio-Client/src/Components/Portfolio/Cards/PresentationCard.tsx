@@ -7,7 +7,7 @@ import { VscFoldDown } from "react-icons/vsc";
 export default function PresentationCard() {
   return (
     <div className="vh-100 d-flex align-items-center">
-      <div className=" d-flex flex-column  text-center container">
+      <div className=" d-flex flex-column  text-center container border border-dark border-4 p-3 py-5 rounded-3 shadow bg-white">
         <FadeIn transitionDuration={500} delay={300}>
           <h1 className="my-1 display-1 fw-bold">Héctor Magaña 👨🏽‍💻</h1>
           <h1>

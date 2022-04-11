@@ -42,7 +42,7 @@ namespace Portfolio_Api.Models
         }
         public UserData setProfilePictureKey(string _profile_picture_key)
         {
-            profile_picture_key = validationService.ValidateString(_profile_picture_key); ;
+            profile_picture_key = validationService.ValidateString(_profile_picture_key);
             return this;
         }
         public UserData setFavoriteVideogame(string favoriteVideogame)

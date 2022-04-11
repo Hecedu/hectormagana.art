@@ -6,10 +6,15 @@ import Nav from "./Components/UI/Nav";
 import Home from "./Views/Home";
 import Profile from "./Views/Profile";
 import Game from "./Views/Game";
+import Footer from "./Components/UI/Footer";
 
 function App() {
   return (
-    <div>
+    <div
+      style={{
+        background: `linear-gradient(45deg, #00ffb3, #9300ff)`,
+      }}
+    >
       <Nav />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -17,6 +22,7 @@ function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/game" element={<Game />} />
       </Routes>
+      <Footer />
     </div>
   );
 }

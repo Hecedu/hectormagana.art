@@ -1,18 +1,20 @@
 import React from "react";
-import { Autoplay, Pagination } from "swiper";
-import SwiperCore, { Swiper, SwiperSlide } from "swiper/react/swiper-react";
-import "swiper/swiper-bundle.css";
+import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCard from "../Custom/SwiperCard";
+import 'swiper/css';
+import 'swiper/css/bundle';
+import { Autoplay } from "swiper";
 export default function ProjectsCard() {
   return (
-    <div className="text-center border border-dark border-4 py-5 px-0 mb-5 rounded-3 shadow">
+    <div className="text-center border border-dark border-4 py-5 px-0 mb-5 rounded-3 shadow bg-white">
       <h1 className="my-1 display-3 fw-bold">Some of my Projects</h1>
       <p>feel free to swipe!</p>
       <hr />
       <Swiper
-        modules={[Autoplay, Pagination]}
-        slidesPerView={1}
-        spaceBetween={0}
+        modules={[Autoplay]}
+        slidesPerView={window.innerWidth <= 760?1:2}
+        spaceBetween={20}
+        centeredSlides={true}
         loop={true}
         className="p-0"
         grabCursor={true}
@@ -28,6 +30,18 @@ export default function ProjectsCard() {
             links={[
               "https://b-llage.itch.io/cheat-squad",
               "https://github.com/Hecedu/Cheat-Squad",
+            ]}
+          />
+        </SwiperSlide>
+        <SwiperSlide className="h-auto">
+          <SwiperCard
+            title={"Cromatic"}
+            content={
+              "Simple and beautiful color palette generation tool."
+            }
+            extraInfo={"Developed using React, Typescript and Chroma.js."}
+            links={[
+              "https://hecedu.github.io/Cromatic/",
             ]}
           />
         </SwiperSlide>

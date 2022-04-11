@@ -116,13 +116,11 @@ export default function UserData() {
         <hr />
         {profilePictureKey === undefined ? (
           <>
-            <h5>Profile Picture Key</h5>
+            <h5>Profile Picture</h5>
             <p>not set</p>
           </>
         ) : (
           <>
-            <h5>Profile Picture Key</h5>
-            <p>{profilePictureKey}</p>
             <h5>Profile Picture</h5>
             <img src={`https://portfolioprofilepictures.s3.us-west-1.amazonaws.com/${profilePictureKey}`} className="img-fluid w-25 rounded"></img>
           </>

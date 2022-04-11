@@ -11,7 +11,7 @@ export default function Login() {
   var userBearerToken = useStoreSelector((state) => state.auth.bearerToken);
 
   return (
-    <div className="text-center border border-dark border-4 p-5 m-3 rounded-3 shadow">
+    <div className="text-center border border-dark border-4 p-5 m-3 rounded-3 shadow bg-white">
       <h1>Login</h1>
       {userToken === undefined ? (
         <LoginButton />
