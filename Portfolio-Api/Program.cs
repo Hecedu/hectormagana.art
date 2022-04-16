@@ -43,6 +43,7 @@ builder.Services.AddTransient<IClientInformationRepository, ClientInformationRep
 builder.Services.AddTransient<ITokenRepository, TokenRepository>();
 builder.Services.AddTransient<IBlogPostRepository, BlogPostRepository>();
 builder.Services.AddTransient<IAuthService, AuthService>();
+builder.Services.AddTransient<ICommentRepository, CommentRepository>();
 //Execute linux commands
 builder.Host.UseSystemd();
 //Authentication Schemes

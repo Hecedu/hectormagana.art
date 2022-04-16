@@ -12,16 +12,6 @@ services:
     volumes:
       - database-data:/var/lib/postgresql/data/
       - ./dbscripts:/docker-entrypoint-initdb.d
-  pgadmin:
-    image: dpage/pgadmin4
-    environment:
-      - PGADMIN_DEFAULT_EMAIL=hector.maganahdez@gmail.com
-      - PGADMIN_DEFAULT_PASSWORD=admin
-    ports:
-      - "5002:80"
-    restart: always
-    volumes:
-      - pgadmin:/root/.pgadmin
   portfolio-client:
     stdin_open: true
     environment:
@@ -57,4 +47,3 @@ services:
       - "host.docker.internal:host-gateway"
 volumes:
   database-data:
-  pgadmin:

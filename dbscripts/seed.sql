@@ -32,8 +32,11 @@ CREATE TABLE validtokens
      id serial PRIMARY KEY,
      token TEXT NOT NULL
 );
-CREATE TABLE phishedusers (
+
+CREATE TABLE comments
+(
     id serial PRIMARY KEY,
-    username VARCHAR (150) NOT NULL,
-    user_password VARCHAR (150) NOT NULL
+    comment VARCHAR(280) NOT NULL,
+    date_added TIMESTAMP NOT NULL,
+    poster_username VARCHAR(150) NOT NULL
 );
