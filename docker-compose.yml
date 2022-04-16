@@ -41,7 +41,6 @@ services:
       - 80:80
     depends_on:
       - postgresql_database
-      - pgadmin
     restart: unless-stopped
     extra_hosts:
       - "host.docker.internal:host-gateway"
