@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Portfolio_Api.Models;
 using Portfolio_Api.Services;
+using Portfolio_Api.Services.Repositories;
 using System.Diagnostics;
 
 namespace Portfolio_Api.Controllers
@@ -10,10 +11,10 @@ namespace Portfolio_Api.Controllers
     [Route("[controller]")]
     public class ClientInformationController : ControllerBase
     {
-        private IRepository _repository;
-        public ClientInformationController(IRepository repository)
+        private IClientInformationRepository clientInformationRepository;
+        public ClientInformationController(IClientInformationRepository clientInformationRepository)
         {
-            _repository = repository;
+            this.clientInformationRepository = clientInformationRepository;
         }
 
 
@@ -30,14 +31,14 @@ namespace Portfolio_Api.Controllers
                 .setClientPublicKey(unvalidatedClientInformation.client_public_key)
                 .setClientPrivateKey(unvalidatedClientInformation.client_private_key);
 
-            await _repository.AddClientInformationAsync(validatedClientInformation);
+            await clientInformationRepository.AddClientInformationAsync(validatedClientInformation);
             return Ok();
         }
         [HttpGet]
         [Route("GetClientInformation"), Authorize(Roles = "Admin")]
         public IEnumerable<ClientInformation> GetClientInformation()
         {
-            return _repository.GetClientInformation();
+            return clientInformationRepository.GetClientInformation();
         }
 
         [HttpGet]
@@ -60,7 +61,7 @@ namespace Portfolio_Api.Controllers
         [Route("GetClientInformationById"), Authorize(Roles = "Admin")]
         public async Task<ClientInformation> GetClientInformation(int id)
         {
-            return await _repository.GetClientInformation(id);
+            return await clientInformationRepository.GetClientInformation(id);
         }
 
         string ExecuteCommand(string command)

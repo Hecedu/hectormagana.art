@@ -3,18 +3,19 @@ using System.ComponentModel.DataAnnotations;
 using System.Security.Claims;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
+using Portfolio_Api.Services.Repositories;
 
 namespace Portfolio_Api.Services
 {
     public class AuthService : IAuthService
     {
-        private readonly IRepository repository;
+        private readonly ITokenRepository tokenRepository;
         private readonly IConfiguration configuration;
 
-        public AuthService(IConfiguration configuration, IRepository repository)
+        public AuthService(IConfiguration configuration, ITokenRepository repository)
         {
             this.configuration = configuration;
-            this.repository = repository;
+            this.tokenRepository = repository;
         }
         public class AuthenticateRequest
         {
@@ -40,12 +41,12 @@ namespace Portfolio_Api.Services
                 signingCredentials: creds);
 
             var jwt = new JwtSecurityTokenHandler().WriteToken(token);
-            await repository.AddValidTokenAsync(jwt);
+            await tokenRepository.AddValidTokenAsync(jwt);
             return jwt;
         }
         public async Task RemoveValidTokenAsync(string token)
         {
-            await repository.RemoveValidTokenAsync(token);
+            await tokenRepository.RemoveValidTokenAsync(token);
         }
     }
 }

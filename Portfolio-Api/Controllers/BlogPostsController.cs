@@ -3,6 +3,7 @@ using Portfolio_Api.Models;
 using Portfolio_Api.Services;
 using Portfolio_Api.Models.RequestModels;
 using Microsoft.AspNetCore.Authorization;
+using Portfolio_Api.Services.Repositories;
 
 namespace Portfolio_Api.Controllers
 {
@@ -10,10 +11,10 @@ namespace Portfolio_Api.Controllers
     [Route("[controller]")]
     public class BlogPostsController : ControllerBase
     {
-        private IRepository _repository;
-        public BlogPostsController(IRepository repository)
+        private IBlogPostRepository blogPostRepository;
+        public BlogPostsController(IBlogPostRepository blogPostRepository)
         {
-            _repository = repository;
+            this.blogPostRepository = blogPostRepository;
         }
 
         [HttpPost]
@@ -24,7 +25,7 @@ namespace Portfolio_Api.Controllers
                 .setTitle(unvalidatedBlogPost.title)
                 .setContent(unvalidatedBlogPost.content);
 
-            await _repository.AddBlogPostAsync(validatedBlogPost);
+            await blogPostRepository.AddBlogPostAsync(validatedBlogPost);
             return Ok();
         }
 
@@ -32,7 +33,7 @@ namespace Portfolio_Api.Controllers
         [Route("GetBlogPosts"), AllowAnonymous]
         public IEnumerable<BlogPost> GetBlogPosts()
         {
-            return _repository.GetBlogPosts();
+            return blogPostRepository.GetBlogPosts();
         }
     }
 }

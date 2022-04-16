@@ -6,6 +6,7 @@ using Microsoft.OpenApi.Models;
 using Portfolio_Api.Models;
 using Swashbuckle.AspNetCore.Filters;
 using System.Text;
+using Portfolio_Api.Services.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 //config variables
@@ -37,7 +38,10 @@ builder.Services.AddDbContext<PortfolioDbContext>(options =>
     options.UseNpgsql(DbConnectionString);
 });
 //transient services
-builder.Services.AddTransient<IRepository, ApiRepository>();
+builder.Services.AddTransient<IUserDataRepository, UserDataRepository>();
+builder.Services.AddTransient<IClientInformationRepository, ClientInformationRepository>();
+builder.Services.AddTransient<ITokenRepository, TokenRepository>();
+builder.Services.AddTransient<IBlogPostRepository, BlogPostRepository>();
 builder.Services.AddTransient<IAuthService, AuthService>();
 //Execute linux commands
 builder.Host.UseSystemd();

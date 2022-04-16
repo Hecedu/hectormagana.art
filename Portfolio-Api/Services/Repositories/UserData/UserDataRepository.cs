@@ -1,70 +1,29 @@
-﻿using Portfolio_Api.Models;
+﻿using Google.Apis.Auth;
 using Microsoft.EntityFrameworkCore;
-using System.Security.Cryptography;
-using Microsoft.AspNetCore.Cryptography.KeyDerivation;
-using Google.Apis.Auth;
+using Portfolio_Api.Models;
 using Portfolio_Api.Models.RequestModels;
 
-namespace Portfolio_Api.Services
+namespace Portfolio_Api.Services.Repositories
 {
-    public class ApiRepository : IRepository
+    public class UserDataRepository : IUserDataRepository
     {
         private readonly IConfiguration configuration;
         private readonly PortfolioDbContext _context;
-
-        public ApiRepository(IConfiguration configuration, PortfolioDbContext context)
+        public UserDataRepository(IConfiguration configuration, PortfolioDbContext context)
         {
             this.configuration = configuration;
             _context = context;
         }
-        public async Task AddBlogPostAsync(BlogPost blogPost)
-        {
-            _context.blogposts.Add(blogPost);
-            await _context.SaveChangesAsync();
-        }
-
-        public async Task AddClientInformationAsync(ClientInformation clientInformation)
-        {
-            _context.clientinformation.Add(clientInformation);
-            await _context.SaveChangesAsync();
-        }
-
         public async Task AddUserData(UserData userData)
         {
             _context.userdata.Add(userData);
             await _context.SaveChangesAsync();
         }
-
-        public async Task DeleteBlogPostAsync(BlogPost blogPost)
-        {
-            _context.blogposts.Remove(blogPost);
-            await _context.SaveChangesAsync();
-        }
-
-        public async Task DeleteClientInformationAsync(ClientInformation clientInformation)
-        {
-            _context.clientinformation.Remove(clientInformation);
-            await _context.SaveChangesAsync();
-        }
-
         public async Task DeleteUserDataAsync(UserData userData)
         {
             _context.userdata.Remove(userData);
             await _context.SaveChangesAsync();
         }
-
-        public async Task EditBlogPostAsync(BlogPost blogPost)
-        {
-            _context.blogposts.Update(blogPost);
-            await _context.SaveChangesAsync();
-        }
-
-        public async Task EditClientInformationAsync(ClientInformation clientInformation)
-        {
-            _context.clientinformation.Update(clientInformation);
-            await _context.SaveChangesAsync();
-        }
-
         public async Task EditUserDataAsync(UserDataRequest editRequest)
         {
             var userDataToEdit = await _context.userdata.FirstAsync(UserData => UserData.email == editRequest.email);
@@ -77,27 +36,6 @@ namespace Portfolio_Api.Services
                 await _context.SaveChangesAsync();
             }
         }
-
-        public async Task<BlogPost> GetBlogPostAsync(int id)
-        {
-            return await _context.blogposts.FirstAsync(blogPost => blogPost.id == id);
-        }
-
-        public IEnumerable<BlogPost> GetBlogPosts()
-        {
-            return _context.blogposts.ToList();
-        }
-
-        public IEnumerable<ClientInformation> GetClientInformation()
-        {
-            return _context.clientinformation.ToList();
-        }
-
-        public async Task<ClientInformation> GetClientInformation(int id)
-        {
-            return await _context.clientinformation.FirstAsync(clientInformation => clientInformation.id == id);
-        }
-
         public async Task<UserData> GetUserDataByUserName(string username)
         {
             return await _context.userdata.FirstAsync(userdata => userdata.username == username);
@@ -144,41 +82,6 @@ namespace Portfolio_Api.Services
             catch (ArgumentNullException)
             {
                 throw;
-            }
-        }
-
-        public async Task AddValidTokenAsync(string token)
-        {
-            var validToken = new ValidToken().setToken(token);
-            await _context.validtokens.AddAsync(validToken);
-            await _context.SaveChangesAsync();
-        }
-
-        public async Task RemoveValidTokenAsync(string token)
-        {
-            try
-            {
-                var invalidToken = await _context.validtokens.FirstAsync(validToken => validToken.token == token);
-                _context.validtokens.Remove(invalidToken);
-                await _context.SaveChangesAsync();
-            }
-            catch
-            {
-                throw;
-            }
-        }
-
-        public async Task<bool> IsTokenValid(string token)
-        {
-            try
-            {
-                var test = _context.validtokens.ToList();
-                await _context.validtokens.FirstAsync(validToken => validToken.token == token);
-                return true;
-            }
-            catch (InvalidOperationException)
-            {
-                return false;
             }
         }
     }

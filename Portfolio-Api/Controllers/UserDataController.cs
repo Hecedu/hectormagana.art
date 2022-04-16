@@ -11,6 +11,7 @@ using Portfolio_Api.Services;
 using System.Net;
 using System.Text.RegularExpressions;
 using System.Drawing;
+using Portfolio_Api.Services.Repositories;
 
 namespace Portfolio_Api.Controllers
 {
@@ -18,17 +19,19 @@ namespace Portfolio_Api.Controllers
     [Route("[controller]")]
     public class UserDataController : Controller
     {
-        private IRepository _repository;
-        public UserDataController(IRepository repository)
+        private IUserDataRepository userDataRepository;
+        private ITokenRepository tokenRepository;
+        public UserDataController(IUserDataRepository userDataRepository, ITokenRepository tokenRepository)
         {
-            _repository = repository;
+            this.userDataRepository = userDataRepository;
+            this.tokenRepository = tokenRepository;
         }
 
         [HttpGet]
         [Route("GetUserDataByUsername"), Authorize(Roles = "Admin")]
         public async Task<UserData> GetUserDataByUsername(string username)
         {
-            return await _repository.GetUserDataByUserName(username);
+            return await userDataRepository.GetUserDataByUserName(username);
         }
 
         [HttpGet]
@@ -37,7 +40,7 @@ namespace Portfolio_Api.Controllers
         {
             if (await IsTokenDateValid(HttpContext))
             {
-                var result = await _repository.GetUserDataByEmail(email);
+                var result = await userDataRepository.GetUserDataByEmail(email);
                 return Ok(result);
             }
             return Unauthorized();
@@ -48,12 +51,12 @@ namespace Portfolio_Api.Controllers
         {
             if (await IsTokenDateValid(HttpContext))
             {
-                return Ok(await _repository.GetOrAddUserDataByJwt(jwt));
+                return Ok(await userDataRepository.GetOrAddUserDataByJwt(jwt));
             }
             return Unauthorized();
         }
         [HttpPost]
-        [Route("EditUserProfilePicture"), AllowAnonymous]
+        [Route("EditUserProfilePicture"), Authorize(Roles = "User")]
         public async Task<IActionResult> EditUserPfp([FromForm] IFormFile imageFile, string jwt)
         {
             if (await ImageValidationService.IsImage(imageFile))
@@ -76,7 +79,7 @@ namespace Portfolio_Api.Controllers
                         await fileTransferUtility.UploadAsync(uploadRequest);
                     }
                 }
-                await _repository.EditUserDataProfilePictureByJwt(imageKey, jwt);
+                await userDataRepository.EditUserDataProfilePictureByJwt(imageKey, jwt);
                 return Ok();
             }
             return BadRequest();
@@ -85,7 +88,7 @@ namespace Portfolio_Api.Controllers
         [Route("EditUserData"), Authorize(Roles = "User")]
         public async Task<IActionResult> EditUserData([FromBody] UserDataRequest userData)
         {
-            await _repository.EditUserDataAsync(userData);
+            await userDataRepository.EditUserDataAsync(userData);
             return Ok();
 
             return Unauthorized();
@@ -94,7 +97,7 @@ namespace Portfolio_Api.Controllers
         private async Task<bool> IsTokenDateValid(HttpContext currentContext)
         {
             string? token = await currentContext.GetTokenAsync("access_token");
-            if (token != null && await _repository.IsTokenValid(token))
+            if (token != null && await tokenRepository.IsTokenValid(token))
             {
                 return true;
             }
