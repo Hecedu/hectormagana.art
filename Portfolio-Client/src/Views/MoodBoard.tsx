@@ -95,7 +95,7 @@ export default function MoodBoard() {
                     {comment.poster_username}'s mood
                   </p>
                   <p className="fst-italic">
-                    Posted on: {comment.date_added.toDateString()}{" "}
+                    Posted on: {new Date(comment.date_added).toDateString()}
                   </p>
                   <h5>{comment.comment}</h5>
                 </div>
