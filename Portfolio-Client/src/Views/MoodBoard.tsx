@@ -6,7 +6,7 @@ import { useStoreSelector } from "../Store";
 export default function MoodBoard() {
   var userGoogleToken = useStoreSelector((state) => state.auth.userToken);
   var userBearerToken = useStoreSelector((state) => state.auth.bearerToken);
-  
+
   const [message, setMessage] = useState("");
   const [comments, setComments] = useState<Comment[]>([]);
 
@@ -38,20 +38,20 @@ export default function MoodBoard() {
           .catch(function (error) {
             alert(error);
           });
-      }
-      else {
-        axios.post(
-          `/api/Comments/AddAnonymousComment`,
-          new Comment(0, message, "")
-        )
-        .then(function () {
-          axios.get(`/api/Comments`).then((res) => {
-            setComments(res.data);
+      } else {
+        axios
+          .post(
+            `/api/Comments/AddAnonymousComment`,
+            new Comment(0, message, "")
+          )
+          .then(function () {
+            axios.get(`/api/Comments`).then((res) => {
+              setComments(res.data);
+            });
+          })
+          .catch(function (error) {
+            alert(error);
           });
-        })
-        .catch(function (error) {
-          alert(error);
-        });
       }
     } else {
       alert("Please input a valid message.");
@@ -86,15 +86,26 @@ export default function MoodBoard() {
       </div>
       <div className="text-center border border-dark border-4 p-5 m-3 rounded-3 shadow bg-white">
         {comments.length > 0 ? (
-          comments.map((comment) => {
-            return (
-              <div className="border border-dark border-4 p-5 m-3 rounded-3 shadow bg-white">
-                <h1>{comment.comment}</h1>
-              </div>
-            );
-          })
+          <div className="d-flex flex-wrap">
+            {comments.map((comment) => {
+              return (
+                <div className="border border-dark border-4 p-5 m-3 rounded-3 shadow bg-white">
+                  <h1>{comment.comment}</h1>
+                  <p className="fst-italic fw-bold m-0">
+                    {comment.poster_username}'s mood
+                  </p>
+                  <p className="fst-italic">
+                    Posted on: {comment.date_added.toDateString()}{" "}
+                  </p>
+                  <h5>{comment.comment}</h5>
+                </div>
+              );
+            })}
+          </div>
         ) : (
-          <h1>No moods yet!</h1>
+          <>
+            <h1>No moods yet!</h1>
+          </>
         )}
       </div>
     </div>
