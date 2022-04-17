@@ -15,7 +15,7 @@ namespace Portfolio_Api.Models
         public Comment()
         {
             id = 0;
-            date_added = DateTime.Now;
+            date_added = DateTime.Now.ToUniversalTime();
             comment = "";
             poster_username = "Anonymous";
         }
