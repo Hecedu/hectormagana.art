@@ -90,7 +90,6 @@ export default function MoodBoard() {
             {comments.map((comment) => {
               return (
                 <div className="border border-dark border-4 p-5 m-3 rounded-3 shadow bg-white">
-                  <h1>{comment.comment}</h1>
                   <p className="fst-italic fw-bold m-0">
                     {comment.poster_username}'s mood
                   </p>
