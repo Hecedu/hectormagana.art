@@ -15,6 +15,11 @@ export default function Nav() {
             </Link>
           </div>
           <div className="nav-item">
+            <Link className="nav-link" to="/moodboard">
+              MoodBoard
+            </Link>
+          </div>
+          <div className="nav-item">
             <Link className="nav-link" to="/login">
               Login
             </Link>

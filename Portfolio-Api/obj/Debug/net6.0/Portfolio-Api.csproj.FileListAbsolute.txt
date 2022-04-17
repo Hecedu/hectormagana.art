@@ -41,7 +41,6 @@ C:\Users\hecto\source\repos\Projects\Portfolio-db\Portfolio-Api\bin\Debug\net6.0
 C:\Users\hecto\source\repos\Projects\Portfolio-db\Portfolio-Api\bin\Debug\net6.0\Portfolio-Api.deps.json
 C:\Users\hecto\source\repos\Projects\Portfolio-db\Portfolio-Api\bin\Debug\net6.0\Portfolio-Api.runtimeconfig.json
 C:\Users\hecto\source\repos\Projects\Portfolio-db\Portfolio-Api\bin\Debug\net6.0\Portfolio-Api.dll
-C:\Users\hecto\source\repos\Projects\Portfolio-db\Portfolio-Api\bin\Debug\net6.0\ref\Portfolio-Api.dll
 C:\Users\hecto\source\repos\Projects\Portfolio-db\Portfolio-Api\bin\Debug\net6.0\Portfolio-Api.pdb
 C:\Users\hecto\source\repos\Projects\Portfolio-db\Portfolio-Api\bin\Debug\net6.0\Humanizer.dll
 C:\Users\hecto\source\repos\Projects\Portfolio-db\Portfolio-Api\bin\Debug\net6.0\Microsoft.AspNetCore.Cryptography.Internal.dll
@@ -100,3 +99,4 @@ C:\Users\hecto\source\repos\Projects\Portfolio-db\Portfolio-Api\bin\Debug\net6.0
 C:\Users\hecto\source\repos\Projects\Portfolio-db\Portfolio-Api\bin\Debug\net6.0\runtimes\unix\lib\net6.0\System.Drawing.Common.dll
 C:\Users\hecto\source\repos\Projects\Portfolio-db\Portfolio-Api\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Drawing.Common.dll
 C:\Users\hecto\source\repos\Projects\Portfolio-db\Portfolio-Api\obj\Debug\net6.0\Portfolio-Api.csproj.AssemblyReference.cache
+C:\Users\hecto\source\repos\Projects\Portfolio-db\Portfolio-Api\obj\Debug\net6.0\refint\Portfolio-Api.dll

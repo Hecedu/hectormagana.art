@@ -76,10 +76,10 @@ export default function UserData() {
         favorite_album: editAlbum,
       };
       axios
-        .post("/api//UserData/EditUserData", userData, {
+        .post("/api/UserData/EditUserData", userData, {
           headers: { Authorization: `Bearer ${userBearerToken}` },
         })
-        .then(function() {
+        .then(function () {
           axios
             .get(`/api/UserData/GetOrAddUserDataByJwt?jwt=${userToken}`, {
               headers: { Authorization: `Bearer ${userBearerToken}` },
@@ -101,7 +101,7 @@ export default function UserData() {
               setEditAlbum(res.data.favorite_album);
             });
         })
-        .catch(function(error) {
+        .catch(function (error) {
           alert(error);
         });
     } else {
@@ -111,9 +111,9 @@ export default function UserData() {
 
   return (
     <>
-      <div className="container border border-dark border-3 rounded p-2 my-2 shadow text-center">
-        <h1>Current Data</h1>
-        <hr />
+      <h1 className="display-1">{Username}'s Profile</h1>
+      <hr />
+      <div className="container border border-dark border-3 rounded p-2 mb-3 shadow text-center">
         {profilePictureKey === undefined ? (
           <>
             <h5>Profile Picture</h5>
@@ -122,7 +122,10 @@ export default function UserData() {
         ) : (
           <>
             <h5>Profile Picture</h5>
-            <img src={`https://portfolioprofilepictures.s3.us-west-1.amazonaws.com/${profilePictureKey}`} className="img-fluid w-25 rounded"></img>
+            <img
+              src={`https://portfolioprofilepictures.s3.us-west-1.amazonaws.com/${profilePictureKey}`}
+              className="img-fluid w-25 rounded"
+            ></img>
           </>
         )}
         <h5>Username:</h5>
@@ -138,12 +141,12 @@ export default function UserData() {
         <h5>Favorite Album:</h5>
         <p>{favoriteAlbum}</p>
       </div>
-      <div className="container border border-dark border-3 rounded p-2 my-2 shadow text-center">
+      <div className="container border border-dark border-3 rounded p-2 mb-3 shadow text-center">
         <h1>Edit Profile Picture</h1>
         <hr />
         <ImageUpload />
       </div>
-      <div className="container border border-dark border-3 rounded p-2 my-1 shadow text-center">
+      <div className="container border border-dark border-3 rounded p-2 mb-3 shadow text-center">
         <h1>Edit Data</h1>
         <hr />
         <div className="my-2">

@@ -1,13 +1,15 @@
 ﻿using Portfolio_Api.Models;
+using Portfolio_Api.Models.RequestModels;
 
 namespace Portfolio_Api.Services.Repositories
 {
     public interface ICommentRepository
     {
-        public IEnumerable<Comment> GetComments();
+        public Task<IEnumerable<Comment>> GetCommentsAsync();
         public Task<Comment> GetCommentAsync(int id);
-        public Task AddCommentAsync(Comment comment);
-        public Task EditCommentAsync(Comment comment);
-        public Task DeleteCommentAsync(Comment comment);
+        public Task AddCommentAsync(CommentRequest comment);
+        public Task AddCommentAsync(CommentRequest comment, string jwt);
+        public Task EditCommentAsync(CommentRequest comment);
+        public Task DeleteCommentAsync(CommentRequest comment, string jwt);
     }
 }

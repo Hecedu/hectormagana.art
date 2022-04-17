@@ -7,6 +7,7 @@ import Home from "./Views/Home";
 import Profile from "./Views/Profile";
 import Game from "./Views/Game";
 import Footer from "./Components/UI/Footer";
+import MoodBoard from "./Views/MoodBoard";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/game" element={<Game />} />
+        <Route path="/moodboard" element={<MoodBoard/>} />
       </Routes>
       <Footer />
     </div>

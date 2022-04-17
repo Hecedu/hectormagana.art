@@ -90,8 +90,6 @@ namespace Portfolio_Api.Controllers
         {
             await userDataRepository.EditUserDataAsync(userData);
             return Ok();
-
-            return Unauthorized();
         }
 
         private async Task<bool> IsTokenDateValid(HttpContext currentContext)

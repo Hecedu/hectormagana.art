@@ -12,7 +12,8 @@ export default function Login() {
 
   return (
     <div className="text-center border border-dark border-4 p-5 m-3 rounded-3 shadow bg-white">
-      <h1>Login</h1>
+      <h1 className="display-1">Login</h1>
+      <hr></hr>
       {userToken === undefined ? (
         <LoginButton />
       ) : (
@@ -29,15 +30,18 @@ export default function Login() {
               <div className="overflow-auto p-2">
                 <p>You have access to Hector's Server!</p>
               </div>
-              <Link to="/profile" className="btn btn-success btn-lg">
-                View your data!
+              <Link
+                to="/profile"
+                className="btn btn-success btn-lg my-2 shadow"
+              >
+                Go to Profile
               </Link>
             </>
           )}
+
           <LogoutButton />
         </>
       )}
-
     </div>
   );
 }
