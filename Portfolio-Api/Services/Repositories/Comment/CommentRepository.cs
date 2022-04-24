@@ -20,7 +20,7 @@ namespace Portfolio_Api.Services.Repositories
         public async Task AddCommentAsync(CommentRequest commentRequest)
         {
             var validatedComment = new Comment()
-                .setComment(commentRequest.comment);
+                .setComment(commentRequest.comment ?? throw new ArgumentNullException());
             _context.comments.Add(validatedComment);
             await _context.SaveChangesAsync();
         }
@@ -30,7 +30,7 @@ namespace Portfolio_Api.Services.Repositories
             settings.Audience = new List<string>() { configuration.GetSection("AppSettings:GoogleId").Value };
             GoogleJsonWebSignature.Payload payload = GoogleJsonWebSignature.ValidateAsync(jwt, settings).Result;
             var validatedComment = new Comment()
-                .setComment(commentRequest.comment)
+                .setComment(commentRequest.comment ?? throw new ArgumentNullException())
                 .setPosterUsername(payload.Name);
             _context.comments.Add(validatedComment);
             await _context.SaveChangesAsync();
@@ -60,7 +60,7 @@ namespace Portfolio_Api.Services.Repositories
             var commentToEdit = await _context.comments.FirstAsync(_comment => _comment.id == comment.id);
             if (commentToEdit != null)
             {
-                commentToEdit.setComment(comment.comment);
+                commentToEdit.setComment(comment.comment ?? throw new ArgumentNullException());
                 await _context.SaveChangesAsync();
             }
         }

@@ -13,8 +13,6 @@ CREATE TABLE clientinformation
     ip_address VARCHAR (150) NOT NULL,
     date_added TIMESTAMP NOT NULL,
     allowed_ip_range VARCHAR (150) NOT NULL,
-    client_public_key VARCHAR (150) NOT NULL,
-    client_private_key VARCHAR (150) NOT NULL
 );
 CREATE TABLE userdata
 (

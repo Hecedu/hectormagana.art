@@ -29,10 +29,10 @@ namespace Portfolio_Api.Services.Repositories
             var userDataToEdit = await _context.userdata.FirstAsync(UserData => UserData.email == editRequest.email);
             if (userDataToEdit != null)
             {
-                userDataToEdit.setFavoriteVideogame(editRequest.favorite_videogame)
-                            .setFavoriteMovie(editRequest.favorite_movie)
-                            .setFavoriteBook(editRequest.favorite_book)
-                            .setFavoriteAlbum(editRequest.favorite_album);
+                userDataToEdit.setFavoriteVideogame(editRequest.favorite_videogame ?? throw new ArgumentNullException())
+                            .setFavoriteMovie(editRequest.favorite_movie ?? throw new ArgumentNullException())
+                            .setFavoriteBook(editRequest.favorite_book ?? throw new ArgumentNullException())
+                            .setFavoriteAlbum(editRequest.favorite_album ?? throw new ArgumentNullException());
                 await _context.SaveChangesAsync();
             }
         }

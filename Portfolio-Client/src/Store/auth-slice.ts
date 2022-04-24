@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import User from "../Models/user";
+import User from "../Models/User";
+
 import authService from "../Services/auth-service";
 
 export const authenticateUser = createAsyncThunk(

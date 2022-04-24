@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import User from "../../Models/user";
+import User from "../../Models/User";
 import { useStoreSelector } from "../../Store";
 import ImageUpload from "./ImageUpload";
 
@@ -111,7 +111,7 @@ export default function UserData() {
 
   return (
     <>
-      <h1 className="display-1">{Username}'s Profile</h1>
+      <h1 className="display-1 fw-bold">{Username}'s Profile</h1>
       <hr />
       <div className="container border border-dark border-3 rounded p-2 mb-3 shadow text-center">
         {profilePictureKey === undefined ? (

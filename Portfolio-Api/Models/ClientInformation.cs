@@ -10,18 +10,16 @@ namespace Portfolio_Api.Models
         public string ip_address { get; private set; }
         public DateTime date_added { get; private set; }
         public string allowed_ip_range { get; private set; }
-        public string client_public_key { get; private set; }
-        public string client_private_key { get; private set; }
+        public bool approved { get; set; }
         private ValidationService validationService = new ValidationService();
         public ClientInformation()
         {
             id = 0;
             client_name = "";
             ip_address = "0.0.0.0";
-            date_added = new DateTime();
+            date_added = DateTime.Now.ToUniversalTime();
             allowed_ip_range = "0.0.0.0/16";
-            client_public_key = "default";
-            client_private_key = "default";
+            approved = false;
         }
 
         public ClientInformation setClientName(string _client_name)
@@ -44,14 +42,9 @@ namespace Portfolio_Api.Models
             this.allowed_ip_range = validationService.ValidateString(validationService.ValidateIpRange(_allowed_ip_range), 150);
             return this;
         }
-        public ClientInformation setClientPublicKey(string _client_public_key)
+        public ClientInformation setApproved(bool _approved)
         {
-            this.client_public_key = validationService.ValidateString(_client_public_key, 150);
-            return this;
-        }
-        public ClientInformation setClientPrivateKey(string _client_private_key)
-        {
-            this.client_private_key = validationService.ValidateString(_client_private_key, 150);
+            this.approved = _approved;
             return this;
         }
     }

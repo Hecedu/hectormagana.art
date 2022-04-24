@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import Comment from "../Models/comment";
+import Comment from "../Models/Comments";
 import { useStoreSelector } from "../Store";
 
 export default function MoodBoard() {
@@ -58,10 +58,10 @@ export default function MoodBoard() {
     }
   }
   return (
-    <div className="text-center border border-dark border-4 p-5 m-3 rounded-3 shadow bg-white">
-      <h1 className="display-1">The Mood Board</h1>
+    <div className="text-center border border-dark border-4 p-4 m-3 rounded-3 shadow bg-white">
+      <h1 className="display-1 fw-bold">Mood Board</h1>
       <hr></hr>
-      <div className="text-center border border-dark border-4 p-5 m-3 rounded-3 shadow bg-white">
+      <div className="text-center border border-dark border-4 p-4 m-3 rounded-3 shadow bg-white">
         <h1>Tell us about your mood!</h1>
         <div className="my-2">
           <label className="m-1">Comment:</label>
@@ -84,29 +84,29 @@ export default function MoodBoard() {
           </button>
         </div>
       </div>
-      <div className="text-center border border-dark border-4 p-5 m-3 rounded-3 shadow bg-white">
+      <h4 className="display-5">Recent Moods</h4>
+      <hr></hr>
         {comments.length > 0 ? (
-          <div className="d-flex flex-wrap">
+          <div className="d-flex flex-wrap justify-content-center">
             {comments.map((comment) => {
               return (
-                <div className="border border-dark border-4 p-5 m-3 rounded-3 shadow bg-white">
+                <div className="border border-dark border-4 w-75 rounded-3 p-2 shadow bg-white" key={comment.comment}>
                   <p className="fst-italic fw-bold m-0">
                     {comment.poster_username}'s mood
                   </p>
                   <p className="fst-italic">
                     Posted on: {new Date(comment.date_added).toDateString()}
                   </p>
-                  <h5>{comment.comment}</h5>
+                  <p className="overflow-auto">{comment.comment}</p>
                 </div>
               );
             })}
           </div>
         ) : (
           <>
-            <h1>No moods yet!</h1>
+            <p>No moods yet!</p>
           </>
         )}
       </div>
-    </div>
   );
 }

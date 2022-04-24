@@ -22,8 +22,8 @@ namespace Portfolio_Api.Controllers
         public async Task<IActionResult> AddBlogPost([FromBody] BlogPostRequest unvalidatedBlogPost)
         {
             var validatedBlogPost = new BlogPost()
-                .setTitle(unvalidatedBlogPost.title)
-                .setContent(unvalidatedBlogPost.content);
+                .setTitle(unvalidatedBlogPost.title ?? throw new ArgumentNullException())
+                .setContent(unvalidatedBlogPost.content ?? throw new ArgumentNullException());
 
             await blogPostRepository.AddBlogPostAsync(validatedBlogPost);
             return Ok();

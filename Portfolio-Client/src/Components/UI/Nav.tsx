@@ -41,6 +41,11 @@ export default function Nav() {
                   Profile
                 </Link>
               </li>
+              <li className="nav-item"> 
+                <Link className="nav-link text-danger" to="/wireguard">
+                  wireguard [TEST]
+                </Link>
+              </li>
             </ul>
           </div>
         </div>

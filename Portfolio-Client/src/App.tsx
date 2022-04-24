@@ -8,6 +8,7 @@ import Profile from "./Views/Profile";
 import Game from "./Views/Game";
 import Footer from "./Components/UI/Footer";
 import MoodBoard from "./Views/MoodBoard";
+import WireguardRequest from "./Views/WireguardRequest";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/game" element={<Game />} />
         <Route path="/moodboard" element={<MoodBoard/>} />
+        <Route path="/wireguard" element={<WireguardRequest />} />
       </Routes>
       <Footer />
     </div>

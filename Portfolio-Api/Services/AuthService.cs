@@ -20,7 +20,7 @@ namespace Portfolio_Api.Services
         public class AuthenticateRequest
         {
             [Required]
-            public string IdToken { get; set; }
+            public string? IdToken { get; set; }
         }
 
         public async Task<string> CreateValidTokenAsync(string email)
@@ -31,7 +31,7 @@ namespace Portfolio_Api.Services
                 new Claim(ClaimTypes.Role, "User")
             };
 
-            var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(Environment.GetEnvironmentVariable("JwtKey")));
+            var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(Environment.GetEnvironmentVariable("JwtKey") ?? throw new ArgumentNullException()));
 
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
 

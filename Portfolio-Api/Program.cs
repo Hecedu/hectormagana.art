@@ -32,7 +32,7 @@ builder.Services.AddSwaggerGen(options =>
 //Database Context
 builder.Services.AddDbContext<PortfolioDbContext>(options =>
 {
-    options.UseNpgsql(DbConnectionString);
+    options.UseNpgsql(DbConnectionString ?? throw new ArgumentNullException());
 });
 //transient services
 builder.Services.AddTransient<IUserDataRepository, UserDataRepository>();
@@ -55,7 +55,7 @@ builder.Services.AddAuthentication(options =>
     options.TokenValidationParameters = new TokenValidationParameters
     {
         ValidateIssuerSigningKey = true,
-        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Environment.GetEnvironmentVariable("JwtKey"))),
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Environment.GetEnvironmentVariable("JwtKey") ?? throw new ArgumentNullException())),
         ValidateIssuer = false,
         ValidateAudience = false
     };

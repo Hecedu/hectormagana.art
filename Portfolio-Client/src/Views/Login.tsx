@@ -12,7 +12,7 @@ export default function Login() {
 
   return (
     <div className="text-center border border-dark border-4 p-5 m-3 rounded-3 shadow bg-white">
-      <h1 className="display-1">Login</h1>
+      <h1 className="display-1 fw-bold">Login</h1>
       <hr></hr>
       {userToken === undefined ? (
         <LoginButton />

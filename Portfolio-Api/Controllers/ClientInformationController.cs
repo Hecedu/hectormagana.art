@@ -20,19 +20,23 @@ namespace Portfolio_Api.Controllers
 
 
         [HttpPost]
-        [Route("AddClientInformation"), Authorize(Roles = "Admin")]
+        [Route("AddClientInformation"), Authorize(Roles = "User")]
         public async Task<IActionResult> AddClientInformation([FromBody] ClientInformationRequest unvalidatedClientInformation)
         {
             var validatedClientInformation = new ClientInformation()
-                .setClientName(unvalidatedClientInformation.client_name)
-                .setIpAddress(unvalidatedClientInformation.ip_address)
-                .setDateAdded(unvalidatedClientInformation.date_added)
-                .setAllowedIpRange(unvalidatedClientInformation.allowed_ip_range)
-                .setClientPublicKey(unvalidatedClientInformation.client_public_key)
-                .setClientPrivateKey(unvalidatedClientInformation.client_private_key);
+                .setClientName(unvalidatedClientInformation.client_name ?? throw new ArgumentNullException())
+                .setIpAddress(unvalidatedClientInformation.ip_address ?? throw new ArgumentNullException())
+                .setAllowedIpRange(unvalidatedClientInformation.allowed_ip_range ?? throw new ArgumentNullException());
+
 
             await clientInformationRepository.AddClientInformationAsync(validatedClientInformation);
             return Ok();
+        }
+        [HttpPut]
+        [Route("ApproveClientInformation"), Authorize(Roles = "Admin")]
+        public async Task<IActionResult> UpdateClientInformation([FromBody] ClientInformationRequest unvalidatedClientInformation)
+        {
+            throw new NotImplementedException();
         }
         [HttpGet]
         [Route("GetClientInformation"), Authorize(Roles = "Admin")]
@@ -43,7 +47,7 @@ namespace Portfolio_Api.Controllers
 
         [HttpGet]
         [Route("WireguardSystemStatus"), Authorize(Roles = "Admin")]
-        public string WireguardSystemStatus ()
+        public string WireguardSystemStatus()
         {
             string result = ExecuteCommand("systemctl status wg-quick@wg0.service");
             return result;
