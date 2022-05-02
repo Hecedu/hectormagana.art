@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Comment from "../Models/Comments";
 import { useStoreSelector } from "../Store";
+import { containerStyle } from "../Styles/LayoutStyles";
 
 export default function MoodBoard() {
   var userGoogleToken = useStoreSelector((state) => state.auth.userToken);
@@ -58,8 +59,8 @@ export default function MoodBoard() {
     }
   }
   return (
-    <div className="text-center border border-dark border-4 p-4 m-3 rounded-3 shadow bg-white">
-      <h1 className="display-1 fw-bold">Mood Board</h1>
+    <div className={containerStyle}>
+      <h1 className="display-1 fw-bold">Blog</h1>
       <hr></hr>
       <div className="text-center border border-dark border-4 p-4 m-3 rounded-3 shadow bg-white">
         <h1>Tell us about your mood!</h1>
@@ -84,13 +85,13 @@ export default function MoodBoard() {
           </button>
         </div>
       </div>
-      <h4 className="display-5">Recent Moods</h4>
+      <h4 className="display-5">Recent Blog Posts</h4>
       <hr></hr>
         {comments.length > 0 ? (
           <div className="d-flex flex-wrap justify-content-center">
             {comments.map((comment) => {
               return (
-                <div className="border border-dark border-4 w-75 rounded-3 p-2 shadow bg-white" key={comment.comment}>
+                <div className="border border-dark border-4 w-75 rounded-3 p-2 shadow bg-white my-2" key={comment.comment}>
                   <p className="fst-italic fw-bold m-0">
                     {comment.poster_username}'s mood
                   </p>

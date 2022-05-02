@@ -7,7 +7,7 @@ import Home from "./Views/Home";
 import Profile from "./Views/Profile";
 import Game from "./Views/Game";
 import Footer from "./Components/UI/Footer";
-import MoodBoard from "./Views/MoodBoard";
+import MoodBoard from "./Views/BlogPosts";
 import WireguardRequest from "./Views/WireguardRequest";
 
 function App() {
@@ -15,6 +15,7 @@ function App() {
     <div
       style={{
         background: `linear-gradient(45deg, #00ffb3, #9300ff)`,
+        minHeight: `100vh`
       }}
     >
       <Nav />
@@ -23,7 +24,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/game" element={<Game />} />
-        <Route path="/moodboard" element={<MoodBoard/>} />
+        <Route path="/blog" element={<MoodBoard/>} />
         <Route path="/wireguard" element={<WireguardRequest />} />
       </Routes>
       <Footer />

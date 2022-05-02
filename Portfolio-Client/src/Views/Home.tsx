@@ -8,16 +8,16 @@ import ProjectsCard from "../Components/Portfolio/Cards/ProjectsCard";
 export default function Home() {
   return (
     <div className="container">
-      <div id="about" className="section">
+      <div id="about">
         <PresentationCard />
       </div>
-      <div id="projects" className="section">
+      <div id="projects">
         <ProjectsCard />
       </div>
-      <div id="games" className="section">
+      <div id="games">
         <GamesCard />
       </div>
-      <div id="contact" className="section">
+      <div id="contact">
         <ContactCard />
       </div>
     </div>

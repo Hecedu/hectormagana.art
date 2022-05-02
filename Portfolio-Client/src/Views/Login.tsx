@@ -5,13 +5,14 @@ import { arrayBuffer } from "stream/consumers";
 import LoginButton from "../Components/Auth/LoginButton";
 import LogoutButton from "../Components/Auth/LogoutButton";
 import { useStoreSelector } from "../Store";
+import { containerStyle } from "../Styles/LayoutStyles";
 
 export default function Login() {
   var userToken = useStoreSelector((state) => state.auth.userToken);
   var userBearerToken = useStoreSelector((state) => state.auth.bearerToken);
 
   return (
-    <div className="text-center border border-dark border-4 p-5 m-3 rounded-3 shadow bg-white">
+    <div className={containerStyle}>
       <h1 className="display-1 fw-bold">Login</h1>
       <hr></hr>
       {userToken === undefined ? (

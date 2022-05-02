@@ -27,8 +27,8 @@ export default function Nav() {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/moodboard">
-                  MoodBoard
+                <Link className="nav-link" to="/blog">
+                  Blog
                 </Link>
               </li>
               <li className="nav-item">
@@ -42,8 +42,8 @@ export default function Nav() {
                 </Link>
               </li>
               <li className="nav-item"> 
-                <Link className="nav-link text-danger" to="/wireguard">
-                  wireguard [TEST]
+                <Link className="nav-link" to="/wireguard">
+                  Wireguard
                 </Link>
               </li>
             </ul>

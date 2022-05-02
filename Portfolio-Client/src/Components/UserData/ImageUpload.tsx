@@ -39,9 +39,9 @@ export default function ImageUpload() {
   };
 
   return (
-    <div>
+    <div className="container">
       <input
-        className="form-control my-2"
+        className="form-control my-2 mx-auto"
         type="file"
         accept="image/*"
         onChange={saveFile}

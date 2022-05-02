@@ -1,9 +1,10 @@
 import React from "react";
 import { SocialIcon } from "react-social-icons";
+import { containerStyle } from "../../../Styles/LayoutStyles";
 
 export default function ContactCard() {
   return (
-    <div className="text-center border border-dark border-4 p-5 mb-5 rounded-3 shadow bg-white">
+    <div className={containerStyle}>
       <div className="row">
         <div className="container text-center ">
           <h1 className="my-1 display-3 fw-bold">Contact Me!</h1>

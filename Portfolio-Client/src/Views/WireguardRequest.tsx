@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useStoreSelector } from "../Store";
 import Wireguard from "../Models/Wireguard";
+import { containerStyle } from "../Styles/LayoutStyles";
 
 export default function WireguardRequest() {
   var userToken = useStoreSelector((state) => state.auth.userToken);
@@ -65,12 +66,12 @@ export default function WireguardRequest() {
         (this will submit a request to my backend for me to approve)
       </p>
       <hr />
-      <div className="container border border-dark border-3 rounded p-2 mb-3 shadow text-center">
+      <div className={containerStyle}>
         <h1>Your E-mail</h1>
         <p>(will be used as an identifier)</p>
         <p>{Email}</p>
       </div>
-      <div className="container border border-dark border-3 rounded p-2 mb-3 shadow text-center">
+      <div className={containerStyle}>
         <h1>Edit Data</h1>
         <hr />
         <form className="needs-validation" onSubmit={onSubmitForm}>

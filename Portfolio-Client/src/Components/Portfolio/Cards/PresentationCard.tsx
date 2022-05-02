@@ -3,13 +3,15 @@ import Typewriter from "typewriter-effect";
 import FadeIn from "react-fade-in/lib/FadeIn";
 import { SocialIcon } from "react-social-icons";
 import { VscFoldDown } from "react-icons/vsc";
+import { containerStyle } from "../../../Styles/LayoutStyles";
 
 export default function PresentationCard() {
   return (
-    <div className="vh-100 d-flex align-items-center">
-      <div className=" d-flex flex-column  text-center container border border-dark border-4 p-3 py-5 rounded-3 shadow bg-white">
+    <div className="vh-100 d-flex align-items-center justify-content-center">
+      <div className={containerStyle + " w-100"}>
         <FadeIn transitionDuration={500} delay={300}>
-          <h1 className="my-1 display-1 fw-bold">Héctor Magaña 👨🏽‍💻</h1>
+          <h1 className="my-1 display-1 fw-bold">Héctor Magaña</h1>
+          <h1 className="display-1">👨🏽‍💻</h1>
           <h1>
             <Typewriter
               options={{

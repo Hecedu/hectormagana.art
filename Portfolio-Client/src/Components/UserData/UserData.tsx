@@ -3,6 +3,7 @@ import axios from "axios";
 import User from "../../Models/User";
 import { useStoreSelector } from "../../Store";
 import ImageUpload from "./ImageUpload";
+import { containerStyle } from "../../Styles/LayoutStyles";
 
 export default function UserData() {
   var userToken = useStoreSelector((state) => state.auth.userToken);
@@ -113,7 +114,7 @@ export default function UserData() {
     <>
       <h1 className="display-1 fw-bold">{Username}'s Profile</h1>
       <hr />
-      <div className="container border border-dark border-3 rounded p-2 mb-3 shadow text-center">
+      <div className={containerStyle}>
         {profilePictureKey === undefined ? (
           <>
             <h5>Profile Picture</h5>
@@ -141,12 +142,12 @@ export default function UserData() {
         <h5>Favorite Album:</h5>
         <p>{favoriteAlbum}</p>
       </div>
-      <div className="container border border-dark border-3 rounded p-2 mb-3 shadow text-center">
+      <div className={containerStyle}>
         <h1>Edit Profile Picture</h1>
         <hr />
         <ImageUpload />
       </div>
-      <div className="container border border-dark border-3 rounded p-2 mb-3 shadow text-center">
+      <div className={containerStyle}>
         <h1>Edit Data</h1>
         <hr />
         <div className="my-2">

@@ -1,18 +1,19 @@
 import React from "react";
-import { Swiper, SwiperSlide } from 'swiper/react';
+import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCard from "../Custom/SwiperCard";
-import 'swiper/css';
-import 'swiper/css/bundle';
+import "swiper/css";
+import "swiper/css/bundle";
 import { Autoplay } from "swiper";
+import { containerStyle } from "../../../Styles/LayoutStyles";
 export default function ProjectsCard() {
   return (
-    <div className="text-center border border-dark border-4 py-5 px-0 mb-5 rounded-3 shadow bg-white">
+    <div className={containerStyle}>
       <h1 className="my-1 display-3 fw-bold">Some of my Projects</h1>
       <p>feel free to swipe!</p>
       <hr />
       <Swiper
         modules={[Autoplay]}
-        slidesPerView={window.innerWidth <= 760?1:2}
+        slidesPerView={window.innerWidth <= 760 ? 1 : 2}
         spaceBetween={20}
         centeredSlides={true}
         loop={true}
@@ -36,13 +37,9 @@ export default function ProjectsCard() {
         <SwiperSlide className="h-auto">
           <SwiperCard
             title={"Cromatic"}
-            content={
-              "Simple and beautiful color palette generation tool."
-            }
+            content={"Simple and beautiful color palette generation tool."}
             extraInfo={"Developed using React, Typescript and Chroma.js."}
-            links={[
-              "https://hecedu.github.io/Cromatic/",
-            ]}
+            links={["https://hecedu.github.io/Cromatic/"]}
           />
         </SwiperSlide>
         <SwiperSlide className="h-auto">

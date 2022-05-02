@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { SocialIcon } from "react-social-icons";
 import Unity, { UnityContext } from "react-unity-webgl";
+import { containerStyle } from "../Styles/LayoutStyles";
 
 const unityContext = new UnityContext({
   loaderUrl: process.env.PUBLIC_URL + "/Build/cheatsquad.loader.js",
@@ -43,7 +44,7 @@ export default function GameView() {
           matchWebGLToCanvasSize={true}
           style={{ width: "1024px", height: "576px" }}
         />
-        <div className="text-center border border-dark border-4 p-3 m-3 rounded-3 shadow bg-white">
+        <div className={containerStyle}>
           <p className="my-0">
             Credits: Programming, Graphics, Animation, Game and Sound Design by
             Héctor Magaña. Music by Sawsquarenoise.
