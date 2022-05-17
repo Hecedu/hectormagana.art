@@ -7,7 +7,7 @@ import { containerStyle } from "../Styles/LayoutStyles";
 export default function Profile() {
   var userToken = useStoreSelector((state) => state.auth.userToken);
   return (
-    <div className="text-center">
+    <div className="container text-center">
       <div className={containerStyle}>
         {userToken === undefined ? (
           <>

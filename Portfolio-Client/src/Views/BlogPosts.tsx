@@ -59,39 +59,43 @@ export default function MoodBoard() {
     }
   }
   return (
-    <div className={containerStyle}>
-      <h1 className="display-1 fw-bold">Blog</h1>
-      <hr></hr>
-      <div className="text-center border border-dark border-4 p-4 m-3 rounded-3 shadow bg-white">
-        <h1>Tell us about your mood!</h1>
-        <div className="my-2">
-          <label className="m-1">Comment:</label>
-          <br />
-          <input
-            type="text"
-            name="comment"
-            value={message}
-            onChange={onMessageChange}
-          />
+    <div className="container">
+      <div className={containerStyle}>
+        <h1 className="display-1 fw-bold">Blog</h1>
+        <hr></hr>
+        <div className="text-center border border-dark border-4 p-4 m-3 rounded-3 shadow bg-white">
+          <h1>Tell us about your mood!</h1>
+          <div className="my-2">
+            <label className="m-1">Comment:</label>
+            <br />
+            <input
+              type="text"
+              name="comment"
+              value={message}
+              onChange={onMessageChange}
+            />
+          </div>
+          <div className="my-2">
+            <button
+              className="btn btn-dark"
+              type="submit"
+              value="Submit"
+              onClick={onSubmitForm}
+            >
+              Submit
+            </button>
+          </div>
         </div>
-        <div className="my-2">
-          <button
-            className="btn btn-dark"
-            type="submit"
-            value="Submit"
-            onClick={onSubmitForm}
-          >
-            Submit
-          </button>
-        </div>
-      </div>
-      <h4 className="display-5">Recent Blog Posts</h4>
-      <hr></hr>
+        <h4 className="display-5">Recent Blog Posts</h4>
+        <hr></hr>
         {comments.length > 0 ? (
           <div className="d-flex flex-wrap justify-content-center">
             {comments.map((comment) => {
               return (
-                <div className="border border-dark border-4 w-75 rounded-3 p-2 shadow bg-white my-2" key={comment.comment}>
+                <div
+                  className="border border-dark border-4 w-75 rounded-3 p-2 shadow bg-white my-2"
+                  key={comment.comment}
+                >
                   <p className="fst-italic fw-bold m-0">
                     {comment.poster_username}'s mood
                   </p>
@@ -109,5 +113,6 @@ export default function MoodBoard() {
           </>
         )}
       </div>
+    </div>
   );
 }

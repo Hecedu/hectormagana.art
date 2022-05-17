@@ -12,37 +12,39 @@ export default function Login() {
   var userBearerToken = useStoreSelector((state) => state.auth.bearerToken);
 
   return (
-    <div className={containerStyle}>
-      <h1 className="display-1 fw-bold">Login</h1>
-      <hr></hr>
-      {userToken === undefined ? (
-        <LoginButton />
-      ) : (
-        <>
-          <h3>Google Authentication State:</h3>
-          <div className="overflow-auto p-2">
-            <p>Logged in!</p>
-          </div>
-          <h3>Hector's Authentication State:</h3>
-          {userBearerToken === undefined ? (
-            <p>Waiting for Hector's response.</p>
-          ) : (
-            <>
-              <div className="overflow-auto p-2">
-                <p>You have access to Hector's Server!</p>
-              </div>
-              <Link
-                to="/profile"
-                className="btn btn-success btn-lg my-2 shadow"
-              >
-                Go to Profile
-              </Link>
-            </>
-          )}
+    <div className="container">
+      <div className={containerStyle}>
+        <h1 className="display-1 fw-bold">Login</h1>
+        <hr></hr>
+        {userToken === undefined ? (
+          <LoginButton />
+        ) : (
+          <>
+            <h3>Google Authentication State:</h3>
+            <div className="overflow-auto p-2">
+              <p>Logged in!</p>
+            </div>
+            <h3>Hector's Authentication State:</h3>
+            {userBearerToken === undefined ? (
+              <p>Waiting for Hector's response.</p>
+            ) : (
+              <>
+                <div className="overflow-auto p-2">
+                  <p>You have access to Hector's Server!</p>
+                </div>
+                <Link
+                  to="/profile"
+                  className="btn btn-success btn-lg my-2 shadow"
+                >
+                  Go to Profile
+                </Link>
+              </>
+            )}
 
-          <LogoutButton />
-        </>
-      )}
+            <LogoutButton />
+          </>
+        )}
+      </div>
     </div>
   );
 }

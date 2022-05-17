@@ -14,8 +14,8 @@ export default function GameView() {
   useEffect(
     function () {
       unityContext.on("canvas", function (canvas) {
-        canvas.width = 1024;
-        canvas.height = 576;
+        canvas.width = 768;
+        canvas.height = 432;
       });
     },
     [unityContext]
