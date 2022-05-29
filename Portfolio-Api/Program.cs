@@ -39,6 +39,7 @@ builder.Services.AddTransient<IUserDataRepository, UserDataRepository>();
 builder.Services.AddTransient<IClientInformationRepository, ClientInformationRepository>();
 builder.Services.AddTransient<ITokenRepository, TokenRepository>();
 builder.Services.AddTransient<IBlogPostRepository, BlogPostRepository>();
+builder.Services.AddTransient<IProjectPostRepository, ProjectPostRepository>();
 builder.Services.AddTransient<IAuthService, AuthService>();
 builder.Services.AddTransient<ICommentRepository, CommentRepository>();
 //Execute linux commands

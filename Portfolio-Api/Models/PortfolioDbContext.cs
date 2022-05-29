@@ -13,5 +13,6 @@ namespace Portfolio_Api.Models
         public DbSet<UserData> userdata => Set<UserData>();
         public DbSet<ValidToken> validtokens => Set<ValidToken>();
         public DbSet<Comment> comments => Set<Comment>();
+        public DbSet<ProjectPost> projectposts => Set<ProjectPost>();
     }
 }

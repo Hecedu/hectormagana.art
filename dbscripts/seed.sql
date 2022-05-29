@@ -38,3 +38,12 @@ CREATE TABLE comments
     date_added TIMESTAMP NOT NULL,
     poster_username VARCHAR(150) NOT NULL
 );
+
+CREATE TABLE projectposts
+(
+    id serial PRIMARY KEY,
+    title VARCHAR(150) NOT NULL,
+    content VARCHAR(600) NOT NULL,
+    extra_info VARCHAR(300) NOT NULL,
+    image_url VARCHAR(300) NOT NULL
+);
