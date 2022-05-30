@@ -11,13 +11,19 @@ export default function SwiperCard({ project }: SwiperCardProps) {
       <div className="container mx-auto">
         <h2 className={"mb-3"}>{project.title}</h2>
         <p>{project.content}</p>
-        <p className={"fst-italic"}>{project.extra_info}</p>
+        <div className="mb-3">
+          <p className={"fst-italic"}>{project.extra_info}</p>
+          {project.image_url != undefined ? (
+            <img
+              className="w-75 img-fluid"
+              src={project.image_url}
+              alt={project.title}
+            />
+          ) : null}
+        </div>
         {project.links.map((link) => {
           return <SocialIcon className="mx-1 my-0" url={link} />;
         })}
-        {
-          project.image_url != undefined ? ( <img className="w-75 img-fluid" src={project.image_url} alt={project.title} /> ) : ( null )
-        }
       </div>
     </div>
   );
