@@ -45,5 +45,6 @@ CREATE TABLE projectposts
     title VARCHAR(150) NOT NULL,
     content VARCHAR(600) NOT NULL,
     extra_info VARCHAR(300) NOT NULL,
+    links VARCHAR(300)[] NOT NULL,
     image_url VARCHAR(300) NOT NULL
 );

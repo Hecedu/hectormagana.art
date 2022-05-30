@@ -10,7 +10,7 @@ using Portfolio_Api.Services.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 //config variables
-var DbConnectionString = Environment.GetEnvironmentVariable("DbConnectionString");
+var DbConnectionString = Environment.GetEnvironmentVariable("DbConnectionString") ?? "dummy";
 
 // Add services to the container.
 builder.Services.AddControllers();

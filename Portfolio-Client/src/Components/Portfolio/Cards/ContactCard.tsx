@@ -4,7 +4,7 @@ import { containerStyle } from "../../../Styles/LayoutStyles";
 
 export default function ContactCard() {
   return (
-    <div className={containerStyle}>
+    <div className={containerStyle+" mb-5"}>
       <div className="row">
         <div className="container text-center ">
           <h1 className="my-1 display-3 fw-bold">Contact Me!</h1>

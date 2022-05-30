@@ -8,10 +8,10 @@ namespace Portfolio_Api.Controllers
 {
     [ApiController]
     [Route("[controller]")]    
-    public class ProjectPostController : ControllerBase
+    public class ProjectPostsController : ControllerBase
     {
         private IProjectPostRepository projectPostRepository;
-        public ProjectPostController(IProjectPostRepository projectPostRepository)
+        public ProjectPostsController(IProjectPostRepository projectPostRepository)
         {
             this.projectPostRepository = projectPostRepository;
         }
@@ -31,7 +31,7 @@ namespace Portfolio_Api.Controllers
         }
 
         [HttpGet]
-        [Route("GetProjectPosts"), AllowAnonymous]
+        [AllowAnonymous]
         public IEnumerable<ProjectPost> GetBlogPosts()
         {
             return projectPostRepository.GetProjectPosts();
