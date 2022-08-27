@@ -19,7 +19,7 @@ export default function ProjectsCard() {
 
   return (
     <div className={containerStyle}>
-      <h1 className="my-1 display-3 fw-bold">Some of my Projects</h1>
+      <h1 className="my-1 display-3 fw-bold">My Projects</h1>
       <p>feel free to swipe!</p>
       <hr />
 

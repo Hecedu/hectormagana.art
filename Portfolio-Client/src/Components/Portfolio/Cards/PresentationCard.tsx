@@ -9,21 +9,21 @@ export default function PresentationCard() {
   return (
     <div className="vh-100 d-flex align-items-center justify-content-center">
       <div className={containerStyle + " w-100"}>
-        <FadeIn transitionDuration={500} delay={300}>
+        <FadeIn transitionDuration={500} delay={500}>
           <h1 className="my-1 display-1 fw-bold">Héctor Magaña</h1>
-          <h1 className="display-1">👨🏽‍💻</h1>
+          <h1 className="display-1">🤓</h1>
           <h1>
             <Typewriter
               options={{
                 strings: [
                   "Software Engineer",
-                  "ASP.NET Dev",
+                  "ASP.NET Developer",
                   "Designer",
-                  "React Dev",
+                  "React Developer",
                   "Artist",
                   "Unity 3D Dev",
                   "Python entusiast",
-                  "Xamarin.Forms Dev",
+                  "Xamarin.Forms Developer",
                   "Game Designer",
                   "Learner",
                   "Problem Solver",
@@ -35,7 +35,6 @@ export default function PresentationCard() {
               }}
             />
           </h1>
-          <p className="my-1 fs-5">Welcome to my portfolio.</p>
         </FadeIn>
         <hr />
         <div className="d-flex justify-content-center my-1">

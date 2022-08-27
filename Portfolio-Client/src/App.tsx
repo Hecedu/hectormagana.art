@@ -24,7 +24,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/game" element={<Game />} />
-        <Route path="/blog" element={<MoodBoard/>} />
+        <Route path="/moodboard" element={<MoodBoard/>} />
       </Routes>
       <Footer />
     </div>

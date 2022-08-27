@@ -61,7 +61,7 @@ export default function MoodBoard() {
   return (
     <div className="container">
       <div className={containerStyle}>
-        <h1 className="display-1 fw-bold">Blog</h1>
+        <h1 className="display-1 fw-bold">Moodboard</h1>
         <hr></hr>
         <div className="text-center border border-dark border-4 p-4 m-3 rounded-3 shadow bg-white">
           <h1>Tell us about your mood!</h1>
@@ -86,7 +86,7 @@ export default function MoodBoard() {
             </button>
           </div>
         </div>
-        <h4 className="display-5">Recent Blog Posts</h4>
+        <h4 className="display-5">Recent Moods</h4>
         <hr></hr>
         {comments.length > 0 ? (
           <div className="d-flex flex-wrap justify-content-center">

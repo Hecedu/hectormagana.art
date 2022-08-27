@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { SocialIcon } from "react-social-icons";
-import Unity, { UnityContext } from "react-unity-webgl";
+import Unity, { UnityContext} from "react-unity-webgl";
 import { containerStyle } from "../Styles/LayoutStyles";
 
 const unityContext = new UnityContext({
@@ -11,6 +11,7 @@ const unityContext = new UnityContext({
 });
 export default function GameView() {
   const [progression, setProgression] = useState(0);
+
   useEffect(
     function () {
       unityContext.on("canvas", function (canvas) {
@@ -21,11 +22,13 @@ export default function GameView() {
     [unityContext]
   );
 
+
+
   useEffect(function () {
     unityContext.on("progress", function (progression) {
       setProgression(progression);
     });
-    unityContext.on("customEvent", function () {});
+    unityContext.on("customEvent", function () { });
     return function () {
       unityContext.removeAllEventListeners();
     };
