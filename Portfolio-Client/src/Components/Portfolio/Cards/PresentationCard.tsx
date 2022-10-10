@@ -4,6 +4,7 @@ import FadeIn from "react-fade-in/lib/FadeIn";
 import { SocialIcon } from "react-social-icons";
 import { VscFoldDown } from "react-icons/vsc";
 import { containerStyle } from "../../../Styles/LayoutStyles";
+import { Link } from "react-router-dom";
 
 export default function PresentationCard() {
   return (
@@ -11,7 +12,7 @@ export default function PresentationCard() {
       <div className={containerStyle + " w-100"}>
         <FadeIn transitionDuration={500} delay={500}>
           <h1 className="my-1 display-1 fw-bold">Héctor Magaña</h1>
-          <h1 className="display-1">🤓</h1>
+          <h1 className="display-1 my-3">🤓</h1>
           <h1>
             <Typewriter
               options={{
@@ -50,7 +51,9 @@ export default function PresentationCard() {
         </div>
         <hr />
         <h1>
-          <VscFoldDown />
+          <a href={"#projects"}>
+            <VscFoldDown className="text-black" href="#projects" />
+          </a>
         </h1>
       </div>
     </div>
