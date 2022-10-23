@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCard from "../Custom/SwiperCard";
-import "swiper/css";
-import "swiper/css/bundle";
+import "swiper/swiper-bundle.css";
 import { Autoplay } from "swiper";
 import { containerStyle } from "../../../Styles/LayoutStyles";
 import axios from "axios";

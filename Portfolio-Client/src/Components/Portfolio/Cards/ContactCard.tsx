@@ -4,7 +4,7 @@ import { containerStyle } from "../../../Styles/LayoutStyles";
 
 export default function ContactCard() {
   return (
-    <div className={containerStyle+" mb-5"}>
+    <div className={containerStyle + " mb-5"}>
       <div className="row">
         <div className="container text-center ">
           <h1 className="my-1 display-3 fw-bold">Contact Me!</h1>
@@ -14,8 +14,18 @@ export default function ContactCard() {
           <h4>Phone:</h4>
           <p className="font-weight-bold">+801 822 7188</p>
           <h4>Github:</h4>
-          <div className="container d-flex justify-content-center">
-            <SocialIcon className="mx-1" url="https://github.com/Hecedu" />
+          <div className="d-flex justify-content-center my-1">
+            <SocialIcon
+              className="mx-1 zoom"
+              url="https://www.linkedin.com/in/h%C3%A9ctor-maga%C3%B1a/"
+            />
+            <SocialIcon
+              className="mx-1 zoom"
+              url="https://github.com/Hecedu" />
+            <SocialIcon
+              className="mx-1 zoom"
+              url="https://docs.google.com/document/d/1hGIn6Vm02KjFbnqe0HuAvZsrBJLUpZqlkS8q5YxXr28/edit?usp=sharing"
+            />
           </div>
         </div>
       </div>

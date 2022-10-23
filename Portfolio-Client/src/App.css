@@ -1,4 +1,28 @@
-
 .main-content{
-  min-height: 82vh;
+  min-height: 92vh;
+  padding-top: 9vh;
+}
+
+.navbar {
+  min-height: 9vh;
+}
+
+.footer {
+  min-height: 8vh;
+  max-height: 8vh;
+  height: 8vh;
+}
+
+/*animations*/
+.zoom {
+  transition: transform .4s;
+  /* Animation */
+  width: 100px;
+  height: auto;
+  margin: 0 auto;
+}
+
+.zoom:hover {
+  transform: scale(1.1);
+  /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
 }

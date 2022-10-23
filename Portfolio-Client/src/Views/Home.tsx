@@ -4,6 +4,7 @@ import ContactCard from "../Components/Portfolio/Cards/ContactCard";
 import GamesCard from "../Components/Portfolio/Cards/GamesCard";
 import PresentationCard from "../Components/Portfolio/Cards/PresentationCard";
 import ProjectsCard from "../Components/Portfolio/Cards/ProjectsCard";
+import TerminalCard from "../Components/Portfolio/Cards/TerminalCard";
 
 export default function Home() {
   return (
@@ -13,6 +14,9 @@ export default function Home() {
       </div>
       <div id="projects">
         <ProjectsCard />
+      </div>
+      <div id="terminal">
+        <TerminalCard/>
       </div>
       <div id="games">
         <GamesCard />
