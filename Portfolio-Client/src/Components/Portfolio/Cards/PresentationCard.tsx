@@ -8,11 +8,11 @@ import { Link } from "react-router-dom";
 
 export default function PresentationCard() {
   return (
-    <div className="vh-100 d-flex align-items-center justify-content-center">
+    <div className="vh-auto d-flex align-items-center justify-content-center">
       <div className={containerStyle + " w-100"}>
         <FadeIn transitionDuration={500} delay={500}>
-          <h1 className="my-1 display-1 fw-bold">Héctor Magaña</h1>
-          <h1 className="display-1 my-3 zoom">🤓</h1>
+          <img className="img-fluid my- rounded-circle zoom" src={require('../../../Assets/hector_headshot.jpg')} style={{ width: "250px" }} alt="Cromatic logo" />
+          <h1 className="my-1 display-3 fw-bold">Héctor Magaña</h1>
           <h1>
             <Typewriter
               options={{
@@ -52,11 +52,11 @@ export default function PresentationCard() {
           />
         </div>
         <hr />
-        <h1>
-          <a href={"#projects"}>
-            <AiFillCaretDown className="text-black p-4 zoom" href="#projects" />
+        <p>
+          <a href={"#cromatic"}>
+            <AiFillCaretDown className="text-black p-0 zoom"/>
           </a>
-        </h1>
+        </p>
       </div>
     </div>
   );
