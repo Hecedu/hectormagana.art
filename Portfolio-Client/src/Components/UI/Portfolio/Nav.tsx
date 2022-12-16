@@ -27,11 +27,6 @@ export default function Nav() {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/moodboard">
-                  Moodboard
-                </Link>
-              </li>
-              <li className="nav-item">
                 <Link className="nav-link" to="/profile">
                   Profile
                 </Link>

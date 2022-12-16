@@ -8,7 +8,7 @@ export default function ContactCard() {
       <div className="row">
         <div className="container text-center ">
           <h1 className="my-1 display-3 fw-bold">Contact Me!</h1>
-          <hr className="my-4" />
+          <hr className="my-2" />
           <h4>Email:</h4>
           <p className="font-weight-bold">hector.maganahdez@gmail.com</p>
           <h4>Phone:</h4>

@@ -19,7 +19,6 @@ function App() {
   return (
     <>
       <Routes>
-
         <Route element={<PortfolioLayout />}>
           <Route path="/" element={<Home />} />
           <Route path="login" element={<Login />} />

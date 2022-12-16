@@ -1,12 +1,11 @@
 import React from "react";
-import BlogCard from "../Components/Portfolio/Cards/BlogCard";
 import ContactCard from "../Components/Portfolio/Cards/ContactCard";
-import CromaticCard from "../Components/Portfolio/Cards/CromaticCard";
-import GamesCard from "../Components/Portfolio/Cards/GamesCard";
+import CromaticCard from "../Components/Portfolio/Cards/Projects/CromaticCard";
+import CheatSquadCard from "../Components/Portfolio/Cards/Projects/CheatSquadCard";
 import PresentationCard from "../Components/Portfolio/Cards/PresentationCard";
-import ProjectsCard from "../Components/Portfolio/Cards/ProjectsCard";
-import TerminalCard from "../Components/Portfolio/Cards/TerminalCard";
-import TruffleCard from "../Components/Portfolio/Cards/TruffleCard";
+import TerminalCard from "../Components/Portfolio/Cards/Projects/TerminalCard";
+import TruffleCard from "../Components/Portfolio/Cards/Projects/TruffleCard";
+import CoveredCard from "../Components/Portfolio/Cards/Projects/CoveredCard";
 
 export default function Home() {
   return (
@@ -20,11 +19,14 @@ export default function Home() {
       <div id="truffle">
         <TruffleCard/>
       </div>
+      <div id="covered">
+        <CoveredCard/>
+      </div>
       <div id="terminal">
         <TerminalCard/>
       </div>
       <div id="games">
-        <GamesCard />
+        <CheatSquadCard />
       </div>
       <div id="contact">
         <ContactCard />
