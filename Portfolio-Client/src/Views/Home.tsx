@@ -6,6 +6,7 @@ import PresentationCard from "../Components/Portfolio/Cards/PresentationCard";
 import TerminalCard from "../Components/Portfolio/Cards/Projects/TerminalCard";
 import TruffleCard from "../Components/Portfolio/Cards/Projects/TruffleCard";
 import CoveredCard from "../Components/Portfolio/Cards/Projects/CoveredCard";
+import BllageCard from "../Components/Portfolio/Cards/Projects/BllageCard";
 
 export default function Home() {
   return (
@@ -13,17 +14,20 @@ export default function Home() {
       <div id="about">
         <PresentationCard />
       </div>
-      <div id="cromatic">
-        <CromaticCard/>
+      <div id="bllage">
+        <BllageCard />
       </div>
-      <div id="truffle">
-        <TruffleCard/>
+      <div id="cromatic">
+        <CromaticCard />
       </div>
       <div id="covered">
-        <CoveredCard/>
+        <CoveredCard />
+      </div>
+      <div id="truffle">
+        <TruffleCard />
       </div>
       <div id="terminal">
-        <TerminalCard/>
+        <TerminalCard />
       </div>
       <div id="games">
         <CheatSquadCard />

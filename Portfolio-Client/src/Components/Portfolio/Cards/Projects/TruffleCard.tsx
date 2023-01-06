@@ -9,8 +9,9 @@ export default function TruffleCard() {
         <div className="container text-center ">
           <img className="img-fluid my-1" src={require('../../../../Assets/truffle_logo.png')} style={{ width: "300px" }} alt="Pigs flying with the word 'home' attached" />
           <h2>Dig the past of the internet.</h2>
-          <p>Truffle! is a fun Wayback Machine client. </p>
-          <p> Enjoy a streamlined user experience design to look for snapshots of your favorite pages.</p>
+          <p className="m-0">Truffle! is a fun Wayback Machine client. </p>
+          <p> It allows you to explore snapshots of your favorite pages using the WayBack Machine.</p>
+          <hr></hr>
           <p className="lead">
             <a className="btn btn-secondary btn-lg shadow text-light" href="https://hecedu.github.io/Truffle/">
               Dig The Web!

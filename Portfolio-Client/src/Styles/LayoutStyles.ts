@@ -11,4 +11,3 @@ export var containerStyle =
     p-5 
     mx-1 my-4 
     shadow bg-black`;
-export var dummy = "";

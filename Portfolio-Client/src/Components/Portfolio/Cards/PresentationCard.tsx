@@ -11,33 +11,34 @@ export default function PresentationCard() {
     <div className="vh-auto d-flex align-items-center justify-content-center">
       <div className={containerStyle + " w-100"}>
         <FadeIn transitionDuration={400} delay={400}>
-          <div>
-
-            <img className="img-fluid my- rounded-circle zoom" src={require('../../../Assets/hector_headshot.jpg')} style={{ width: "250px" }} alt="Cromatic logo" />
-            <h1 className="my-1 display-3 fw-bold">Héctor Magaña</h1>
-            <h1>
-              <Typewriter
-                options={{
-                  strings: [
-                    "Software Engineer",
-                    "ASP.NET Developer",
-                    "Designer",
-                    "React Developer",
-                    "Artist",
-                    "Unity 3D Dev",
-                    "Python entusiast",
-                    "Xamarin.Forms Developer",
-                    "Game Designer",
-                    "Learner",
-                    "Problem Solver",
-                    "Algorithm Lover",
-                    "Math Nerd",
-                  ],
-                  autoStart: true,
-                  loop: true,
-                }}
-              />
-            </h1>
+          <div className="d-flex flex-wrap justify-content-center align-items-center mt-1 mb-4">
+            <img className="img-fluid mx-3 rounded" src={require('../../../Assets/hector_headshot.jpg')} style={{ width: "250px" }} alt="Hector Magana headshot" />
+            <div className="text-start">
+              <h1 className="my-1 display-3 fw-bold">Héctor Magaña</h1>
+              <h1>
+                <Typewriter
+                  options={{
+                    strings: [
+                      "Software Engineer",
+                      "ASP.NET Developer",
+                      "Designer",
+                      "React Developer",
+                      "Artist",
+                      "Unity 3D Dev",
+                      "Python entusiast",
+                      "Xamarin.Forms Developer",
+                      "Game Designer",
+                      "Learner",
+                      "Problem Solver",
+                      "Algorithm Lover",
+                      "Math Nerd",
+                    ],
+                    autoStart: true,
+                    loop: true,
+                  }}
+                />
+              </h1>
+            </div>
           </div>
           <div>
             <hr />
@@ -56,11 +57,11 @@ export default function PresentationCard() {
             </div>
             <hr />
           </div>
-          <p>
-            <a href={"#cromatic"}>
+          <div>
+            <a href={"#bllage"}>
               <AiFillCaretDown className="text-black p-0 zoom" />
             </a>
-          </p>
+          </div>
         </FadeIn>
       </div>
     </div>
