@@ -19,21 +19,24 @@ export default function Nav() {
         >
           <span className="navbar-toggler-icon"></span>
         </button>
-        <div className="nav-item dropdown text-light me-2">
-          <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Projects
-          </a>
-          <ul className="dropdown-menu dropdown-menu-dark">
-            <li><a className="dropdown-item" href="#bllage">B-llage</a></li>
-            <li><a className="dropdown-item" href="#cromatic">Cromatic</a></li>
-            <li><a className="dropdown-item" href="#covered">Covered</a></li>
-            <li><a className="dropdown-item" href="#truffle">Truffle</a></li>
-            <li><a className="dropdown-item" href="#terminal">The Terminal</a></li>
-            <li><a className="dropdown-item" href="#games">Cheat Squad</a></li>
-          </ul>
-        </div>
+
         <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
           <ul className="navbar-nav mr-auto">
+            <li className="nav-item">
+              <div className="nav-item dropdown">
+                <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Projects
+                </a>
+                <ul className="dropdown-menu dropdown-menu-dark">
+                  <li><a className="dropdown-item" href="#bllage">B-llage</a></li>
+                  <li><a className="dropdown-item" href="#cromatic">Cromatic</a></li>
+                  <li><a className="dropdown-item" href="#covered">Covered</a></li>
+                  <li><a className="dropdown-item" href="#truffle">Truffle</a></li>
+                  <li><a className="dropdown-item" href="#terminal">The Terminal</a></li>
+                  <li><a className="dropdown-item" href="#games">Cheat Squad</a></li>
+                </ul>
+              </div>
+            </li>
             <li className="nav-item">
               <Link className="nav-link" to="/">
                 Home

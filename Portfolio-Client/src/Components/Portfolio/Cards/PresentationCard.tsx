@@ -42,7 +42,7 @@ export default function PresentationCard() {
           </div>
           <div>
             <hr />
-            <div className="d-flex justify-content-center my-1">
+            <div className="d-flex justify-content-center align-items-center my-1">
               <SocialIcon
                 className="mx-1 zoom"
                 url="https://www.linkedin.com/in/h%C3%A9ctor-maga%C3%B1a/"
@@ -50,16 +50,15 @@ export default function PresentationCard() {
               <SocialIcon
                 className="mx-1 zoom"
                 url="https://github.com/Hecedu" />
-              <SocialIcon
-                className="mx-1 zoom"
-                url="https://docs.google.com/document/d/1hGIn6Vm02KjFbnqe0HuAvZsrBJLUpZqlkS8q5YxXr28/edit?usp=sharing"
-              />
+              <a className="btn btn-primary btn-lg zoom m-2" href="https://docs.google.com/document/d/e/2PACX-1vRvf27qHY0aa3-MtCL6QHPSe5C0iK7vxqAEGT7xALxI_SNLoWf7LSVp_xulV3VpIB8JMiwzpg9ZpB0d/pub">
+                Resume
+              </a>
             </div>
             <hr />
           </div>
           <div>
             <a href={"#bllage"}>
-              <AiFillCaretDown className="text-black p-0 zoom" />
+              <AiFillCaretDown className="text-black p-0 zoom" style={{ width: "5em" }} />
             </a>
           </div>
         </FadeIn>

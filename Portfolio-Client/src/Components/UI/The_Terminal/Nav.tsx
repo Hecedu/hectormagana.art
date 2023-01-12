@@ -7,15 +7,13 @@ export default function Nav() {
         <nav className="navbar navbar-expand-lg navbar-dark bg-black shadow fixed-top">
             <div className="container-fluid">
                 <Link className="navbar-brand" to="/terminal">
-
                     <Typewriter
-                    options={{cursor:''}}
+                        options={{ cursor: '' }}
                         onInit={(typewriter) => {
                             typewriter.typeString('The_Terminal')
                             typewriter.start()
                         }}
                     />
-
                 </Link>
                 <button
                     className="navbar-toggler"

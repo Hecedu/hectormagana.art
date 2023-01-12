@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { SocialIcon } from "react-social-icons";
 import { containerStyle } from "../../../../Styles/LayoutStyles";
 
 export default function CromaticCard() {
@@ -14,9 +15,12 @@ export default function CromaticCard() {
           <p>Streamlined color palette generation using Chroma.js</p>
           <hr></hr>
           <p className="lead">
-            <a className="btn btn-danger btn-lg shadow" href="https://hecedu.github.io/Cromatic/">
+            <a className="btn btn-danger btn-lg shadow zoom" href="https://hecedu.github.io/Cromatic/">
               Create a Palette
             </a>
+            <SocialIcon bgColor="black" fgColor="white"
+                className="m-3 zoom"
+                url="https://github.com/Hecedu/Cromatic" />
           </p>
         </div>
       </div>

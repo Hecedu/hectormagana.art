@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { SocialIcon } from "react-social-icons";
 import { containerStyle } from "../../../../Styles/LayoutStyles";
 
 export default function TruffleCard() {
@@ -13,9 +14,12 @@ export default function TruffleCard() {
           <p> It allows you to explore snapshots of your favorite pages using the WayBack Machine.</p>
           <hr></hr>
           <p className="lead">
-            <a className="btn btn-secondary btn-lg shadow text-light" href="https://hecedu.github.io/Truffle/">
+            <a className="btn btn-secondary btn-lg shadow text-light zoom" href="https://hecedu.github.io/Truffle/">
               Dig The Web!
             </a>
+            <SocialIcon bgColor="black" fgColor="white"
+              className="m-3 zoom"
+              url="https://github.com/Hecedu/Truffle" />
           </p>
         </div>
       </div>

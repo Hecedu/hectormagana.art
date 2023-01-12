@@ -19,7 +19,7 @@ html { scroll-padding-top: 10vh; }
 .zoom {
   transition: transform .4s;
   /* Animation */
-  width: 100px;
+  width: auto;
   height: auto;
   margin: 0 auto;
 }

@@ -16,8 +16,8 @@ export default function BllageCard() {
                     <p></p>
                     <hr></hr>
                     <p className="lead">
-                        <a className="btn btn-light border border-5 border-dark btn-lg shadow fw-bold">
-                            Coming Soon
+                        <a className="btn btn-light border border-5 border-dark btn-lg shadow fw-bold zoom" href='https://b-llage.itch.io/'>
+                            Storefront
                         </a>
                     </p>
                 </div>

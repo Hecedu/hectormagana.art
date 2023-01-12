@@ -19,7 +19,7 @@ export default function TerminalCard() {
                     <p>The terminal is a personal blog about programming, writing, music, videogames and design.</p>
                     <hr></hr>
                     <p className="lead">
-                        <Link className="btn btn-light btn-lg" to="/terminal">
+                        <Link className="btn btn-light btn-lg zoom" to="/terminal">
                             Acccess the terminal
                         </Link>
                     </p>

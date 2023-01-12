@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { SocialIcon } from "react-social-icons";
 import { containerStyle } from "../../../../Styles/LayoutStyles";
 
 export default function CoveredCard() {
@@ -14,9 +15,12 @@ export default function CoveredCard() {
           <p>Easy cover letter generation using GPT3</p>
           <hr></hr>
           <p className="lead">
-            <a className="btn btn-info btn-lg shadow" href="https://hecedu.github.io/Covered/">
+            <a className="btn btn-info btn-lg shadow zoom" href="https://hecedu.github.io/Covered/">
               Create a Cover Letter
             </a>
+            <SocialIcon bgColor="black" fgColor="white"
+                className="m-3 zoom"
+                url="https://github.com/Hecedu/Covered" />
           </p>
         </div>
       </div>
