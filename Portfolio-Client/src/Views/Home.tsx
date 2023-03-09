@@ -7,6 +7,7 @@ import TerminalCard from "../Components/Portfolio/Cards/Projects/TerminalCard";
 import TruffleCard from "../Components/Portfolio/Cards/Projects/TruffleCard";
 import CoveredCard from "../Components/Portfolio/Cards/Projects/CoveredCard";
 import BllageCard from "../Components/Portfolio/Cards/Projects/BllageCard";
+import JobMindAICard from "../Components/Portfolio/Cards/Projects/JobMindAICard";
 
 export default function Home() {
   return (
@@ -17,11 +18,14 @@ export default function Home() {
       <div id="bllage">
         <BllageCard />
       </div>
-      <div id="cromatic">
-        <CromaticCard />
+      <div id="jobmind ai">
+        <JobMindAICard />
       </div>
       <div id="covered">
         <CoveredCard />
+      </div>
+      <div id="cromatic">
+        <CromaticCard />
       </div>
       <div id="truffle">
         <TruffleCard />

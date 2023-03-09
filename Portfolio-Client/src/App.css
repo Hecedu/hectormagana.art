@@ -28,3 +28,14 @@ html { scroll-padding-top: 10vh; }
   transform: scale(1.1);
   /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
 }
+
+.bllagelogo{
+  transition: 0.3s;
+  -webkit-transform: rotate(0deg);
+  transform: rotate(0deg);
+}
+.bllagelogo:hover {
+  transition: 0.3s;
+  -webkit-transform: rotate(-2deg);
+          transform: rotate(-2deg);
+}

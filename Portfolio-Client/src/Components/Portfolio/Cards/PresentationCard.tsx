@@ -9,8 +9,8 @@ import { Link } from "react-router-dom";
 export default function PresentationCard() {
   return (
     <div className="vh-auto d-flex align-items-center justify-content-center">
-      <div className={containerStyle + " w-100"}>
-        <FadeIn transitionDuration={400} delay={400}>
+      <div className={containerStyle + " w-100 bg-white"}>
+        <FadeIn transitionDuration={400} delay={200}>
           <div className="d-flex flex-wrap justify-content-center align-items-center mt-1 mb-4">
             <img className="img-fluid mx-3 rounded" src={require('../../../Assets/hector_headshot.jpg')} style={{ width: "250px" }} alt="Hector Magana headshot" />
             <div className="text-start">

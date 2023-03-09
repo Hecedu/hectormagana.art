@@ -7,7 +7,7 @@ export default function BllageCard() {
             <div className="row p-4">
                 <div className="container">
                     <div className="d-flex flex-wrap justify-content-center align-items-center">
-                        <img className="img-fluid mb-2" src={require('../../../../Assets/Bllage.png')} style={{ width: "20vh" }} alt="Covered logo" />
+                        <img className="img-fluid mb-2 bllagelogo" src={require('../../../../Assets/Bllage.png')} style={{ width: "20vh" }} alt="Covered logo" />
                         <div className='text-start px-2 '>
                             <h2 className="my-1 display-5 fw-bold h-auto w-auto">No Fun, No Code</h2>
                             <h5>Working hard to save you time, so we can waste it later.</h5>

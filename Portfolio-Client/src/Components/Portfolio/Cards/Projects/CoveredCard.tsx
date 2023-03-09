@@ -12,6 +12,7 @@ export default function CoveredCard() {
           <div className="d-flex justify-content-center align-items-bottom">
             <h5 className="my-1 display-5 fw-bold h-auto px-2 w-auto">Covered</h5>
           </div>
+          <p className="fst-italic">A JobMind AI tool</p>
           <p>Easy cover letter generation using GPT3</p>
           <hr></hr>
           <p className="lead">
