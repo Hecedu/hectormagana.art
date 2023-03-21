@@ -21,7 +21,7 @@ export default function CoveredCard() {
             </a>
             <SocialIcon bgColor="black" fgColor="white"
                 className="m-3 zoom"
-                url="https://github.com/Hecedu/Covered" />
+                url="https://covered.jobmindai.xyz/" />
           </p>
         </div>
       </div>

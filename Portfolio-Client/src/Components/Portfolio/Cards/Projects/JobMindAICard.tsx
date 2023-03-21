@@ -13,7 +13,7 @@ export default function JobMindAICard() {
                     <p>Introducing the future of Job Hunting.</p>
                     <hr></hr>
                     <p className="lead">
-                        <a className="btn btn-black text-white border border-white btn-lg shadow zoom" href="https://hecedu.github.io/Jobmind/">
+                        <a className="btn btn-black text-white border border-white btn-lg shadow zoom" href="https://jobmindai.xyz/">
                             Explore JobMind AI
                         </a>
                     </p>
