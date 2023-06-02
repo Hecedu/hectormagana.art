@@ -16,12 +16,12 @@ export default function CoveredCard() {
           <p>Easy cover letter generation using GPT3</p>
           <hr></hr>
           <p className="lead">
-            <a className="btn btn-info btn-lg shadow zoom" href="https://hecedu.github.io/Covered/">
+            <a className="btn btn-info btn-lg shadow zoom" href="https://covered.jobmindai.xyz/">
               Create a Cover Letter
             </a>
             <SocialIcon bgColor="black" fgColor="white"
-                className="m-3 zoom"
-                url="https://covered.jobmindai.xyz/" />
+              className="m-3 zoom"
+              url="https://github.com/B-Llage/Covered" />
           </p>
         </div>
       </div>
