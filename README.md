@@ -6,4 +6,6 @@ Repo of public instance of my Portfolio.
 - Containerized using Docker and Docker Compose for ease of deployement
 - Reverse Proxy using Nginx and SWAG
 
+😺
+
 deployed at: https://hectormagana.art
