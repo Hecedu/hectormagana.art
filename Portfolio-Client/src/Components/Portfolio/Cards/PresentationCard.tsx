@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Typewriter from "typewriter-effect";
 import FadeIn from "react-fade-in/lib/FadeIn";
 import { SocialIcon } from "react-social-icons";
@@ -6,13 +6,29 @@ import { AiFillCaretDown } from "react-icons/ai";
 import { containerStyle } from "../../../Styles/LayoutStyles";
 import { Link } from "react-router-dom";
 
+const pfp = require('../../../Assets/hector_headshot.jpg')
+const petpfp = require('../../../Assets/pet.gif')
 export default function PresentationCard() {
+  const [profilePictureClicks, setProfilePictureClicks] = useState(0);
+  const [profilePicture, setProfilePicture] = useState(pfp);
+
+  const handleProfilePictureClick = () => {
+    setProfilePictureClicks(profilePictureClicks + 1);
+  };
+
+  useEffect(() => {
+    if (profilePictureClicks === 5) {
+      setProfilePicture(petpfp);
+    }
+  }, [profilePictureClicks]);
+
+
   return (
     <div className="vh-auto d-flex align-items-center justify-content-center">
       <div className={containerStyle + " w-100 bg-white"}>
         <FadeIn transitionDuration={400} delay={200}>
           <div className="d-flex flex-wrap justify-content-center align-items-center mt-1 mb-4">
-            <img className="img-fluid mx-3 rounded" src={require('../../../Assets/hector_headshot.jpg')} style={{ width: "250px" }} alt="Hector Magana headshot" />
+            <img className="img-fluid mx-3 rounded" src={profilePicture} style={{ width: "250px" }} alt="Hector Magana headshot" onClick={handleProfilePictureClick} />
             <div className="text-start">
               <h1 className="my-1 display-3 fw-bold">Héctor Magaña</h1>
               <h1>

@@ -8,6 +8,7 @@ import TruffleCard from "../Components/Portfolio/Cards/Projects/TruffleCard";
 import CoveredCard from "../Components/Portfolio/Cards/Projects/CoveredCard";
 import BllageCard from "../Components/Portfolio/Cards/Projects/BllageCard";
 import JobMindAICard from "../Components/Portfolio/Cards/Projects/JobMindAICard";
+import SoloToolsCard from "../Components/Portfolio/Cards/Projects/SoloToolsCard";
 
 export default function Home() {
   return (
@@ -18,9 +19,14 @@ export default function Home() {
       <div id="bllage">
         <BllageCard />
       </div>
+      <div id="solo">
+        <SoloToolsCard />
+      </div>
+      {/* 
       <div id="jobmind ai">
         <JobMindAICard />
       </div>
+      */}
       <div id="covered">
         <CoveredCard />
       </div>
@@ -30,9 +36,11 @@ export default function Home() {
       <div id="truffle">
         <TruffleCard />
       </div>
+      {/*
       <div id="terminal">
         <TerminalCard />
       </div>
+       */}
       <div id="games">
         <CheatSquadCard />
       </div>

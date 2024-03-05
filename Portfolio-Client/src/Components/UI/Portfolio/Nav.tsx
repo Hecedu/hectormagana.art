@@ -29,11 +29,18 @@ export default function Nav() {
                 </a>
                 <ul className="dropdown-menu dropdown-menu-dark">
                   <li><a className="dropdown-item" href="#bllage">B-llage</a></li>
+                  <li><a className="dropdown-item" href="#solo">SoloTools</a></li>
+                  {/*
                   <li><a className="dropdown-item" href="#jobmind ai">JobMind AI</a></li>
+                  */}
                   <li><a className="dropdown-item" href="#covered">Covered</a></li>
                   <li><a className="dropdown-item" href="#cromatic">Cromatic</a></li>
                   <li><a className="dropdown-item" href="#truffle">Truffle</a></li>
-                  <li><a className="dropdown-item" href="#terminal">The Terminal</a></li>
+                  {
+                    /*
+                    <li><a className="dropdown-item" href="#terminal">The Terminal</a></li>
+                    */
+                  }
                   <li><a className="dropdown-item" href="#games">Cheat Squad</a></li>
                 </ul>
               </div>
