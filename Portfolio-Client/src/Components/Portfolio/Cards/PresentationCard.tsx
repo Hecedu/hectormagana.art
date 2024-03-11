@@ -13,12 +13,20 @@ export default function PresentationCard() {
   const [profilePicture, setProfilePicture] = useState(pfp);
 
   const handleProfilePictureClick = () => {
-    setProfilePictureClicks(profilePictureClicks + 1);
+    if (profilePictureClicks === 5) {
+      setProfilePictureClicks(0);
+    }
+    else {
+      setProfilePictureClicks(profilePictureClicks + 1);
+    }
   };
 
   useEffect(() => {
     if (profilePictureClicks === 5) {
       setProfilePicture(petpfp);
+    }
+    else {
+      setProfilePicture(pfp);
     }
   }, [profilePictureClicks]);
 

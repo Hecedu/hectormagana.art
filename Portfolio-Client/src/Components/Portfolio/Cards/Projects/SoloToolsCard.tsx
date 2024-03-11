@@ -9,9 +9,14 @@ export default function SoloToolsCard() {
                 <div className="container">
                     <div className="d-flex flex-wrap justify-content-center align-items-center">
                         <h1 className='display-1 fw-bold'>SoloTools</h1>
-                        <div className='text-start '>
-                            <h5 className="my-1 display-5 h-auto w-auto">Boardgame tools</h5>
-                        </div>
+                    </div>
+                    <div className='text-center '>
+                        <h5 className="my-1 h-auto w-auto">Boardgame tools</h5>
+                    </div>
+                    <div className='text-center d-flex p-2'>
+                        <h5 className="my-1 display-1 zoom user-select-none">🎲</h5>
+                        <h5 className="my-1 display-1 zoom user-select-none">♟️</h5>
+                        <h5 className="my-1 display-1 zoom user-select-none">🐉</h5>
                     </div>
                     <p></p>
                     <hr></hr>
@@ -20,8 +25,8 @@ export default function SoloToolsCard() {
                             Explore SoloTools
                         </a>
                         <SocialIcon bgColor="white" fgColor="black"
-              className="m-3 zoom"
-              url="https://github.com/Hecedu/SoloTools" />
+                            className="m-3 zoom"
+                            url="https://github.com/Hecedu/SoloTools" />
                     </p>
                 </div>
             </div>
