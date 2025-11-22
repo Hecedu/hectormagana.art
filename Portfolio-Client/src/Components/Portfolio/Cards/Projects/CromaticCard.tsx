@@ -1,14 +1,38 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { SocialIcon } from "react-social-icons";
 import { containerStyle } from "../../../../Styles/LayoutStyles";
 
 export default function CromaticCard() {
+  const [gradient, setGradient] = useState(
+    "linear-gradient(45deg, #942c2c, #2c9494)"
+  );
+
+  const shuffleGradient = () => {
+    const baseHue = Math.floor(Math.random() * 360);
+    const secondHue = (baseHue + 160) % 360; // keep decent contrast
+    const colorA = `hsl(${baseHue}, 75%, 48%)`;
+    const colorB = `hsl(${secondHue}, 70%, 46%)`;
+    setGradient(`linear-gradient(45deg, ${colorA}, ${colorB})`);
+  };
+
+  useEffect(() => {
+    shuffleGradient();
+  }, []);
+
   return (
-    <div className={containerStyle} style={{ background: "linear-gradient(45deg, #942c2c, #2c9494" }}>
+    <div className={containerStyle} style={{ background: gradient }}>
       <div className="row p-4">
         <div className="container text-center text-light">
-          <img className="img-fluid shadow" src={require('../../../../Assets/Cromatic.png')} style={{ width: "20vh" }} alt="Cromatic logo" />
+          <img
+            className="img-fluid shadow user-select-none zoom"
+            src={require('../../../../Assets/Cromatic.png')}
+            style={{ width: "20vh" }}
+            alt="Cromatic logo"
+            role="button"
+            aria-label="Shuffle Cromatic gradient"
+            onClick={shuffleGradient}
+          />
           <div className="d-flex justify-content-center align-items-bottom">
             <h5 className="my-1 display-5 fw-bold h-auto px-2 w-auto">Cromatic</h5>
           </div>

@@ -13,11 +13,11 @@ export default function ContactCard() {
           <p className="font-weight-bold">hector.maganahdez@gmail.com</p>
           <h4>Phone:</h4>
           <p className="font-weight-bold">+801 822 7188</p>
-          <h4>Github:</h4>
+          <h4>Other Connections:</h4>
           <div className="d-flex justify-content-center my-1">
             <SocialIcon
               className="mx-1 zoom"
-              url="https://www.linkedin.com/in/h%C3%A9ctor-maga%C3%B1a/"
+              url="https://www.linkedin.com/in/hecedu/"
             />
             <SocialIcon
               className="mx-1 zoom"

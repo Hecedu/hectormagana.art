@@ -125,7 +125,7 @@ export default function UserData() {
             <h5>Profile Picture</h5>
             <img
               src={`https://portfolioprofilepictures.s3.us-west-1.amazonaws.com/${profilePictureKey}`}
-              className="img-fluid w-25 rounded"
+              className="img-fluid w-25 rounded user-select-none"
             ></img>
           </>
         )}

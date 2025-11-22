@@ -5,7 +5,7 @@ export default function Nav() {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark shadow fixed-top" style={{ backgroundColor: 'black' }}>
       <div className="container-fluid">
-        <Link className="navbar-brand" to="/">
+        <Link className="navbar-brand px-4" to="/">
           Héctor Magaña
         </Link>
         <button
@@ -29,31 +29,19 @@ export default function Nav() {
                 </a>
                 <ul className="dropdown-menu dropdown-menu-dark">
                   <li><a className="dropdown-item" href="#bllage">B-llage</a></li>
+                  <li><a className="dropdown-item" href="#pixiepaint">Pixie Paint</a></li>
                   <li><a className="dropdown-item" href="#solo">SoloTools</a></li>
-                  {/*
-                  <li><a className="dropdown-item" href="#jobmind ai">JobMind AI</a></li>
-                  */}
                   <li><a className="dropdown-item" href="#covered">Covered</a></li>
                   <li><a className="dropdown-item" href="#cromatic">Cromatic</a></li>
                   <li><a className="dropdown-item" href="#truffle">Truffle</a></li>
-                  {
-                    /*
-                    <li><a className="dropdown-item" href="#terminal">The Terminal</a></li>
-                    */
-                  }
                   <li><a className="dropdown-item" href="#games">Cheat Squad</a></li>
                 </ul>
               </div>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/">
-                Home
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/profile">
-                Profile
-              </Link>
+              <a className="nav-link" href="#contactinfo">
+                Contact
+              </a>
             </li>
           </ul>
         </div>

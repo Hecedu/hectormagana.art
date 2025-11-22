@@ -35,21 +35,29 @@ export default function PresentationCard() {
     <div className="vh-auto d-flex align-items-center justify-content-center">
       <div className={containerStyle + " w-100 bg-white"}>
         <FadeIn transitionDuration={400} delay={200}>
-          <div className="d-flex flex-wrap justify-content-center align-items-center mt-1 mb-4">
-            <img className="img-fluid mx-3 rounded" src={profilePicture} style={{ width: "250px" }} alt="Hector Magana headshot" onClick={handleProfilePictureClick} />
-            <div className="text-start">
+          <div className="row g-4 align-items-center mt-1 mb-4">
+            <div className="col-12 col-lg-6 d-flex justify-content-center">
+              <img
+                className="img-fluid rounded user-select-none"
+                src={profilePicture}
+                style={{ width: "100%", maxWidth: "360px" }}
+                alt="Hector Magana headshot"
+                onClick={handleProfilePictureClick}
+              />
+            </div>
+            <div className="col-12 col-lg-6 text-start px-5 px-lg-0">
               <h1 className="my-1 display-3 fw-bold">Héctor Magaña</h1>
               <h1>
                 <Typewriter
                   options={{
                     strings: [
                       "Software Engineer",
-                      "ASP.NET Developer",
-                      "Designer",
                       "React Developer",
-                      "Artist",
                       "Unity 3D Dev",
-                      "Python entusiast",
+                      "Designer",
+                      "Artist",
+                      "ASP.NET Developer",
+                      "Python enthusiast",
                       "Xamarin.Forms Developer",
                       "Game Designer",
                       "Learner",
@@ -69,7 +77,7 @@ export default function PresentationCard() {
             <div className="d-flex justify-content-center align-items-center my-1">
               <SocialIcon
                 className="mx-1 zoom"
-                url="https://www.linkedin.com/in/h%C3%A9ctor-maga%C3%B1a/"
+                url="https://www.linkedin.com/in/hecedu/"
               />
               <SocialIcon
                 className="mx-1 zoom"
@@ -78,7 +86,7 @@ export default function PresentationCard() {
                 Resume
               </a>
             </div>
-            <hr />
+            
           </div>
           <div>
             <a href={"#bllage"}>

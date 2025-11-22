@@ -15,7 +15,7 @@ export default function SwiperCard({ project }: SwiperCardProps) {
           <p className={"fst-italic"}>{project.extra_info}</p>
           {project.image_url != undefined ? (
             <img
-              className="img-fluid"
+              className="img-fluid user-select-none"
               src={project.image_url}
               alt={project.title}
             />

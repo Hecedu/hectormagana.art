@@ -8,10 +8,21 @@ export default function TruffleCard() {
     <div className={containerStyle}>
       <div className="row p-4">
         <div className="container text-center ">
-          <img className="img-fluid my-1" src={require('../../../../Assets/truffle_logo.png')} style={{ width: "300px" }} alt="Pigs flying with the word 'home' attached" />
-          <h2>Dig the past of the internet.</h2>
-          <p className="m-0">Truffle! is a fun Wayback Machine client. </p>
-          <p> It allows you to explore snapshots of your favorite pages using the WayBack Machine.</p>
+          <div className="d-flex flex-column flex-md-row align-items-center justify-content-center gap-1">
+            <img
+              className="img-fluid my-1 user-select-none"
+              src={require('../../../../Assets/truffle_logo.png')}
+              style={{ width: "300px", marginLeft: "-0.5rem" }}
+              alt="Pigs flying with the word 'home' attached"
+            />
+          </div>
+            <img
+              className="img-fluid user-select-none"
+              src={require('../../../../Assets/pig_blinking_sm_wht.gif')}
+              style={{ width: "120px" }}
+              alt="Blinking truffle pig"
+            />
+          <p>Dig the past of the internet.</p>
           <hr></hr>
           <p className="lead">
             <a className="btn btn-secondary btn-lg shadow text-light zoom" href="https://hecedu.github.io/Truffle/">
