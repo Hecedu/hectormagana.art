@@ -17,12 +17,13 @@ export default function SoloToolsCard() {
                     </div>
                     <p></p>
                     <hr></hr>
+                    <p>Board game tools and gizmos</p>
                     <p className="lead">
                         <a className="btn btn-light border border-5 border-dark btn-lg shadow fw-bold zoom" href='https://solotools.hectormagana.art/'>
                             Explore Solo Tools
                         </a>
                         <SocialIcon bgColor="white" fgColor="black"
-                            className="m-3 zoom"
+                            className="mx-3 zoom"
                             url="https://github.com/Hecedu/SoloTools" />
                     </p>
                 </div>

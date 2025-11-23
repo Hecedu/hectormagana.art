@@ -84,6 +84,9 @@ export default function PresentationCard() {
               <a className="btn btn-primary btn-lg zoom m-2" href="https://docs.google.com/document/d/e/2PACX-1vRvf27qHY0aa3-MtCL6QHPSe5C0iK7vxqAEGT7xALxI_SNLoWf7LSVp_xulV3VpIB8JMiwzpg9ZpB0d/pub">
                 Resume
               </a>
+              <Link className="btn btn-outline-dark btn-lg zoom m-2" to="/about-me">
+                About me
+              </Link>
             </div>
             
           </div>

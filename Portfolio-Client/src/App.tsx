@@ -11,6 +11,7 @@ import chroma, { hsl } from "chroma-js";
 import PortfolioLayout from "./Components/UI/Portfolio/PortfolioLayout";
 import TerminalLayout from "./Components/UI/The_Terminal/TerminalLayout";
 import Terminal_Home from "./Views/The_Terminal/Terminal_Home";
+import AboutMe from "./Views/AboutMe";
 
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
           <Route path="profile" element={<Profile />} />
           <Route path="game" element={<Game />} />
           <Route path="moodboard" element={<MoodBoard />} />
+          <Route path="about-me" element={<AboutMe />} />
         </Route>
         <Route element={<TerminalLayout />}>
           <Route path="terminal">

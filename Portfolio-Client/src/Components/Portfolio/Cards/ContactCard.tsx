@@ -9,10 +9,8 @@ export default function ContactCard() {
         <div className="container text-center ">
           <h1 className="my-1 display-3 fw-bold">Contact Me!</h1>
           <hr className="my-2" />
-          <h4>Email:</h4>
+          <h4>Email (my preferred method):</h4>
           <p className="font-weight-bold">hector.maganahdez@gmail.com</p>
-          <h4>Phone:</h4>
-          <p className="font-weight-bold">+801 822 7188</p>
           <h4>Other Connections:</h4>
           <div className="d-flex justify-content-center my-1">
             <SocialIcon

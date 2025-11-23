@@ -56,7 +56,7 @@ export default function PixiePaintCard() {
           />
         </div>
         <div className="bg-black text-start justify-content-center py-3 rounded-3">
-          <p className="fs-3 text-center">
+          <p className="text-center">
             Web Pixel Art Editor
           </p>
           <p className="lead mb-0 d-flex justify-content-center">

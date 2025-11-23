@@ -36,14 +36,14 @@ export default function CromaticCard() {
           <div className="d-flex justify-content-center align-items-bottom">
             <h5 className="my-1 display-5 fw-bold h-auto px-2 w-auto">Cromatic</h5>
           </div>
-          <p>Streamlined color palette generation using Chroma.js</p>
           <hr></hr>
+          <p>Streamlined color palette generation using Chroma.js</p>
           <p className="lead">
             <a className="btn btn-danger btn-lg shadow zoom" href="https://hecedu.github.io/Cromatic/">
               Create a Palette
             </a>
             <SocialIcon bgColor="black" fgColor="white"
-                className="m-3 zoom"
+                className="mx-3 zoom"
                 url="https://github.com/Hecedu/Cromatic" />
           </p>
         </div>
