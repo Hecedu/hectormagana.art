@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import Typewriter from "typewriter-effect";
-import FadeIn from "react-fade-in/lib/FadeIn";
 import { SocialIcon } from "react-social-icons";
 import { AiFillCaretDown } from "react-icons/ai";
 import { containerStyle } from "../../../Styles/LayoutStyles";
@@ -34,7 +33,7 @@ export default function PresentationCard() {
   return (
     <div className="vh-auto d-flex align-items-center justify-content-center">
       <div className={containerStyle + " w-100 bg-white"}>
-        <FadeIn transitionDuration={400} delay={200}>
+        <div className="presentation-card-content">
           <div className="row g-4 align-items-center mt-1 mb-4">
             <div className="col-12 col-lg-6 d-flex justify-content-center">
               <img
@@ -93,7 +92,7 @@ export default function PresentationCard() {
               <AiFillCaretDown className="text-black p-0 zoom" style={{ width: "5em" }} />
             </a>
           </div>
-        </FadeIn>
+        </div>
       </div>
     </div>
   );

@@ -1,5 +1,4 @@
 import React, { FC } from "react";
-import GoogleLogin, { GoogleLoginResponse } from "react-google-login";
 import { useDispatch } from "react-redux";
 import { StoreDispatch } from "../../Store";
 import { authenticateUser, setToken } from "../../Store/auth-slice";
@@ -14,22 +13,13 @@ const LoginButton: FC = (): JSX.Element => {
     dispatch(authenticateUser(res.tokenId));
   };
 
-  const onFailure = (res: GoogleLoginResponse) => {
+  const onFailure = (res: any) => {
     console.log(res)
     alert("Login unsucsessfull");
   };
 
   return (
     <div className="mx-1">
-      <GoogleLogin
-        clientId={clientId}
-        buttonText="Login"
-        onSuccess={onSuccess}
-        onFailure={onFailure}
-        isSignedIn={true}
-        cookiePolicy="single_host_origin"
-        theme="dark"
-      />
     </div>
   );
 };

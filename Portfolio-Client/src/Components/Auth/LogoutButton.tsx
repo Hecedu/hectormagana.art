@@ -1,5 +1,4 @@
 import React, { FC } from "react";
-import { GoogleLogout } from "react-google-login";
 import { useDispatch } from "react-redux";
 import { StoreDispatch } from "../../Store";
 import { logoutUser } from "../../Store/auth-slice";
@@ -20,13 +19,6 @@ const LogoutButton: FC = (): JSX.Element => {
 
   return (
     <div className="mx-1">
-      <GoogleLogout
-        clientId={clientId}
-        buttonText="Logout"
-        onFailure={onFailure}
-        onLogoutSuccess={onLogoutSuccess}
-        icon={false}
-      />
     </div>
   );
 };
