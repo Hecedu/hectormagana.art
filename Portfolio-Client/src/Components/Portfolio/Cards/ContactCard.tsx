@@ -10,20 +10,19 @@ export default function ContactCard() {
           <h1 className="my-1 display-3 fw-bold">Contact Me!</h1>
           <hr className="my-2" />
           <h4>Email (my preferred method):</h4>
-          <p className="font-weight-bold">hector.maganahdez@gmail.com</p>
+          <p className="font-weight-bold">hector.maganahdez[at]gmail[dot]com</p>
           <h4>Other Connections:</h4>
-          <div className="d-flex justify-content-center my-1">
+          <div className="d-flex justify-content-center align-items-center my-1">
             <SocialIcon
               className="mx-1 zoom"
               url="https://www.linkedin.com/in/hecedu/"
             />
             <SocialIcon
-              className="mx-1 zoom"
+              className="mx-1 zoom" 
               url="https://github.com/Hecedu" />
-            <SocialIcon
-              className="mx-1 zoom"
-              url="https://docs.google.com/document/d/1hGIn6Vm02KjFbnqe0HuAvZsrBJLUpZqlkS8q5YxXr28/edit?usp=sharing"
-            />
+                <a className="btn btn-primary btn-lg zoom m-2" href="https://docs.google.com/document/d/e/2PACX-1vRvf27qHY0aa3-MtCL6QHPSe5C0iK7vxqAEGT7xALxI_SNLoWf7LSVp_xulV3VpIB8JMiwzpg9ZpB0d/pub">
+                Resume
+              </a>
           </div>
         </div>
       </div>

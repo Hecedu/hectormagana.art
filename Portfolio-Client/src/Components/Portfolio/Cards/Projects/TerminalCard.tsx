@@ -1,11 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { containerStyleBlack } from "../../../../Styles/LayoutStyles";
+import { containerStyleGraphic } from "../../../../Styles/LayoutStyles";
 import Typewriter from "typewriter-effect";
 
 export default function TerminalCard() {
     return (
-        <div className={containerStyleBlack}>
+        <div className={containerStyleGraphic}>
             <div className="row py-4">
                 <div className="container text-center text-white">
                     <h1 className="my-1 display-3 fw-bold">

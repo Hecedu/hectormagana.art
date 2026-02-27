@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { containerStyleBlack } from "../../../../Styles/LayoutStyles";
+import { containerStyleGraphic } from "../../../../Styles/LayoutStyles";
 
 export default function PixiePaintCard() {
   const pixiePaintLabel = "Visit Pixie Paint";
@@ -33,7 +33,7 @@ export default function PixiePaintCard() {
 
   return (
     <div
-      className={`${containerStyleBlack} pixie-paint-card`}
+      className={`${containerStyleGraphic} pixie-paint-card`}
       style={{
         backgroundImage: pattern || undefined,
         backgroundRepeat: "repeat",
@@ -55,13 +55,13 @@ export default function PixiePaintCard() {
             aria-label="Shuffle Pixie Paint background colors"
           />
         </div>
-        <div className="bg-black text-start justify-content-center py-3 rounded-3">
+        <div className="bg-black bg-gradient text-start justify-content-center py-3 rounded-3">
           <p className="text-center">
             Web Pixel Art Editor
           </p>
           <p className="lead mb-0 d-flex justify-content-center">
             <a
-              className="btn btn-dark btn-lg shadow zoom pixie-paint-cta"
+              className="btn btn-dark btn-lg shadow zoom pixie-paint-cta border border-4 border-white"
               href="https://pixiepaint.hectormagana.art/"
             >
               {pixiePaintLabel.split("").map((char, index) => (

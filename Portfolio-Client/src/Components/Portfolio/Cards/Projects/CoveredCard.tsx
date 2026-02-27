@@ -19,9 +19,6 @@ export default function CoveredCard() {
             <a className="btn btn-info btn-lg shadow zoom" href="https://covered.jobmindai.xyz/">
               Create a Cover Letter
             </a>
-            <SocialIcon bgColor="black" fgColor="white"
-              className="m-3 zoom"
-              url="https://github.com/B-Llage/Covered" />
           </p>
         </div>
       </div>

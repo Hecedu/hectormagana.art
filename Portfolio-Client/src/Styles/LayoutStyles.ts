@@ -3,9 +3,9 @@ export var containerStyle = `text-center
     p-1
     mx-1 my-4 
     shadow bg-white`;
-export var containerStyleBlack = `text-center 
+export var containerStyleGraphic = `text-center 
     text-white
-    border border-white border-4 rounded-3
+    border border-black border-4 rounded-3
     p-5 
     mx-1 my-4 
     shadow bg-black`;

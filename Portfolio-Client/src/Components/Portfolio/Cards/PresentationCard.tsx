@@ -3,9 +3,8 @@ import Typewriter from "typewriter-effect";
 import { SocialIcon } from "react-social-icons";
 import { AiFillCaretDown } from "react-icons/ai";
 import { containerStyle } from "../../../Styles/LayoutStyles";
-import { Link } from "react-router-dom";
 
-const pfp = require('../../../Assets/hector_headshot.jpg')
+const pfp = require('../../../Assets/PFP.jpeg')
 const petpfp = require('../../../Assets/pet.gif')
 export default function PresentationCard() {
   const [profilePictureClicks, setProfilePictureClicks] = useState(0);
@@ -51,18 +50,13 @@ export default function PresentationCard() {
                   options={{
                     strings: [
                       "Software Engineer",
-                      "React Developer",
-                      "Unity 3D Dev",
-                      "Designer",
-                      "Artist",
-                      "ASP.NET Developer",
-                      "Python enthusiast",
-                      "Xamarin.Forms Developer",
                       "Game Designer",
-                      "Learner",
-                      "Problem Solver",
-                      "Algorithm Lover",
-                      "Math Nerd",
+                      "Web Developer",
+                      "AWS Cloud Practitioner",
+                      "Hobbyist Artist",
+                      "Nerd",
+                      "Warhammer Enthusiast",
+                      "In the summer of 2019 I "
                     ],
                     autoStart: true,
                     loop: true,
@@ -84,9 +78,6 @@ export default function PresentationCard() {
               <a className="btn btn-primary btn-lg zoom m-2" href="https://docs.google.com/document/d/e/2PACX-1vRvf27qHY0aa3-MtCL6QHPSe5C0iK7vxqAEGT7xALxI_SNLoWf7LSVp_xulV3VpIB8JMiwzpg9ZpB0d/pub">
                 Resume
               </a>
-              <Link className="btn btn-outline-dark btn-lg zoom m-2" to="/about-me">
-                About me
-              </Link>
             </div>
             
           </div>

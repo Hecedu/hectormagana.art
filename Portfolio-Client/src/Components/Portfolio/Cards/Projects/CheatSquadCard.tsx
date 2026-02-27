@@ -20,7 +20,7 @@ export default function CheatSquadCard() {
             "linear-gradient(135deg, rgba(0,0,0,0.75), rgba(0,0,0,0.55))",
           padding: "0.5rem 1rem",
           borderRadius: "2rem",
-          border: "3px solid rgba(231, 221, 221, 0.2)",
+          border: "3px solid black",
           boxShadow: "0 0.75rem 2.5rem rgba(0, 0, 0, 0.45)",
         }}
       >
@@ -31,12 +31,9 @@ export default function CheatSquadCard() {
           style={{ width: "260px" }}
         />
         <div className="d-flex align-items-center justify-content-center">
-          <Link className="btn btn-success btn-lg mx-2 mb-3 zoom" to="/game">
+          <Link className="btn btn-success btn-lg mx-2 mb-3 zoom border border-4 border-black" to="/game">
             Play
           </Link>
-          <SocialIcon
-            className="mx-2 mb-3 zoom"
-            url="https://b-llage.itch.io/cheat-squad" />
         </div>
       </div>
     </div>);

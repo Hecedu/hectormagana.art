@@ -39,12 +39,9 @@ export default function CromaticCard() {
           <hr></hr>
           <p>Streamlined color palette generation using Chroma.js</p>
           <p className="lead">
-            <a className="btn btn-danger btn-lg shadow zoom" href="https://hecedu.github.io/Cromatic/">
+            <a className="btn btn-danger btn-lg shadow zoom border border-4 border-white" href="https://hecedu.github.io/Cromatic/">
               Create a Palette
             </a>
-            <SocialIcon bgColor="black" fgColor="white"
-                className="mx-3 zoom"
-                url="https://github.com/Hecedu/Cromatic" />
           </p>
         </div>
       </div>

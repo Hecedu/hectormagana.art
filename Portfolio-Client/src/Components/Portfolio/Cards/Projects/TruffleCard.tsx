@@ -25,12 +25,9 @@ export default function TruffleCard() {
           <hr></hr>
           <p>A fun to use Wayback Machine client</p>
           <p className="lead">
-            <a className="btn btn-secondary btn-lg shadow text-light zoom" href="https://truffle.hectormagana.art/">
+            <a className="btn btn-secondary btn-lg shadow text-light zoom border border-4 border-black" href="https://truffle.hectormagana.art/">
               Dig The Web!
             </a>
-            <SocialIcon bgColor="black" fgColor="white"
-              className="mx-3 zoom"
-              url="https://truffle.hectormagana.art/" />
           </p>
         </div>
       </div>

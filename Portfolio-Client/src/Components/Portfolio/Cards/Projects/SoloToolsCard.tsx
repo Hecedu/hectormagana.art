@@ -1,10 +1,10 @@
 import React from 'react'
-import { containerStyle, containerStyleBlack } from '../../../../Styles/LayoutStyles'
+import { containerStyle, containerStyleGraphic } from '../../../../Styles/LayoutStyles'
 import { SocialIcon } from 'react-social-icons'
 
 export default function SoloToolsCard() {
     return (
-        <div className={containerStyleBlack} style={{ background: "black" }}>
+        <div className={containerStyleGraphic} style={{ background: "black" }}>
             <div className="row p-1">
                 <div className="container">
                     <div className="d-flex flex-wrap justify-content-center align-items-center">
@@ -22,9 +22,6 @@ export default function SoloToolsCard() {
                         <a className="btn btn-light border border-5 border-dark btn-lg shadow fw-bold zoom" href='https://solotools.hectormagana.art/'>
                             Explore Solo Tools
                         </a>
-                        <SocialIcon bgColor="white" fgColor="black"
-                            className="mx-3 zoom"
-                            url="https://github.com/Hecedu/SoloTools" />
                     </p>
                 </div>
             </div>

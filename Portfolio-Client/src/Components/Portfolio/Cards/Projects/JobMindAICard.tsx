@@ -1,9 +1,9 @@
 import React from 'react'
-import { containerStyleBlack } from '../../../../Styles/LayoutStyles'
+import { containerStyleGraphic } from '../../../../Styles/LayoutStyles'
 
 export default function JobMindAICard() {
     return (
-        <div className={containerStyleBlack} style={{ background: "black" }}>
+        <div className={containerStyleGraphic} style={{ background: "black" }}>
             <div className="row p-4">
                 <div className="container text-center text-light">
                     <img className="img-fluid shadow border border-white rounded-4 user-select-none" src={require('../../../../Assets/Jobmind.png')} style={{ width: "20vh" }} alt="Jobmind logo" />
