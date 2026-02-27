@@ -56,7 +56,6 @@ export default function PresentationCard() {
                       "Hobbyist Artist",
                       "Nerd",
                       "Warhammer Enthusiast",
-                      "In the summer of 2019 I "
                     ],
                     autoStart: true,
                     loop: true,
