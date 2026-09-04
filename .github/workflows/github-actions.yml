@@ -43,6 +43,9 @@ jobs:
         run: npm run build
 
       - name: Deploy to Netlify
+        # Netlify CLI reads netlify.toml from its working directory. Version 17
+        # does not support the deprecated --config command-line option.
+        working-directory: Portfolio-Client
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
@@ -50,6 +53,5 @@ jobs:
           npx --yes netlify-cli@17 deploy
           --auth "$NETLIFY_AUTH_TOKEN"
           --site "$NETLIFY_SITE_ID"
-          --dir Portfolio-Client/build
-          --config Portfolio-Client/netlify.toml
+          --dir build
           --prod
