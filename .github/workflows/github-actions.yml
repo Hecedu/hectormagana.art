@@ -1,32 +1,55 @@
-name: Portfolio Pipeline
-on: [push]
+name: Deploy portfolio to Netlify
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# A second push should not deploy concurrently with an in-progress deployment.
+concurrency:
+  group: netlify-production-deploy
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
 jobs:
- Initial:
-    runs-on: self-hosted
+  deploy:
+    name: Build and deploy
+    runs-on: ubuntu-latest
+    environment: production
+
     steps:
-      - name: Check out repository code
-        uses: actions/checkout@v2
-      - name: Pull new changes
-        working-directory: /root/source/Portfolio-vm/
-        run: |
-          echo "🤓: Pulling changes to server."
-          sudo git stash
-          sudo git pull
-      - name: Redeploy Portfolio API
-        working-directory: /root/source/Portfolio-vm/Portfolio-Api/
-        run: |
-         echo "🤓: Refreshing API service."
-         systemctl stop Portfolio-Api.service
-         echo -e 'DbConnectionString=${{secrets.DB_CONNECTION_STRING}}\nJwtKey=${{secrets.JWT_KEY}}\nBucketSecret=${{secrets.BUCKET_SECRET}}' > env
-         dotnet publish -c Release -o /srv/Portfolio-Api
-         sudo cp Portfolio-Api.service /etc/systemd/system/Portfolio-Api.service
-         systemctl daemon-reload
-         systemctl start Portfolio-Api.service
-      - name: Redeploy Docker Compose
-        working-directory: /root/source/Portfolio-vm/
-        run: |
-         echo "🤓: Redeploying Docker-compose."
-         docker system prune -a --volumes -f
-         docker-compose down
-         docker-compose build
-         docker-compose up -d
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: Portfolio-Client/package-lock.json
+
+      - name: Install dependencies
+        working-directory: Portfolio-Client
+        run: npm ci --legacy-peer-deps
+
+      - name: Build production site
+        working-directory: Portfolio-Client
+        env:
+          # Create React App treats its existing lint warnings as build failures
+          # when CI=true (as GitHub Actions sets by default).
+          CI: "false"
+        run: npm run build
+
+      - name: Deploy to Netlify
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+        run: >
+          npx --yes netlify-cli@17 deploy
+          --auth "$NETLIFY_AUTH_TOKEN"
+          --site "$NETLIFY_SITE_ID"
+          --dir Portfolio-Client/build
+          --config Portfolio-Client/netlify.toml
+          --prod
