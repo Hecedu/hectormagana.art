@@ -14,6 +14,10 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
 
+## Homepage query parameters
+
+The homepage does not display the profile photo by default. Add `?showPicture` to the homepage URL to show it—for example, [http://localhost:3000/?showPicture](http://localhost:3000/?showPicture).
+
 ### `npm test`
 
 Launches the test runner in the interactive watch mode.\

@@ -16,8 +16,7 @@ export default function BllageCard() {
         <div className="col-12 col-lg-6 bg-white text-dark p-1 bllage-card__content">
           <div className="text-start">
             <p className="bllage-tagline mb-0">
-              <span className="bllage-tagline__accent">Working hard</span> to save
-              your time,
+              Working hard to <span className="bllage-tagline__accent">save your time,</span>
             </p> 
             <p className="bllage-tagline">
               so we can <span className="bllage-tagline__accent">waste it later.</span>

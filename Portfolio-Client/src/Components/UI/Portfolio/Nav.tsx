@@ -1,11 +1,10 @@
 import React from "react";
-import { Link } from "react-router-dom";
 
 export default function Nav() {
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark shadow fixed-top" style={{ backgroundColor: 'black' }}>
-      <div className="container-fluid">
-        <a className="navbar-brand px-4" href="/#me">
+    <nav className="navbar navbar-expand-lg navbar-dark shadow fixed-top portfolio-nav">
+      <div className="container portfolio-nav__container">
+        <a className="navbar-brand portfolio-nav__brand" href="/#me">
           Héctor Magaña
         </a>
         <button
@@ -20,8 +19,8 @@ export default function Nav() {
           <span className="navbar-toggler-icon"></span>
         </button>
 
-        <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
-          <ul className="navbar-nav mr-auto">
+        <div className="collapse navbar-collapse portfolio-nav__collapse" id="navbarNavAltMarkup">
+          <ul className="navbar-nav portfolio-nav__links">
             <li className="nav-item">
               <div className="nav-item dropdown">
                 <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">

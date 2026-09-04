@@ -10,29 +10,31 @@ import PixiePaintCard from "../Components/Portfolio/Cards/Projects/PixiePaintCar
 
 export default function Home() {
   return (
-    <div className="container cards-grid">
-      <div id="me" className="grid-card full-width-card">
-        <PresentationCard />
+    <div className="container cards-layout">
+      <div className="cards-grid">
+        <div id="me" className="grid-card full-width-card">
+          <PresentationCard />
+        </div>
+        <div id="bllage" className="grid-card">
+          <BllageCard />
+        </div>
+        <div id="pixiepaint" className="grid-card">
+          <PixiePaintCard />
+        </div>
+        <div id="cromatic" className="grid-card">
+          <CromaticCard />
+        </div>
+        <div id="truffle" className="grid-card">
+          <TruffleCard />
+        </div>
+        <div id="solo" className="grid-card">
+          <SoloToolsCard />
+        </div>
+        <div id="games" className="grid-card">
+          <CheatSquadCard />
+        </div>
       </div>
-      <div id="bllage" className="grid-card">
-        <BllageCard />
-      </div>
-      <div id="pixiepaint" className="grid-card">
-        <PixiePaintCard />
-      </div>
-      <div id="cromatic" className="grid-card">
-        <CromaticCard />
-      </div>
-      <div id="truffle" className="grid-card">
-        <TruffleCard />
-      </div>
-      <div id="solo" className="grid-card">
-        <SoloToolsCard />
-      </div>
-      <div id="games" className="grid-card">
-        <CheatSquadCard />
-      </div>
-      <div id="contactinfo" className="grid-card full-width-card">
+      <div id="contactinfo" className="grid-card contact-card">
         <ContactCard />
       </div>
     </div>

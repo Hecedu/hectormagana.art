@@ -41,11 +41,8 @@ export default function PixiePaintCard() {
         backgroundColor: "#050505",
       }}
     >
-      <div className="row h-100 mx-2">
-        <div
-          className="align-items-center justify-content-center"
-
-        >
+      <div className="d-flex flex-column h-100">
+        <div className="pixie-paint-card__half d-flex align-items-center justify-content-center p-4 pixie-paint-logo-panel">
           <img
             className="pixie-paint-logo zoom user-select-none"
             src={require("../../../../Assets/PixiePaintLogo.png")}
@@ -55,7 +52,7 @@ export default function PixiePaintCard() {
             aria-label="Shuffle Pixie Paint background colors"
           />
         </div>
-        <div className="bg-black bg-gradient text-start justify-content-center py-3 rounded-3">
+        <div className="pixie-paint-card__half d-flex flex-column align-items-center justify-content-center bg-black bg-gradient text-center p-4 rounded-3">
           <p className="text-center">
             Web Pixel Art Editor
           </p>

@@ -2,11 +2,14 @@ import React, { useEffect, useState } from "react";
 import Typewriter from "typewriter-effect";
 import { SocialIcon } from "react-social-icons";
 import { AiFillCaretDown } from "react-icons/ai";
+import { useLocation } from "react-router-dom";
 import { containerStyle } from "../../../Styles/LayoutStyles";
 
 const pfp = require('../../../Assets/PFP.jpeg')
 const petpfp = require('../../../Assets/pet.gif')
 export default function PresentationCard() {
+  const { search } = useLocation();
+  const showProfilePicture = new URLSearchParams(search).has("showPicture");
   const [profilePictureClicks, setProfilePictureClicks] = useState(0);
   const [profilePicture, setProfilePicture] = useState(pfp);
 
@@ -34,16 +37,18 @@ export default function PresentationCard() {
       <div className={containerStyle + " w-100 bg-white"}>
         <div className="presentation-card-content">
           <div className="row g-4 align-items-center mt-1 mb-4">
-            <div className="col-12 col-lg-6 d-flex justify-content-center">
-              <img
-                className="img-fluid rounded user-select-none"
-                src={profilePicture}
-                style={{ width: "100%", maxWidth: "360px" }}
-                alt="Hector Magana headshot"
-                onClick={handleProfilePictureClick}
-              />
-            </div>
-            <div className="col-12 col-lg-6 text-start px-5 px-lg-0">
+            {showProfilePicture && (
+              <div className="col-12 col-lg-6 d-flex justify-content-center">
+                <img
+                  className="img-fluid rounded user-select-none"
+                  src={profilePicture}
+                  style={{ width: "100%", maxWidth: "360px" }}
+                  alt="Hector Magana headshot"
+                  onClick={handleProfilePictureClick}
+                />
+              </div>
+            )}
+            <div className={`col-12${showProfilePicture ? " col-lg-6 text-start px-5 px-lg-0" : " text-center px-5"}`}>
               <h1 className="my-1 display-3 fw-bold">Héctor Magaña</h1>
               <h1>
                 <Typewriter
