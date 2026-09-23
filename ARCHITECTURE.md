@@ -31,6 +31,6 @@ The `/game` view uses `react-unity-webgl` to load the Cheat Squad build from `pu
 
 ## Build and deployment
 
-`Portfolio-Client/package.json` defines `start`, `test`, and `build` scripts through `react-scripts`. The production output is `Portfolio-Client/build/`. `.github/workflows/github-actions.yml` builds the client on Node 20 after `npm ci --legacy-peer-deps` and deploys that output to Netlify on pushes to `main` or manual workflow runs. `Portfolio-Client/netlify.toml` rewrites client-side routes to `index.html`. Deployment setup and required secrets are documented in `.github/workflows/README.md`.
+`Portfolio-Client/package.json` defines `start`, `test`, and `build` scripts through `react-scripts`. The production output is `Portfolio-Client/build/`. `Portfolio-Client/.nvmrc` pins Node 20 for Netlify builds from the client directory, matching `.github/workflows/github-actions.yml`. That workflow runs `npm ci --legacy-peer-deps`, builds the client with `CI=false`, and deploys the output to Netlify on pushes to `main` or manual runs. `Portfolio-Client/netlify.toml` gives Netlify's Git-connected build the equivalent `CI='' npm run build` command and rewrites client-side routes to `index.html`. Deployment setup and required secrets are documented in `.github/workflows/README.md`.
 
 The checked-in `docker-compose.yml` and `Portfolio-Client/dockerfile` are historical deployment artifacts, not the current GitHub Actions deployment path. The Netlify rewrite handles browser routes; it does not define a route or deployment for `/api`.

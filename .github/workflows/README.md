@@ -15,6 +15,12 @@ The workflow deploys only pushes to `main` (or manual runs). It uses
 `Portfolio-Client/netlify.toml`, so client-side routes continue to redirect to
 `index.html`.
 
+If Netlify also builds the connected Git repository directly, set its base
+directory to `Portfolio-Client`. The client `.nvmrc` selects Node 20, and
+`netlify.toml` runs the React build with an empty `CI` value so existing lint warnings
+do not fail that build. The workflow uses the same Node major version and
+equivalent React build setting.
+
 If the `hectormagana.art` domain currently points at the old server, update its DNS
 records in Netlify after the first successful deploy. The site also references an
 API that is not present in this repository; moving the frontend to Netlify does not
