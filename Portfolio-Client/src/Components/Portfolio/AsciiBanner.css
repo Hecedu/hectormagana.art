@@ -1,0 +1,166 @@
+.ascii-banner {
+  --bbs-ink: #78ef9a;
+  position: relative;
+  margin: 0 0 2rem;
+  padding-block: clamp(1rem, 2.5vw, 2rem);
+  color: var(--bbs-ink);
+  background: #000;
+  font-family: "Courier New", Courier, monospace;
+  cursor: default;
+}
+
+.ascii-banner--1 { --bbs-ink: #f6d56e; }
+.ascii-banner--2 { --bbs-ink: #8ddfff; }
+.ascii-banner--3 { --bbs-ink: #f0a4d4; }
+.ascii-banner--4 { --bbs-ink: #f0f0f0; }
+.ascii-banner--5 { --bbs-ink: #8ff5ff; }
+.ascii-banner--6 { --bbs-ink: #5fff5f; }
+.ascii-banner--7 { --bbs-ink: #c0e7ff; }
+.ascii-banner--8 { --bbs-ink: #ffaf5f; }
+.ascii-banner--9 { --bbs-ink: #d787ff; }
+.ascii-banner--10 { --bbs-ink: #5fffff; }
+.ascii-banner--11 { --bbs-ink: #ffff5f; }
+.ascii-banner--12 { --bbs-ink: #8ddfff; }
+.ascii-banner--13 { --bbs-ink: #8ff5ff; }
+.ascii-banner--14 { --bbs-ink: #ffd787; }
+.ascii-banner--15 { --bbs-ink: #ffaf5f; }
+.ascii-banner--16 { --bbs-ink: #5fd7ff; }
+
+.ascii-banner__frame {
+  display: block;
+  width: max-content;
+  max-width: 100%;
+  margin: 0 auto;
+  overflow: hidden;
+  color: inherit;
+  background: #000;
+  font: 400 1.5rem/1.05 "Courier New", Courier, monospace;
+  white-space: pre;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.ascii-banner__frame a {
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 0.12em;
+}
+
+.ascii-banner__frame a:hover {
+  text-decoration-thickness: 2px;
+}
+
+.ascii-banner__sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.ascii-banner__controls {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: end;
+  gap: 0.75rem;
+  max-width: 65rem;
+  margin: 1rem auto 0;
+}
+
+.ascii-banner__styles {
+  display: flex;
+  flex-wrap: nowrap;
+  min-width: 0;
+  gap: 0.4rem;
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+  scrollbar-width: thin;
+}
+
+.ascii-banner__style-button { flex: 0 0 auto; }
+
+.ascii-banner__style-button,
+.ascii-banner__pause-button {
+  padding: 0.35rem 0.55rem;
+  color: var(--bbs-ink);
+  background: #000;
+  border: 1px solid currentColor;
+  border-radius: 0;
+  font: inherit;
+  font-size: 0.76rem;
+  line-height: 1.3;
+}
+
+.ascii-banner__style-button:hover,
+.ascii-banner__style-button[aria-pressed="true"],
+.ascii-banner__pause-button:hover:not(:disabled) {
+  color: #000;
+  background: var(--bbs-ink);
+}
+
+.ascii-banner__pause-button:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.ascii-banner:focus-visible { outline: none; }
+
+.ascii-banner:focus-visible::after {
+  content: "Enter or Space: change name";
+  position: absolute;
+  right: 1rem;
+  bottom: 0.2rem;
+  color: var(--bbs-ink);
+  font-size: 0.7rem;
+  line-height: 1;
+}
+
+.ascii-banner button:focus-visible,
+.ascii-banner__frame a:focus-visible,
+.ascii-banner__dialog button:focus-visible,
+.ascii-banner__dialog input:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+
+.ascii-banner__overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+  background: #000;
+}
+
+.ascii-banner__dialog {
+  width: min(100%, 31rem);
+  max-height: min(90vh, 40rem);
+  overflow-y: auto;
+  padding: clamp(1rem, 4vw, 1.5rem);
+  color: #78ef9a;
+  background: #000;
+  border: 1px solid currentColor;
+  font-family: "Courier New", Courier, monospace;
+}
+
+.ascii-banner__dialog-heading { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; }
+.ascii-banner__dialog h2 { margin: 0; font-size: 1.35rem; }
+.ascii-banner__dialog p { margin: 0.75rem 0 1rem; color: #ddd; }
+.ascii-banner__dialog label { display: block; margin-bottom: 0.35rem; }
+.ascii-banner__dialog input { width: 100%; padding: 0.55rem; color: #fff; background: #000; border: 1px solid #78ef9a; font: inherit; }
+.ascii-banner__dialog .ascii-banner__error { color: #ffb2b2; }
+.ascii-banner__dialog-actions { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem; }
+.ascii-banner__dialog button { padding: 0.4rem 0.7rem; color: #78ef9a; background: #000; border: 1px solid #78ef9a; font: inherit; }
+.ascii-banner__dialog button:hover { color: #000; background: #78ef9a; }
+.ascii-banner__dialog .ascii-banner__close { padding: 0 0.4rem; font-size: 1.5rem; line-height: 1.2; }
+
+@media (max-width: 1199px) {
+  .ascii-banner__frame { font-size: 1.7rem; }
+}
+
+@media (max-width: 599px) {
+  .ascii-banner__frame { font-size: 1.5rem; }
+}

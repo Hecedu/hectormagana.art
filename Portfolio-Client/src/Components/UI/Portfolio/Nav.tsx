@@ -4,7 +4,7 @@ export default function Nav() {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark shadow fixed-top portfolio-nav">
       <div className="container portfolio-nav__container">
-        <a className="navbar-brand portfolio-nav__brand" href="/#me">
+        <a className="navbar-brand portfolio-nav__brand" href="/">
           Héctor Magaña
         </a>
         <button

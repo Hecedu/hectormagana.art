@@ -247,10 +247,6 @@ html { scroll-padding-top: 10vh; }
   color: #f1d6ff;
 }
 
-.cards-grid .full-width-card {
-  grid-column: 1 / -1;
-}
-
 @media (min-width: 992px) {
   .cards-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
