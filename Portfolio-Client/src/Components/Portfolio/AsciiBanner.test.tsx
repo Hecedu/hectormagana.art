@@ -1,5 +1,6 @@
 import React from "react";
-import { act, fireEvent, render, screen } from "@testing-library/react";
+import { fireEvent } from "@testing-library/dom";
+import { act, render, screen } from "@testing-library/react";
 import AsciiBanner from "./AsciiBanner";
 import { frameText, PROFILE_LINKS, renderAnsiFrame, serializeAnsiFrame, STYLE_NAMES } from "./asciiFrames";
 
