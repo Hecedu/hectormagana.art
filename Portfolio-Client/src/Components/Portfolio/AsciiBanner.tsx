@@ -44,6 +44,19 @@ function fitFrame(frame: HTMLPreElement, container: HTMLDivElement, rows: number
     const fontSize = parseFloat(window.getComputedStyle(frame).fontSize);
     frame.style.fontSize = `${fontSize * available / contentWidth}px`;
   }
+  if (window.innerWidth < 600) {
+    const viewportHeight = window.visualViewport?.height ?? window.innerHeight;
+    const frameTop = frame.getBoundingClientRect().top + window.scrollY;
+    const availableHeight = viewportHeight - frameTop - 24;
+    if (availableHeight > 0) {
+      const currentStyles = window.getComputedStyle(frame);
+      const fontSize = parseFloat(currentStyles.fontSize);
+      const lineHeight = parseFloat(currentStyles.lineHeight);
+      const lineHeightRatio = Number.isFinite(lineHeight) && lineHeight >= fontSize
+        ? lineHeight / fontSize : 1.05;
+      frame.style.fontSize = `${Math.min(fontSize, availableHeight / (rows * lineHeightRatio))}px`;
+    }
+  }
   const frameStyles = window.getComputedStyle(frame);
   const fontSize = parseFloat(frameStyles.fontSize) || 24;
   const lineHeight = parseFloat(frameStyles.lineHeight);
@@ -124,7 +137,11 @@ export default function AsciiBanner() {
     const fit = () => fitFrame(frame, inner, ansiFrame.length, true);
     fit();
     window.addEventListener("resize", fit);
-    return () => window.removeEventListener("resize", fit);
+    window.visualViewport?.addEventListener("resize", fit);
+    return () => {
+      window.removeEventListener("resize", fit);
+      window.visualViewport?.removeEventListener("resize", fit);
+    };
   }, [columns, name, styleIndex, ansiFrame.length]);
 
   useLayoutEffect(() => {

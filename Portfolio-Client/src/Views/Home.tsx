@@ -1,5 +1,4 @@
 import React from "react";
-import ContactCard from "../Components/Portfolio/Cards/ContactCard";
 import CromaticCard from "../Components/Portfolio/Cards/Projects/CromaticCard";
 import CheatSquadCard from "../Components/Portfolio/Cards/Projects/CheatSquadCard";
 import TruffleCard from "../Components/Portfolio/Cards/Projects/TruffleCard";
@@ -32,9 +31,6 @@ export default function Home() {
           <div id="games" className="grid-card">
             <CheatSquadCard />
           </div>
-        </div>
-        <div id="contactinfo" className="grid-card contact-card">
-          <ContactCard />
         </div>
       </div>
     </>

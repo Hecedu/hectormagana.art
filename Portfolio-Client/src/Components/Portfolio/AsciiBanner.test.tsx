@@ -169,6 +169,50 @@ test("scales reserved frame height with the fitted font on narrow screens", () =
   }
 });
 
+test("fits the mobile frame above the visible viewport bottom", () => {
+  const widthDescriptor = Object.getOwnPropertyDescriptor(window, "innerWidth");
+  const viewportDescriptor = Object.getOwnPropertyDescriptor(window, "visualViewport");
+  let visibleHeight = 560;
+  const viewport = document.createElement("div");
+  Object.defineProperty(viewport, "height", { get: () => visibleHeight });
+  Object.defineProperty(window, "visualViewport", { configurable: true, value: viewport });
+  Object.defineProperty(window, "innerWidth", { configurable: true, value: 390 });
+  const { container } = render(<AsciiBanner />);
+  const frame = screen.getByTestId("ansi-frame") as HTMLPreElement;
+  const inner = container.querySelector(".ascii-banner__inner") as HTMLDivElement;
+  Object.defineProperty(inner, "clientWidth", { configurable: true, value: 390 });
+  jest.spyOn(frame, "getBoundingClientRect").mockReturnValue({ top: 80 } as DOMRect);
+  const originalGetComputedStyle = window.getComputedStyle.bind(window);
+  const computedStyle = jest.spyOn(window, "getComputedStyle").mockImplementation((element) => {
+    if (element === inner) return { paddingLeft: "0px", paddingRight: "0px" } as CSSStyleDeclaration;
+    if (element === frame) {
+      const fontSize = parseFloat(frame.style.fontSize || "24");
+      return { fontSize: `${fontSize}px`, lineHeight: `${fontSize * 1.05}px` } as CSSStyleDeclaration;
+    }
+    return originalGetComputedStyle(element);
+  });
+
+  try {
+    fireEvent.resize(window);
+    expect(parseFloat(frame.style.fontSize)).toBeLessThan(24);
+    expect(parseFloat(frame.style.minHeight)).toBeLessThanOrEqual(560 - 80 - 24 + 1);
+
+    visibleHeight = 480;
+    fireEvent.resize(viewport);
+    expect(parseFloat(frame.style.minHeight)).toBeLessThanOrEqual(visibleHeight - 80 - 24 + 1);
+
+    Object.defineProperty(window, "innerWidth", { configurable: true, value: 1024 });
+    fireEvent.resize(window);
+    expect(frame.style.fontSize).toBe("");
+    expect(parseFloat(frame.style.minHeight)).toBe(Math.ceil(frame.textContent!.split("\n").length * 24 * 1.05));
+  } finally {
+    computedStyle.mockRestore();
+    if (widthDescriptor) Object.defineProperty(window, "innerWidth", widthDescriptor);
+    if (viewportDescriptor) Object.defineProperty(window, "visualViewport", viewportDescriptor);
+    else Reflect.deleteProperty(window, "visualViewport");
+  }
+});
+
 test("hides controls until the keyboard shortcut and restores focus when closed", () => {
   render(<AsciiBanner />);
   const banner = screen.getByRole("region", { name: "Animated ANSI name banner" });
