@@ -26,7 +26,7 @@ export const PROFILE_LINKS = [
   { label: "Resume", href: "https://docs.google.com/document/d/e/2PACX-1vRvf27qHY0aa3-MtCL6QHPSe5C0iK7vxqAEGT7xALxI_SNLoWf7LSVp_xulV3VpIB8JMiwzpg9ZpB0d/pub" },
 ] as const;
 
-export type AnsiCell = { char: string; fg: number; bg: number; href?: string };
+export type AnsiCell = { char: string; fg: number; bg: number; href?: string; emphasis?: boolean };
 export type AnsiFrame = AnsiCell[][];
 
 const PALETTES = [
@@ -114,7 +114,7 @@ function candleColor(light: number) {
   return shades[Math.round(Math.max(0, Math.min(1, light)) * (shades.length - 1))];
 }
 
-function borderCell(scene: number, x: number, y: number, width: number, height: number, tick: number): AnsiCell {
+export function renderAnsiBorderCell(scene: number, x: number, y: number, width: number, height: number, tick: number): AnsiCell {
   const palette = PALETTES[scene];
   const mod = (value: number, base: number) => ((value % base) + base) % base;
   const top = y === 0;
@@ -307,20 +307,20 @@ function exactNameLines(name: string, maxChars: number) {
 
 export function renderAnsiFrame(style: number, name: string, tick: number, columns: number, still = false): AnsiFrame {
   const safeName = cleanTerminalName(name) || "?";
-  const width = Math.max(30, Math.min(100, Math.floor(columns)));
+  const width = Math.max(30, Math.min(120, Math.floor(columns)));
   const scene = Math.max(0, Math.min(STYLE_NAMES.length - 1, style));
   const palette = PALETTES[scene];
-  const fontWidth: 3 | 5 = scene === 11 || safeName.length > 20 || width < 60 ? 3 : 5;
-  const fontHeight: 3 | 5 | 7 = safeName.length > 20 ? 3 : width < 60 ? 5 : 7;
-  const maxChars = Math.floor((width - 5) / (fontWidth + 1));
+  const fontWidth: 3 | 5 = scene === 11 || safeName.length > 20 ? 3 : 5;
+  const fontHeight: 3 | 5 | 7 = safeName.length > 20 ? 3 : 7;
+  const maxChars = Math.floor((width - 3) / (fontWidth + 1));
   const artworkName = artName(safeName);
   const lines = wrapArtName(artworkName, maxChars);
   const exactLines = exactNameLines(safeName, width - 4);
   const artHeight = lines.length * (fontHeight + 1) - 1;
   const artTop = width >= 90 ? 8 : width >= 56 ? 5 : 4;
   // Reserve the tallest lettering and scene so rotating styles never shifts the page below the banner.
-  const narrowestFontWidth = safeName.length > 20 || width < 60 ? 3 : 5;
-  const reservedLines = wrapArtName(artworkName, Math.floor((width - 5) / (narrowestFontWidth + 1)));
+  const narrowestFontWidth = safeName.length > 20 ? 3 : 5;
+  const reservedLines = wrapArtName(artworkName, Math.floor((width - 3) / (narrowestFontWidth + 1)));
   const reservedArtHeight = reservedLines.length * (fontHeight + 1) - 1;
   const height = Math.max(width >= 90 ? 26 : width >= 56 ? 25 : 24,
     artTop + reservedArtHeight + 11 + exactLines.length + 3);
@@ -343,8 +343,8 @@ export function renderAnsiFrame(style: number, name: string, tick: number, colum
   const stageCenterY = (stageTop + stageBottom) / 2;
   const stageRadiusY = (stageBottom - stageTop) / 2;
   const sweep = mod(motionTick * 0.15, Math.PI * 2);
-  const paint = (x: number, y: number, char: string, fg: number, bg = 0, href?: string) => {
-    if (x > 0 && x < width - 1 && y > 0 && y < height - 1) frame[y][x] = { char, fg, bg, href };
+  const paint = (x: number, y: number, char: string, fg: number, bg = 0, href?: string, emphasis = false) => {
+    if (x > 0 && x < width - 1 && y > 0 && y < height - 1) frame[y][x] = { char, fg, bg, href, emphasis };
   };
   const besideLetter = (x: number, y: number) => {
     for (let dy = -1; dy <= 1; dy += 1) {
@@ -875,7 +875,7 @@ export function renderAnsiFrame(style: number, name: string, tick: number, colum
     chars.forEach((char, index) => {
       const x = startX + index;
       const candle = Math.min(width < 56 ? 1 : 3, Math.floor(x / width * (width < 56 ? 2 : 4)));
-      paint(x, exactTop + lineIndex, char, scene === 15 ? candleColor(candleLight(motionTick, candle)) : 231);
+      paint(x, exactTop + lineIndex, char, scene === 15 ? candleColor(candleLight(motionTick, candle)) : 231, 0, undefined, true);
     });
   });
 
@@ -888,12 +888,12 @@ export function renderAnsiFrame(style: number, name: string, tick: number, colum
   });
 
   for (let x = 0; x < width; x += 1) {
-    frame[0][x] = borderCell(scene, x, 0, width, height, motionTick);
-    frame[height - 1][x] = borderCell(scene, x, height - 1, width, height, motionTick);
+    frame[0][x] = renderAnsiBorderCell(scene, x, 0, width, height, motionTick);
+    frame[height - 1][x] = renderAnsiBorderCell(scene, x, height - 1, width, height, motionTick);
   }
   for (let y = 1; y < height - 1; y += 1) {
-    frame[y][0] = borderCell(scene, 0, y, width, height, motionTick);
-    frame[y][width - 1] = borderCell(scene, width - 1, y, width, height, motionTick);
+    frame[y][0] = renderAnsiBorderCell(scene, 0, y, width, height, motionTick);
+    frame[y][width - 1] = renderAnsiBorderCell(scene, width - 1, y, width, height, motionTick);
   }
   return frame;
 }

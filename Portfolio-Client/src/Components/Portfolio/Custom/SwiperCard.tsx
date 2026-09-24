@@ -7,7 +7,7 @@ interface SwiperCardProps {
 }
 export default function SwiperCard({ project }: SwiperCardProps) {
   return (
-    <div className="h-100 d-flex align-items-center mx-3 border border-dark border-3 rounded-3 shadow-sm py-3">
+    <div className="h-100 d-flex align-items-center mx-3 border border-dark border-3 rounded-0 shadow-sm py-3">
       <div className="container mx-auto">
         <h2 className={"mb-3"}>{project.title}</h2>
         <p>{project.content}</p>

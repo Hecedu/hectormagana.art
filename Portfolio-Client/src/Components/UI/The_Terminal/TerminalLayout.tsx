@@ -1,6 +1,6 @@
 import React from 'react'
 import { Outlet } from 'react-router-dom'
-import Nav from './Nav'
+import BbsPageFrame from '../BbsPageFrame'
 
 export default function TerminalLayout() {
     return (
@@ -9,10 +9,11 @@ export default function TerminalLayout() {
                 background: `black`,
                 minHeight: `100vh`,
             }}>
-            <Nav />
-            <div className='main-content text-white px-4'>
-                <Outlet />
-            </div>
+            <main className='main-content text-white'>
+                <BbsPageFrame>
+                    <Outlet />
+                </BbsPageFrame>
+            </main>
         </div>
     )
 }

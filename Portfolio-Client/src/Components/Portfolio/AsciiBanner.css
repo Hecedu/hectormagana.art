@@ -34,7 +34,7 @@
   overflow: hidden;
   color: inherit;
   background: #000;
-  font: 400 1.5rem/1.05 "Courier New", Courier, monospace;
+  font: 400 1rem/1.05 "Courier New", Courier, monospace;
   white-space: pre;
   -webkit-user-select: none;
   user-select: none;
@@ -158,9 +158,9 @@
 .ascii-banner__dialog .ascii-banner__close { padding: 0 0.4rem; font-size: 1.5rem; line-height: 1.2; }
 
 @media (max-width: 1199px) {
-  .ascii-banner__frame { font-size: 1.7rem; }
+  .ascii-banner__frame { font-size: 0.9375rem; }
 }
 
 @media (max-width: 599px) {
-  .ascii-banner__frame { font-size: 1.5rem; }
+  .ascii-banner__frame { font-size: 0.875rem; }
 }

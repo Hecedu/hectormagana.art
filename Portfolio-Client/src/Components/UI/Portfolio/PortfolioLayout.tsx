@@ -1,7 +1,7 @@
 import React from 'react'
 import { Outlet } from 'react-router-dom'
 import Footer from './Footer'
-import Nav from './Nav'
+import BbsPageFrame from '../BbsPageFrame'
 
 export default function PortfolioLayout() {
   return (
@@ -11,10 +11,11 @@ export default function PortfolioLayout() {
         minHeight: '100vh'
       }}
     >
-      <Nav />
-      <div className='main-content'>
-        <Outlet />
-      </div>
+      <main className='main-content'>
+        <BbsPageFrame>
+          <Outlet />
+        </BbsPageFrame>
+      </main>
       <Footer />
     </div>
   )

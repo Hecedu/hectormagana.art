@@ -1,5 +1,6 @@
 import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { ansiColor, AnsiCell, cleanTerminalName, renderAnsiFrame, STYLE_NAMES } from "./asciiFrames";
+import { useBbsBorderReport } from "../UI/BbsPageFrame";
 import "./AsciiBanner.css";
 
 const DEFAULT_NAME = "Héctor Magaña";
@@ -14,19 +15,19 @@ function shuffledStyles() {
 }
 
 function colorRuns(row: AnsiCell[]) {
-  const runs: { text: string; fg: number; bg: number; href?: string }[] = [];
-  row.forEach(({ char, fg, bg, href }) => {
+  const runs: { text: string; fg: number; bg: number; href?: string; emphasis?: boolean }[] = [];
+  row.forEach(({ char, fg, bg, href, emphasis }) => {
     const last = runs[runs.length - 1];
-    if (last && last.fg === fg && last.bg === bg && last.href === href) last.text += char;
-    else runs.push({ text: char, fg, bg, href });
+    if (last && last.fg === fg && last.bg === bg && last.href === href && last.emphasis === emphasis) last.text += char;
+    else runs.push({ text: char, fg, bg, href, emphasis });
   });
   return runs;
 }
 
 function terminalColumns() {
-  if (window.innerWidth < 600) return 30;
-  if (window.innerWidth < 1200) return 56;
-  return 96;
+  if (window.innerWidth < 600) return 40;
+  if (window.innerWidth < 1200) return 72;
+  return 120;
 }
 
 function prefersReducedMotion() {
@@ -87,6 +88,13 @@ export default function AsciiBanner() {
   const innerRef = useRef<HTMLDivElement>(null);
   const frameRef = useRef<HTMLPreElement>(null);
   const ansiFrame = renderAnsiFrame(styleIndex, name, frame, columns, reducedMotion);
+  const reportBorder = useBbsBorderReport();
+
+  useEffect(() => {
+    reportBorder?.({ style: styleIndex, tick: frame, reducedMotion });
+  }, [reportBorder, styleIndex, frame, reducedMotion]);
+
+  useEffect(() => () => reportBorder?.(null), [reportBorder]);
 
   useEffect(() => {
     const toggleControls = (event: KeyboardEvent) => {
@@ -256,7 +264,7 @@ export default function AsciiBanner() {
               {colorRuns(row).map((run, runIndex) => (
                 run.href
                   ? <a key={runIndex} href={run.href} style={{ color: "var(--bbs-ink)", backgroundColor: ansiColor(run.bg) }}>{run.text}</a>
-                  : <span key={runIndex} aria-hidden="true" style={{ color: ansiColor(run.fg), backgroundColor: ansiColor(run.bg) }}>{run.text}</span>
+                  : <span key={runIndex} aria-hidden="true" style={{ color: ansiColor(run.fg), backgroundColor: ansiColor(run.bg), fontWeight: run.emphasis ? 700 : undefined }}>{run.text}</span>
               ))}
               {rowIndex < ansiFrame.length - 1 ? <span aria-hidden="true">{"\n"}</span> : null}
             </React.Fragment>

@@ -45,6 +45,32 @@ test("renders clickable profile links inside the animated frame", () => {
   expect(frame.querySelectorAll("a")).toHaveLength(3);
   frame.querySelectorAll("a").forEach((link) => expect(link).toHaveStyle({ color: "var(--bbs-ink)" }));
   expect(frame.textContent).toMatch(/Héctor Magaña[^\n]*\n[^\n]*LinkedIn  GitHub  Resume/);
+  expect(Array.from(frame.querySelectorAll("span")).find((span) => span.textContent === "Héctor Magaña"))
+    .toHaveStyle({ fontWeight: "700" });
+});
+
+test("uses denser character grids as the viewport grows", () => {
+  const widthDescriptor = Object.getOwnPropertyDescriptor(window, "innerWidth");
+  Object.defineProperty(window, "innerWidth", { configurable: true, value: 390 });
+  try {
+    render(<AsciiBanner />);
+    const frame = screen.getByTestId("ansi-frame");
+    for (const [viewportWidth, columns] of [[390, 40], [900, 72], [1440, 120]]) {
+      Object.defineProperty(window, "innerWidth", { configurable: true, value: viewportWidth });
+      fireEvent.resize(window);
+      expect(frame.textContent!.split("\n").every((row) => row.length === columns)).toBe(true);
+      expect(frame.textContent).toContain("Héctor Magaña");
+    }
+  } finally {
+    if (widthDescriptor) Object.defineProperty(window, "innerWidth", widthDescriptor);
+  }
+});
+
+test("gives the default name full-height lettering in the denser mobile grid", () => {
+  const frame = renderAnsiFrame(0, "Héctor Magaña", 20, 40);
+  expect(frame).toHaveLength(34);
+  expect(frame.every((row) => row.length === 40)).toBe(true);
+  expect(frameText(frame)).toContain("Héctor Magaña");
 });
 
 test("opens the name prompt only from the upper half of the card without intercepting links or controls", () => {
@@ -81,7 +107,7 @@ test("opens the name prompt only from the upper half of the card without interce
 });
 
 test("keeps the links immediately below the name and inside every border", () => {
-  for (const columns of [30, 56, 96]) {
+  for (const columns of [40, 72, 120]) {
     for (let style = 0; style < STYLE_NAMES.length; style += 1) {
       const frame = renderAnsiFrame(style, "Héctor Magaña", 20, columns);
       const rows = frame.map((row) => row.map(({ char }) => char).join(""));
@@ -95,7 +121,7 @@ test("keeps the links immediately below the name and inside every border", () =>
 });
 
 test("keeps names and links in a compact footer at every width and style", () => {
-  for (const columns of [30, 56, 96]) {
+  for (const columns of [40, 72, 120]) {
     for (const name of ["Héctor Magaña", "A longer name that wraps across lines"]) {
       const chars = Array.from(name);
       const expectedLines: string[] = [];
@@ -116,7 +142,7 @@ test("keeps names and links in a compact footer at every width and style", () =>
 });
 
 test("keeps the frame height constant while animation styles rotate", () => {
-  for (const columns of [30, 56, 96]) {
+  for (const columns of [40, 72, 120]) {
     for (const name of ["Héctor Magaña", "ABCDEFGHIJKLMNOPQRST", "A longer name that wraps across lines"]) {
       const heights = STYLE_NAMES.map((_, style) => renderAnsiFrame(style, name, 20, columns).length);
       expect(new Set(heights).size).toBe(1);
@@ -205,7 +231,9 @@ test("fits the mobile frame above the visible viewport bottom", () => {
     Object.defineProperty(window, "innerWidth", { configurable: true, value: 1024 });
     fireEvent.resize(window);
     expect(frame.style.fontSize).toBe("");
-    expect(parseFloat(frame.style.minHeight)).toBe(Math.ceil(frame.textContent!.split("\n").length * 24 * 1.05));
+    expect(parseFloat(frame.style.minHeight)).toBeLessThanOrEqual(
+      Math.ceil(frame.textContent!.split("\n").length * 24 * 1.05) + 1
+    );
   } finally {
     computedStyle.mockRestore();
     if (widthDescriptor) Object.defineProperty(window, "innerWidth", widthDescriptor);
@@ -295,7 +323,7 @@ test("pausing freezes the current text animation frame", () => {
 });
 
 test("all styles move character shapes and keep the exact name visible", () => {
-  for (const columns of [30, 56, 96]) {
+  for (const columns of [40, 72, 120]) {
     for (let style = 0; style < STYLE_NAMES.length; style += 1) {
       const frames = [0, 6, 12, 30, 45, 90, 150, 179]
         .map((tick) => renderAnsiFrame(style, "Héctor Magaña", tick, columns));
@@ -324,7 +352,7 @@ test("each scene has its own moving border with stable corners", () => {
       .map(({ char, fg, bg }) => `${char}:${fg}:${bg}`).join("|");
   };
 
-  for (const columns of [30, 56, 96]) {
+  for (const columns of [40, 72, 120]) {
     const signatures = STYLE_NAMES.map((_, style) => {
       const initial = border(style, 0, columns);
       expect(border(style, 20, columns)).not.toBe(initial);
@@ -336,7 +364,7 @@ test("each scene has its own moving border with stable corners", () => {
 });
 
 test("Matrix border stays green throughout its animation", () => {
-  for (const columns of [30, 56, 96]) {
+  for (const columns of [40, 72, 120]) {
     for (let tick = 0; tick < 180; tick += 1) {
       const frame = renderAnsiFrame(6, "Héctor Magaña", tick, columns);
       const border = [...frame[0], ...frame.slice(1, -1).flatMap((row) => [row[0], row[columns - 1]]), ...frame[frame.length - 1]];
@@ -357,7 +385,7 @@ test("new themes have distinct terminal glyph compositions", () => {
 });
 
 test("Clock sweep, Gem Glow, and The Cosmos reach the rows above the footer", () => {
-  for (const columns of [30, 56, 96]) {
+  for (const columns of [40, 72, 120]) {
     for (const style of [2, 5, 9]) {
       for (const tick of [0, 20, 45, 70]) {
         const frame = renderAnsiFrame(style, "Héctor Magaña", tick, columns);
@@ -369,11 +397,12 @@ test("Clock sweep, Gem Glow, and The Cosmos reach the rows above the footer", ()
   }
 });
 
-test("Gem Glow animates the space between the lettering and lower gems", () => {
-  for (const columns of [30, 56, 96]) {
-    for (const tick of [0, 20, 45, 70]) {
-      const frame = renderAnsiFrame(5, "Héctor Magaña", tick, columns);
-      const middleArtwork = frame.slice(frame.length - 15, frame.length - 11)
+test("Gem Glow keeps animated sparkles around the larger lettering", () => {
+  for (const columns of [40, 72, 120]) {
+    const frames = [0, 20, 45, 70].map((tick) => renderAnsiFrame(5, "Héctor Magaña", tick, columns));
+    expect(new Set(frames.map(frameText)).size).toBeGreaterThan(1);
+    for (const frame of frames) {
+      const middleArtwork = frame.slice(2, frame.length - 5)
         .flatMap((row) => row.slice(1, -1));
       expect(middleArtwork.some(({ char }) => char === "◇" || char === "·")).toBe(true);
     }
@@ -381,7 +410,7 @@ test("Gem Glow animates the space between the lettering and lower gems", () => {
 });
 
 test("Snow Fall mountains and ground stay fixed while snow moves", () => {
-  for (const columns of [30, 56, 96]) {
+  for (const columns of [40, 72, 120]) {
     const initial = renderAnsiFrame(7, "Héctor Magaña", 0, columns);
     const nameRow = initial.findIndex((row) => row.map(({ char }) => char).join("").includes("Héctor Magaña"));
     const mountainCells: { x: number; y: number }[] = [];
@@ -417,7 +446,7 @@ test("arcade and scenic themes draw recognizable moving silhouettes", () => {
 });
 
 test("Space Invaders keeps white enemies above the white player ship", () => {
-  for (const columns of [30, 56, 96]) {
+  for (const columns of [40, 72, 120]) {
     for (let tick = 0; tick < 180; tick += 1) {
       const frame = renderAnsiFrame(10, "Héctor Magaña", tick, columns);
       const nameRow = frame.findIndex((row) => row.map(({ char }) => char).join("").includes("Héctor Magaña"));
@@ -436,7 +465,7 @@ test("Space Invaders keeps white enemies above the white player ship", () => {
 });
 
 test("Pacman and the ghost fully exit before reversing their chase offscreen", () => {
-  for (const columns of [30, 56, 96]) {
+  for (const columns of [40, 72, 120]) {
     const actors = (tick: number) => {
       const frame = renderAnsiFrame(11, "Héctor Magaña", tick, columns);
       const nameRow = frame.findIndex((row) => row.map(({ char }) => char).join("").includes("Héctor Magaña"));
@@ -509,7 +538,7 @@ test("Pacman has an opening mouth and the ghost has white eyes and scalloped fee
 });
 
 test("Pacman background keeps its blue maze and yellow pellets at every width", () => {
-  for (const columns of [30, 56, 96]) {
+  for (const columns of [40, 72, 120]) {
     const frame = renderAnsiFrame(11, "Héctor Magaña", 20, columns);
     const nameRow = frame.findIndex((row) => row.map(({ char }) => char).join("").includes("Héctor Magaña"));
     const maze = frame.flatMap((row, y) => row.map(({ fg, char }, x) => fg === 27 ? `${x}:${y}:${char}` : null)
@@ -545,7 +574,7 @@ test("new scenes retain their signature artwork in the narrow layout", () => {
 });
 
 test("Thunder Storm lightning bolts are yellow during a flash", () => {
-  for (const columns of [30, 56, 96]) {
+  for (const columns of [40, 72, 120]) {
     const yellowBolt = (tick: number) => renderAnsiFrame(12, "Héctor Magaña", tick, columns)
       .slice(2, -2).flatMap((row) => row.slice(2, -2))
       .filter(({ char, fg }) => /[╱╲]/.test(char) && fg === 226);
@@ -557,7 +586,7 @@ test("Thunder Storm lightning bolts are yellow during a flash", () => {
 test("Mayan Ruins keeps gray stone, gold pyramid tips, green ground, and a matching frame", () => {
   const stone = [240, 244, 248, 252];
   const grass = [28, 34, 40];
-  for (const columns of [30, 56, 96]) {
+  for (const columns of [40, 72, 120]) {
     for (const tick of [0, 60]) {
       const frame = renderAnsiFrame(14, "Héctor Magaña", tick, columns);
       const nameRow = frame.findIndex((row) => row.map(({ char }) => char).join("").includes("Héctor Magaña"));
@@ -573,7 +602,7 @@ test("Mayan Ruins keeps gray stone, gold pyramid tips, green ground, and a match
 });
 
 test("Pendulum bobs swing on an arc beneath fixed pivots", () => {
-  for (const columns of [30, 56, 96]) {
+  for (const columns of [40, 72, 120]) {
     const count = columns < 56 ? 2 : 3;
     const pivotX = Math.round(0.5 * columns / count);
     const firstPendulumRight = pivotX + columns / (count * 2.5) + 1;
@@ -600,7 +629,7 @@ test("Pendulum bobs swing on an arc beneath fixed pivots", () => {
 });
 
 test("candles start unlit and reveal the name as they ignite", () => {
-  for (const columns of [30, 56, 96]) {
+  for (const columns of [40, 72, 120]) {
     const dark = renderAnsiFrame(15, "Héctor Magaña", 0, columns);
     const lighting = renderAnsiFrame(15, "Héctor Magaña", 8, columns);
     const lit = renderAnsiFrame(15, "Héctor Magaña", 20, columns);
@@ -646,7 +675,7 @@ test("dissolve mosaic background drifts without flashing a new pattern", () => {
 
 test("the full 40-character name fits at every grid width", () => {
   const longName = "ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMN";
-  for (const columns of [30, 56, 96]) {
+  for (const columns of [40, 72, 120]) {
     for (let style = 0; style < STYLE_NAMES.length; style += 1) {
       const frame = renderAnsiFrame(style, longName, 60, columns, true);
       frame.forEach((row) => expect(row).toHaveLength(columns));

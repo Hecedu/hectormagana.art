@@ -5,7 +5,7 @@ export default function BllageCard() {
   return (
     <div className={`${containerStyle} bllage-card`}>
       <div className="row g-0 h-100">
-        <div className="col-12 col-lg-6 checkerboard-bg d-flex justify-content-center align-items-center p-4">
+        <div className="col-12 col-xl-6 checkerboard-bg d-flex justify-content-center align-items-center p-4">
           <img
             className="img-fluid bllagelogo user-select-none"
             src={require("../../../../Assets/Bllage.png")}
@@ -13,7 +13,7 @@ export default function BllageCard() {
             alt="B-Llage logo"
           />
         </div>
-        <div className="col-12 col-lg-6 bg-white text-dark p-1 bllage-card__content">
+        <div className="col-12 col-xl-6 bg-white text-dark p-1 bllage-card__content">
           <div className="text-start">
             <p className="bllage-tagline mb-0">
               Working hard to <span className="bllage-tagline__accent">save your time,</span>
