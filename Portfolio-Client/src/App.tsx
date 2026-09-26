@@ -9,6 +9,7 @@ import MoodBoard from "./Views/BlogPosts";
 import PortfolioLayout from "./Components/UI/Portfolio/PortfolioLayout";
 import TerminalLayout from "./Components/UI/The_Terminal/TerminalLayout";
 import Terminal_Home from "./Views/The_Terminal/Terminal_Home";
+import InnerSpace from "./Views/InnerSpace";
 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
           <Route path="profile" element={<Profile />} />
           <Route path="game" element={<Game />} />
           <Route path="moodboard" element={<MoodBoard />} />
+          <Route path="innerspace" element={<InnerSpace />} />
         </Route>
         <Route element={<TerminalLayout />}>
           <Route path="terminal">

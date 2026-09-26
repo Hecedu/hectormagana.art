@@ -6,6 +6,7 @@ import BllageCard from "../Components/Portfolio/Cards/Projects/BllageCard";
 import SoloToolsCard from "../Components/Portfolio/Cards/Projects/SoloToolsCard";
 import PixiePaintCard from "../Components/Portfolio/Cards/Projects/PixiePaintCard";
 import AsciiBanner from "../Components/Portfolio/AsciiBanner";
+import InnerSpaceMessenger from "../Components/Portfolio/InnerSpaceMessenger";
 
 export default function Home() {
   return (
@@ -33,6 +34,7 @@ export default function Home() {
           </div>
         </div>
       </div>
+      <InnerSpaceMessenger />
     </>
   );
 }

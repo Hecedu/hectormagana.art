@@ -1,0 +1,25 @@
+.innerspace-teaser {
+  box-sizing: border-box;
+  min-height: calc(92vh - 5rem);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(1.5rem, 3vw, 2rem);
+  padding: clamp(1.5rem, 4vw, 3rem) 0;
+  color: #e7fff6;
+  text-align: center;
+}
+
+.innerspace-teaser__scene {
+  display: block;
+  width: min(100%, 640px, 74vh);
+  height: auto;
+  image-rendering: pixelated;
+}
+
+.innerspace-teaser__description {
+  max-width: 46rem;
+  margin: 0;
+  font: 400 clamp(1.2rem, 2.5vw, 1.7rem)/1.55 'Handjet', monospace;
+}
